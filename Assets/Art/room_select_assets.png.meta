@@ -118,7 +118,7 @@ TextureImporter:
         width: 121
         height: 121
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,7 +139,7 @@ TextureImporter:
         width: 322
         height: 150
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,7 +160,7 @@ TextureImporter:
         width: 1394
         height: 847
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,7 +181,7 @@ TextureImporter:
         width: 352
         height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,7 +202,7 @@ TextureImporter:
         width: 1322
         height: 95
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,6 +210,300 @@ TextureImporter:
       bones: []
       spriteID: 0d77d8243adef3547b293afb1f855926
       internalID: -907900463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Junior
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 556
+        width: 135
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34ed852b6a8e8c44db5afb4e20ad69bb
+      internalID: -1426016334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Junnior_Highlight
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 554
+        width: 131
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52f0ebfb80a8c5e47b3755fbead4097a
+      internalID: 959906644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Senior
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 554
+        width: 113
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 923564934ba829c4fae597c41c16dc7c
+      internalID: -1454794917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Senior_Highlight
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 554
+        width: 115
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 942e603d29e560e42b4f92c5a1fe5cb2
+      internalID: -1508023505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 471
+        width: 124
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d75111b8f5328c74fb95752ddb675a60
+      internalID: -1613957504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Highlight
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 470
+        width: 122
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77f050ee2c4c55944876248e90bb519a
+      internalID: -712490380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Millionare
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 468
+        width: 143
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6d3796dbcb964d459c2c80029b8ce94
+      internalID: -438323950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Millionare_Highlight
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 464
+        width: 152
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 790e3858a3b65ff42adc7b3cac86d2c2
+      internalID: 1451812281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Billionare
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 376
+        width: 162
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20f9913b6d879ad45be80b6962e3e5be
+      internalID: -2113098893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Billionare_Highlight
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 374
+        width: 172
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45a6a89a853090448bdb031f41121779
+      internalID: -1979136304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DescriptionText
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 289
+        width: 397
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc898573177c60e44979d84dc8e8c3c3
+      internalID: -454872912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ok_Btn
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 152
+        width: 279
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b2e04c677eb6fe41a8258a080601d71
+      internalID: 1507011691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Find_Btn
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 20
+        width: 278
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a96051000cc1d9e44881e5bf7324a367
+      internalID: 1041249185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Play_Btn
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 21
+        width: 259
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4a80d26336c02244b00380f20a82f17
+      internalID: 227343002
       vertices: []
       indices: 
       edges: []
@@ -226,10 +520,24 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Back_btn: -847309737
+      Billionare: -2113098893
+      Billionare_Highlight: -1979136304
       Black_Btn: 1600527482
+      Boss: -1613957504
+      Boss_Highlight: -712490380
+      DescriptionText: -454872912
+      Find_Btn: 1041249185
       Highlight_Btn: 1973185185
+      Junior: -1426016334
+      Junnior_Highlight: 959906644
+      Millionare: -438323950
+      Millionare_Highlight: 1451812281
+      Ok_Btn: 1507011691
+      Play_Btn: 227343002
       Room_Object: -907900463
       Room_Panel: 1076817661
+      Senior: -1454794917
+      Senior_Highlight: -1508023505
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
