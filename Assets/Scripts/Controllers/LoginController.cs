@@ -8,6 +8,7 @@ using Sfs2X.Requests;
 using Sfs2X.Util;
 using TMPro;
 using THZ;
+using System.Collections.Generic;
 
 /**
  * Script attached to the Controller object in the Login scene.
@@ -115,8 +116,11 @@ public class LoginController : BaseSceneController
 		ConfigData cfg = new ConfigData();
 		cfg.Host = host;
 
-#if UNITY_WEBGL
+#if UNITY_WEBGL //&& !UNITY_EDITOR
+
+		Debug.Log("Webgl");
         cfg.Port = webSocketPort;
+        //cfg.Port = tcpPort;
 #else
         cfg.Port = tcpPort;
 #endif
@@ -125,15 +129,16 @@ public class LoginController : BaseSceneController
         cfg.Zone = zone;
 		cfg.Debug = debug;
 
-		// Initialize SmartFox client
-		// The singleton class GlobalManager holds a reference to the SmartFox class instance,
-		// so that it can be shared among all the scenes
-#if UNITY_WEBGL
-        sfs = gm.CreateSfsClient(UseWebSocket.WS);
+        // Initialize SmartFox client
+        // The singleton class GlobalManager holds a reference to the SmartFox class instance,
+        // so that it can be shared among all the scenes
+#if UNITY_WEBGL //&& !UNITY_EDITOR
+        sfs = gm.CreateSfsClient(UseWebSocket.WS_BIN);
+        //sfs = gm.CreateSfsClient();
 #else
         sfs = gm.CreateSfsClient();
 #endif
-
+        //sfs = gm.CreateSfsClient();
         // Configure SmartFox internal logger
         sfs.Logger.EnableConsoleTrace = debug;
 
@@ -228,11 +233,17 @@ public class LoginController : BaseSceneController
 
     private void OnLogin(BaseEvent evt)
     {
-        // Initialize UDP communication
-        sfs.InitUDP();
+#if !UNITY_WEBGL
+    // Initialize UDP communication
+    sfs.InitUDP();
+#else
+        // For WebGL, you might want to initialize WebSocket or handle differently
+        Debug.Log("WebGL does not support UDP. Proceeding without UDP initialization.");
+        OnUdpInit(new BaseEvent("udpInit", new Dictionary<string, object> { { "success", true } }));
+#endif
     }
 
-	private void OnLoginError(BaseEvent evt)
+    private void OnLoginError(BaseEvent evt)
 	{
 		// Disconnect
 		// NOTE: this causes a CONNECTION_LOST event with reason "manual", which in turn removes all SFS listeners

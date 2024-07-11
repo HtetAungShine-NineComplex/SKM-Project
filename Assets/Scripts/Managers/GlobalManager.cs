@@ -168,7 +168,7 @@ public class GlobalManager : MonoBehaviour
             }
 
             // Switch to the LOGIN scene
-            SceneManager.LoadScene("Login");
+            Managers.UIManager.ShowUI(UIs.UILogin);
         }
     }
 }

@@ -83,14 +83,14 @@ public class NetworkManager : MonoBehaviour
     private void OnConnectionLost(BaseEvent evt)
     {
         UnsubscribeDelegates();
-        SceneManager.LoadScene(GameConstants.LOGIN_SCENE);
+        Managers.UIManager.ShowUI(UIs.UILogin);
     }
 
     public void OnExitGame()
     {
         UnsubscribeDelegates();
         _smartfox.Send(new LeaveRoomRequest());
-        SceneManager.LoadScene(GameConstants.LOGIN_SCENE);
+        Managers.UIManager.ShowUI(UIs.UILogin);
     }
 
     private void OnUserJoinRoom(BaseEvent evt)
