@@ -53,8 +53,10 @@ public class GameplayManagerShan : MonoBehaviour
     private void ListenServerEvents()
     {
         Managers.NetworkManager.UserEnterRoom += OnUserEnterRoom;
+        Managers.NetworkManager.BotJoined += OnBotJoined;
         Managers.NetworkManager.StartCurrentTurn += OnStartCurrentTurn;
         Managers.NetworkManager.Owner += OnOwner;
+        Managers.NetworkManager.Banker += OnBanker;
         Managers.NetworkManager.GameStarted += OnGameStarted;
         Managers.NetworkManager.Countdown += OnCountdown;
         Managers.NetworkManager.PlayerDrawCard += OnDrawCard;
@@ -70,6 +72,7 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.UserEnterRoom -= OnUserEnterRoom;
         Managers.NetworkManager.StartCurrentTurn -= OnStartCurrentTurn;
         Managers.NetworkManager.Owner -= OnOwner;
+        Managers.NetworkManager.Banker -= OnBanker;
         Managers.NetworkManager.GameStarted -= OnGameStarted;
         Managers.NetworkManager.Countdown -= OnCountdown;
         Managers.NetworkManager.PlayerDrawCard -= OnDrawCard;
@@ -92,6 +95,13 @@ public class GameplayManagerShan : MonoBehaviour
     private void OnUserEnterRoom(User user)
     {
         AddUserItem(user, _userItems.Count);
+    }
+
+    private void OnBotJoined(ISFSObject sfsObj)
+    {
+        string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
+
+        AddUserItem(playerName, _userItems.Count);
     }
 
     private void PopulateUserList()
@@ -134,17 +144,42 @@ public class GameplayManagerShan : MonoBehaviour
         _userItems.Add(roomUserItem);
     }
 
+    private void AddUserItem(string name, int index) //bots
+    {
+        RoomUserItem roomUserItem = Instantiate(_roomUserItemPrefab);
+        roomUserItem.SetName(name);
+
+        roomUserItem.transform.SetParent(_roomUserRoot, false);
+
+        if (roomUserItem.ID == Managers.NetworkManager.SmartFox.MySelf.Id)
+        {
+            roomUserItem.transform.localPosition = _mainUserPos.localPosition;
+            _userItems.Add(roomUserItem);
+            return;
+        }
+
+        if (index < userPositions.Length)
+        {
+            roomUserItem.transform.localPosition = userPositions[index].localPosition;
+        }
+        else
+        {
+            //something for spectator           
+        }
+
+        _userItems.Add(roomUserItem);
+    }
 
     public void RemoveUserItem(RoomUserItem userItem)
     {
         _userItems.Remove(userItem);
     }
 
-    public RoomUserItem GetUserItemByID(int id)
+    public RoomUserItem GetUserItemByName(string name)
     {
         foreach (RoomUserItem userItem in _userItems)
         {
-            if (userItem.ID == id)
+            if (userItem.Name == name)
             {
                 return userItem;
             }
@@ -156,9 +191,9 @@ public class GameplayManagerShan : MonoBehaviour
     public void OnStartCurrentTurn(ISFSObject sfsObj) 
     {
         //on player turn change, check if it is my turn or not by id
-        int id = sfsObj.GetInt(GameConstants.USER_ID);
+        string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
 
-        if(Managers.NetworkManager.SmartFox.MySelf.Id == id)
+        if (Managers.NetworkManager.SmartFox.MySelf.Name == playerName)
         {
             ShowObjectForSecs(_turnTxt, 2);
             ToggleGameplayBtns(true);
@@ -203,7 +238,7 @@ public class GameplayManagerShan : MonoBehaviour
     public void DrawCard() //send to server when this client draw a card
     {
         ISFSObject data = new SFSObject();
-        data.PutInt(GameConstants.USER_ID, Managers.NetworkManager.SmartFox.MySelf.Id);
+        data.PutUtfString(GameConstants.USER_NAME, Managers.NetworkManager.SmartFox.MySelf.Name);
         ExtensionRequest request = new ExtensionRequest(GameConstants.DRAW_CARD, data, _currentRoom);
         Managers.NetworkManager.SendRequest(request);
 
@@ -221,14 +256,35 @@ public class GameplayManagerShan : MonoBehaviour
 
     public void OnOwner(ISFSObject sfsObj) //sent from the server when the room owner is set
     {
-        int id = sfsObj.GetInt(GameConstants.USER_ID);
-        GetUserItemByID(id).IsBanker();
-        if(id == Managers.NetworkManager.SmartFox.MySelf.Id)
+        Debug.Log("Owner received");
+        string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
+        //GetUserItemByID(id).IsBanker();
+        if (playerName == Managers.NetworkManager.SmartFox.MySelf.Name)
         {
             _startBtn.onClick.AddListener(() => StartGame());
             _startBtn.gameObject.SetActive(true);
         }
     }
+
+    public void OnBanker(ISFSObject sfsObj)
+    {
+        Debug.Log("On Banker");
+
+        string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
+
+        foreach (RoomUserItem item in _userItems)
+        {
+            if (item.Name == playerName)
+            {
+                item.IsBanker();
+            }
+            else
+            {
+                item.IsPlayer();
+            }
+        }
+    }
+
 
     private void OnCountdown(ISFSObject sfsObj) //countdown event before game start
     {
@@ -249,79 +305,89 @@ public class GameplayManagerShan : MonoBehaviour
     {
         string[] playerCards = sfsObj.GetUtfStringArray(GameConstants.PLAYER_CARD_ARRAY);
         int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
-        int playerID = sfsObj.GetInt(GameConstants.USER_ID);
+        string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
 
-        Debug.Log($"{GetUserItemByID(playerID).Name} is DO with Cards [{playerCards[0]}, {playerCards[1]}] and total value of {totalValue}");
+        Debug.Log($"{playerName} is DO with Cards [{playerCards[0]}, {playerCards[1]}] and total value of {totalValue}");
 
-        GetUserItemByID(playerID).SetTotalValue(totalValue);
-        GetUserItemByID(playerID).PlayerDo(totalValue);
-        GetUserItemByID(playerID).UpdateAllCards(playerCards);
+        GetUserItemByName(playerName).SetTotalValue(totalValue);
+        GetUserItemByName(playerName).PlayerDo(totalValue);
+        GetUserItemByName(playerName).UpdateAllCards(playerCards);
     }
 
     private void OnDrawCard(ISFSObject sfsObj) //this will receive when a player hit
     {
-        int drawerID = sfsObj.GetInt(GameConstants.USER_ID);
+        string drawerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
 
-        if(drawerID == Managers.NetworkManager.SmartFox.MySelf.Id )
+        if (drawerName == Managers.NetworkManager.SmartFox.MySelf.Name )
         {
             string drawnCardName = sfsObj.GetUtfString(GameConstants.CARD_NAME);
             int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
-            Debug.Log($"{GetUserItemByID(drawerID).Name} draw Card [{drawnCardName}] and total value is {totalValue}");
-            GetUserItemByID(drawerID).SetTotalValue(totalValue);
-            GetUserItemByID(drawerID).AddCard(drawnCardName);
+            Debug.Log($"{GetUserItemByName(drawerName).Name} draw Card [{drawnCardName}] and total value is {totalValue}");
+            GetUserItemByName(drawerName).SetTotalValue(totalValue);
+            GetUserItemByName(drawerName).AddCard(drawnCardName);
         }
         else
         {
-            Debug.Log($"{GetUserItemByID(drawerID).Name} draw a card ..");
-            GetUserItemByID(drawerID).AddBlankCards();
+            Debug.Log($"{drawerName} draw a card ..");
+            GetUserItemByName(drawerName).AddBlankCards();
         }
     }
 
     private void OnPlayerHandCard(ISFSObject sfsObj) //this will receive when server send u ur own hand cards
     {
-        int id = sfsObj.GetInt(GameConstants.USER_ID);
+        string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
 
         string[] handCards = sfsObj.GetUtfStringArray(GameConstants.PLAYER_CARD_ARRAY);
-        int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
-        GetUserItemByID(id).SetTotalValue(totalValue);
 
-        GetUserItemByID(id).UpdateAllCards(handCards);
+        
+        int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
+        GetUserItemByName(playerName).SetTotalValue(totalValue);
+
+        GetUserItemByName(playerName).UpdateAllCards(handCards);
     }
 
     private void OnWinEvent(ISFSObject sfsObj) //this will receive when a player win
     {
-        int id = sfsObj.GetInt(GameConstants.USER_ID);
+        string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
         string[] handCards = sfsObj.GetUtfStringArray(GameConstants.PLAYER_CARD_ARRAY);
         int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
 
+        foreach (string handCard in handCards)
+        {
+            Debug.Log(playerName + " " + handCard);
+        }
 
-        GetUserItemByID(id).UpdateAllCards(handCards);
+        GetUserItemByName(playerName).UpdateAllCards(handCards);
 
-        GetUserItemByID(id).SetTotalValue(totalValue);
-        GetUserItemByID(id).WinLose(true);
+        GetUserItemByName(playerName).SetTotalValue(totalValue);
+        GetUserItemByName(playerName).WinLose(true);
         ToggleGameplayBtns(false);
     }
 
     private void OnLoseEvent(ISFSObject sfsObj) //this will receive when a player lose
     {
-        int id = sfsObj.GetInt(GameConstants.USER_ID);
+        string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
         string[] handCards = sfsObj.GetUtfStringArray(GameConstants.PLAYER_CARD_ARRAY);
         int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
 
+        foreach (string handCard in handCards)
+        {
+            Debug.Log(playerName + " " + handCard);
+        }
 
-        GetUserItemByID(id).UpdateAllCards(handCards);
+        GetUserItemByName(playerName).UpdateAllCards(handCards);
 
-        GetUserItemByID(id).SetTotalValue(totalValue);
-        GetUserItemByID(id).WinLose(false);
+        GetUserItemByName(playerName).SetTotalValue(totalValue);
+        GetUserItemByName(playerName).WinLose(false);
         ToggleGameplayBtns(false);
     }
 
     private void OnPlayerTotalValue(ISFSObject sfsObj)
     {
-        int id = sfsObj.GetInt(GameConstants.USER_ID);
+        string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
         int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
         Debug.Log("Player Total Value : " + totalValue);
-        GetUserItemByID(id).SetTotalValue(totalValue);
+        GetUserItemByName(playerName).SetTotalValue(totalValue);
     }
 
     private void ShowObjectForSecs(GameObject obj, int duration)

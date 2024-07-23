@@ -15,7 +15,7 @@ namespace THZ
 
         //Room Settings
         public const string GAME_ROOMS_GROUP_NAME = "games";
-        public const int GAME_ROOMS_MAX_USER = 9;
+        public const int GAME_ROOMS_MAX_USER = 8;
 
         //Extensions
 
@@ -24,17 +24,20 @@ namespace THZ
         public const string EXTENSION_CLASS = "delight.games.poker.PokerExtension";
 
         //shan
-        public const string SHAN_EXTENSION_ID = "DelightShan";
-        public const string SHAN_EXTENSION_CLASS = "delight.games.shan.ShanExtension";
+        public const string SHAN_EXTENSION_ID = "SKMProject";
+        public const string SHAN_EXTENSION_CLASS = "game.shan.ShanExtension";
 
         //Game Event Params
-        public const string USER_ID = "userID";
+        //public const string USER_ID = "userID";
+        public const string USER_NAME = "userName";
 
         //Game Event Names
+        public const string BOT_JOINED = "botJoined"; //send from client to server
         public const string START_GAME = "startGame"; //send from client to server
         public const string GAME_STARTED = "gameStarted"; //send from server to client
         public const string COUNTDOWN = "countdown"; //send from server to client
         public const string OWNER = "owner"; //send from server to client
+        public const string BANKER = "banker"; //send from server to client
         public const string START_CURRENT_TURN = "startCurrentTurn"; //send from server
         public const string PLAYER_HIT = "playerHit"; //send from server
         public const string PLAYER_WIN = "playerWin"; //send from server

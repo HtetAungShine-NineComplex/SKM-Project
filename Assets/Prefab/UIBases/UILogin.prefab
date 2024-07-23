@@ -322,7 +322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3387145997688134268
 RectTransform:
   m_ObjectHideFlags: 0
@@ -361,7 +361,7 @@ MonoBehaviour:
   UdpPort: 9933
   webSocketPort: 8080
   zone: DelightShan
-  debug: 1
+  debug: 0
   nameInput: {fileID: 7771323812670061929}
   loginButton: {fileID: 7903389021770005099}
   errorText: {fileID: 1419143839363522494}

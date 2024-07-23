@@ -25,6 +25,7 @@ public class NetworkManager : MonoBehaviour
     public SmartFox SmartFox => _smartfox;
 
     //game events
+    public event Action<ISFSObject> BotJoined;
     public event Action<ISFSObject> GameStarted;
     public event Action<ISFSObject> Countdown;
     public event Action<ISFSObject> StartCurrentTurn;
@@ -33,6 +34,7 @@ public class NetworkManager : MonoBehaviour
     public event Action<ISFSObject> PlayerLose;
     public event Action<ISFSObject> PlayerTotalValue;
     public event Action<ISFSObject> Owner;
+    public event Action<ISFSObject> Banker;
     public event Action<ISFSObject> PlayerDo;
     public event Action<ISFSObject> PlayerDrawCard;
     public event Action<ISFSObject> PlayerHandCards;
@@ -139,6 +141,10 @@ public class NetworkManager : MonoBehaviour
         ISFSObject sfsobject = (SFSObject)evt.Params["params"];
         switch (cmd)
         {
+            case GameConstants.BOT_JOINED:
+                OnBotJoined(sfsobject);
+                break;
+
             case GameConstants.GAME_STARTED:
                 OnGameStarted(sfsobject);
                 break;
@@ -149,6 +155,10 @@ public class NetworkManager : MonoBehaviour
 
             case GameConstants.OWNER:
                 OnOwner(sfsobject);
+                break;
+
+            case GameConstants.BANKER:
+                OnBanker(sfsobject);
                 break;
 
             case GameConstants.START_CURRENT_TURN:
@@ -181,6 +191,11 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
+    private void OnBotJoined(ISFSObject sfsObj)
+    {
+        BotJoined?.Invoke(sfsObj);
+    }
+
     private void OnGameStarted(ISFSObject sfsObj)
     {
         Debug.Log("Game Started");
@@ -190,7 +205,7 @@ public class NetworkManager : MonoBehaviour
     private void OnCountdown(ISFSObject sfsObj)
     {
         int countdown = sfsObj.GetInt("countdown");
-        Debug.Log("Game will start in: " + countdown);
+        //Debug.Log("Game will start in: " + countdown);
 
         Countdown?.Invoke(sfsObj);
     }
@@ -198,6 +213,11 @@ public class NetworkManager : MonoBehaviour
     private void OnOwner(ISFSObject sfsObj)
     {
         Owner?.Invoke(sfsObj);
+    }
+
+    private void OnBanker(ISFSObject sfsObj)
+    {
+        Banker?.Invoke(sfsObj);
     }
 
     private void OnStartCurrentTurn(ISFSObject sfsObj)

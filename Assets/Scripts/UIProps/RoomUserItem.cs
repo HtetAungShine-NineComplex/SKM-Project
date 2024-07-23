@@ -45,6 +45,11 @@ public class RoomUserItem : MonoBehaviour
         _bankerStatus.SetActive(true);
     }
 
+    public void IsPlayer()
+    {
+        _bankerStatus.SetActive(false);
+    }
+
     public void WinLose(bool isWin)
     {
         StartCoroutine(ShowWinOrLose(isWin));
