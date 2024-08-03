@@ -3,6 +3,7 @@ using Sfs2X.Core;
 using Sfs2X.Entities;
 using Sfs2X.Entities.Data;
 using Sfs2X.Requests;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using THZ;
@@ -23,7 +24,7 @@ public class GameplayManagerShan : MonoBehaviour
     [SerializeField] private Button _startBtn;
     [SerializeField] private TMP_Text _gameCDTxt;
 
-    [SerializeField] private Transform _mainUserPos;
+    //[SerializeField] private Transform _mainUserPos;
 
     [SerializeField] private Transform[] userPositions;
 
@@ -45,7 +46,7 @@ public class GameplayManagerShan : MonoBehaviour
         _roomNameTxt.text = _currentRoom.Name;
 
         ListenServerEvents();
-        PopulateUserList();
+        //PopulateUserList();
 
         ToggleGameplayBtns(false);
     }
@@ -65,6 +66,7 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.PlayerTotalValue += OnPlayerTotalValue;
         Managers.NetworkManager.PlayerDo += OnPlayerDo;
         Managers.NetworkManager.PlayerHandCards += OnPlayerHandCard;
+        Managers.NetworkManager.RoomPlayerList += OnRoomPlayerList;
     }
 
     public void RemovenServerEvents()
@@ -81,6 +83,7 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.PlayerTotalValue -= OnPlayerTotalValue;
         Managers.NetworkManager.PlayerDo -= OnPlayerDo;
         Managers.NetworkManager.PlayerHandCards -= OnPlayerHandCard;
+        Managers.NetworkManager.RoomPlayerList -= OnRoomPlayerList;
     }
 
     private void AddTwoCardToAllPlayers()
@@ -94,19 +97,19 @@ public class GameplayManagerShan : MonoBehaviour
 
     private void OnUserEnterRoom(User user)
     {
-        AddUserItem(user, _userItems.Count);
+        //AddUserItem(user, _userItems.Count);
     }
 
     private void OnBotJoined(ISFSObject sfsObj)
     {
         string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
 
-        AddUserItem(playerName, _userItems.Count);
+       // AddUserItem(playerName, _userItems.Count);
     }
 
-    private void PopulateUserList()
+    /*private void PopulateUserList()
     {
-        List<User> users = new List<User>(_currentRoom.UserList);
+        *//*List<User> users = new List<User>(_currentRoom.UserList);
         users.Remove(Managers.NetworkManager.SmartFox.MySelf);
 
         AddUserItem(Managers.NetworkManager.SmartFox.MySelf, 0);
@@ -114,10 +117,56 @@ public class GameplayManagerShan : MonoBehaviour
         for (int i = 0; i < users.Count; i++)
         {
             AddUserItem(users[i], i);
+        }*//*
+    }*/
+
+    private void OnRoomPlayerList(ISFSObject sfsObj)
+    {
+
+
+        string[] nameArray = sfsObj.GetUtfStringArray(GameConstants.USER_NAME_ARRAY);
+
+        Debug.Log("Receiving Room Player List " + nameArray.Length);
+        int myIndex = 0;
+
+        for (int i = 0; i < nameArray.Length; i++)
+        {
+            if (nameArray[i] == Managers.NetworkManager.SmartFox.MySelf.Name)
+            {
+                myIndex = i;
+                break;
+            }
+        }
+
+        if(_userItems.Count > 0)
+        {
+            foreach (RoomUserItem item in _userItems)
+            {
+                Destroy(item.gameObject);
+            }
+        }
+
+        _userItems.Clear();
+
+        AddUserItem(myIndex, nameArray);
+    }
+
+    private void AddUserItem(int myIndex, string[] nameArr)
+    {
+        for (int i = 0; i < nameArr.Length; i++)
+        {
+            int ind = (myIndex + i) % nameArr.Length;
+
+            RoomUserItem roomUserItem = Instantiate(_roomUserItemPrefab);
+            roomUserItem.SetName(nameArr[ind]);
+            roomUserItem.transform.SetParent(_roomUserRoot, false);
+            roomUserItem.transform.localPosition = userPositions[i].localPosition;
+            _userItems.Add(roomUserItem);
+            // roomUserItem.SetId(user.Id);
         }
     }
 
-    private void AddUserItem(User user,int index)
+    /*private void AddUserItem(User user,int index)
     {
         RoomUserItem roomUserItem = Instantiate(_roomUserItemPrefab);
         roomUserItem.SetName(user.Name);
@@ -168,7 +217,7 @@ public class GameplayManagerShan : MonoBehaviour
         }
 
         _userItems.Add(roomUserItem);
-    }
+    }*/
 
     public void RemoveUserItem(RoomUserItem userItem)
     {

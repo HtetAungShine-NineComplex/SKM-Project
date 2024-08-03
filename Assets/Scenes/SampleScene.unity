@@ -760,6 +760,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 15869252}
     m_Modifications:
     - target: {fileID: 2916927749492359457, guid: f605d9082b0c9f144b0aabb58e0f83f1, type: 3}
+      propertyPath: host
+      value: 54.179.169.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 2916927749492359457, guid: f605d9082b0c9f144b0aabb58e0f83f1, type: 3}
       propertyPath: zone
       value: SKMProject
       objectReference: {fileID: 0}

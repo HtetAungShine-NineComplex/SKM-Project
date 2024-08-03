@@ -30,6 +30,7 @@ namespace THZ
         //Game Event Params
         //public const string USER_ID = "userID";
         public const string USER_NAME = "userName";
+        public const string USER_NAME_ARRAY = "userNameArray";
 
         //Game Event Names
         public const string BOT_JOINED = "botJoined"; //send from client to server
@@ -46,6 +47,7 @@ namespace THZ
         public const string PLAYER_HAND_CARDS = "playerHandCards"; //send from server
         public const string HIT = "hit"; //send from client
         public const string STAND = "stand"; //send from client
+        public const string ROOM_PLAYER_LIST = "roomPlayerList"; //send from server
 
         //shan
         public const string PLAYER_DO = "playerDo"; //send from server

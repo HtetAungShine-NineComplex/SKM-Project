@@ -38,6 +38,7 @@ public class NetworkManager : MonoBehaviour
     public event Action<ISFSObject> PlayerDo;
     public event Action<ISFSObject> PlayerDrawCard;
     public event Action<ISFSObject> PlayerHandCards;
+    public event Action<ISFSObject> RoomPlayerList;
 
     //server events
     public event Action<User> UserEnterRoom;
@@ -188,6 +189,10 @@ public class NetworkManager : MonoBehaviour
             case GameConstants.PLAYER_HAND_CARDS:
                 OnPlayerHandCards(sfsobject);
                 break;
+
+            case GameConstants.ROOM_PLAYER_LIST:
+                OnRoomPlayerList(sfsobject);
+                break;
         }
     }
 
@@ -258,5 +263,10 @@ public class NetworkManager : MonoBehaviour
     public void OnPlayerHandCards(ISFSObject sfsObj)
     {
         PlayerHandCards?.Invoke(sfsObj);
+    }
+
+    public void OnRoomPlayerList(ISFSObject sfsObj)
+    {
+        RoomPlayerList?.Invoke(sfsObj);
     }
 }
