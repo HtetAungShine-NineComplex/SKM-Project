@@ -42,6 +42,7 @@ public class NetworkManager : MonoBehaviour
 
     //server events
     public event Action<User> UserEnterRoom;
+    public event Action<User> UserLeaveRoom;
 
     private void Awake()
     {
@@ -112,6 +113,7 @@ public class NetworkManager : MonoBehaviour
         string info = (user.Name + " has left the game");
         
         Debug.Log(info);
+        UserLeaveRoom?.Invoke(user);
     }
 
     void OnApplicationQuit()

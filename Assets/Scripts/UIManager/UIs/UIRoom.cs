@@ -19,4 +19,9 @@ public class UIRoom : UiBase
 
         _lobbyCtrlr.RemoveSmartFoxListeners();
     }
+
+    public void BackBtn()
+    {
+        Managers.UIManager.ShowUI(UIs.UIMainMenu);
+    }
 }

@@ -54,6 +54,7 @@ public class GameplayManagerShan : MonoBehaviour
     private void ListenServerEvents()
     {
         Managers.NetworkManager.UserEnterRoom += OnUserEnterRoom;
+        Managers.NetworkManager.UserLeaveRoom += OnUserLeaveRoom;
         Managers.NetworkManager.BotJoined += OnBotJoined;
         Managers.NetworkManager.StartCurrentTurn += OnStartCurrentTurn;
         Managers.NetworkManager.Owner += OnOwner;
@@ -72,6 +73,7 @@ public class GameplayManagerShan : MonoBehaviour
     public void RemovenServerEvents()
     {
         Managers.NetworkManager.UserEnterRoom -= OnUserEnterRoom;
+        Managers.NetworkManager.UserLeaveRoom -= OnUserLeaveRoom;
         Managers.NetworkManager.StartCurrentTurn -= OnStartCurrentTurn;
         Managers.NetworkManager.Owner -= OnOwner;
         Managers.NetworkManager.Banker -= OnBanker;
@@ -98,6 +100,11 @@ public class GameplayManagerShan : MonoBehaviour
     private void OnUserEnterRoom(User user)
     {
         //AddUserItem(user, _userItems.Count);
+    }
+
+    private void OnUserLeaveRoom(User user)
+    {
+        
     }
 
     private void OnBotJoined(ISFSObject sfsObj)
@@ -301,6 +308,21 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.SendRequest(request);
 
         ToggleGameplayBtns(false);
+    }
+
+    public void LeaveRoom() //send to server when this client stand
+    {
+        Room currentRoom = Managers.NetworkManager.SmartFox.LastJoinedRoom;
+        if (currentRoom != null)
+        {
+            Managers.NetworkManager.SmartFox.Send(new LeaveRoomRequest(currentRoom));
+            Debug.Log("Leaving room: " + currentRoom.Name);
+            Managers.UIManager.ShowUI(UIs.UIMainMenu);
+        }
+        else
+        {
+            Debug.LogWarning("No room to leave.");
+        }
     }
 
     public void OnOwner(ISFSObject sfsObj) //sent from the server when the room owner is set
