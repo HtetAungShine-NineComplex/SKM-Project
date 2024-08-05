@@ -7,5 +7,6 @@ public enum UIs
     UIMainMenu,
     UILogin,
     UIRoom,
-    UIGameRoom
+    UIGameRoom,
+    UILoadingScreen
 }

@@ -8,9 +8,12 @@ public class RoomUserItem : MonoBehaviour
     [SerializeField] private TMP_Text _nameTxt;
     [SerializeField] private TMP_Text _totalValueTxt;
     [SerializeField] private GameObject _bankerStatus;
-    [SerializeField] private TMP_Text _winLoseTxt;
+
     [SerializeField] private GameObject _8doObj;
     [SerializeField] private GameObject _9doObj;
+    [SerializeField] private GameObject _winObj;
+    [SerializeField] private GameObject _loseObj;
+    [SerializeField] private GameObject _resultParentObj;
 
     [SerializeField] private Transform _playerCardsRoot;
     [SerializeField] private CardDemo _cardPrefab;
@@ -140,17 +143,19 @@ public class RoomUserItem : MonoBehaviour
     {
         if(isWin)
         {
-            _winLoseTxt.text = "WIN";
+            _winObj.SetActive(true);
         }
         else
         {
-            _winLoseTxt.text = "LOSE";
+            _loseObj.SetActive(true);
         }
 
-        _winLoseTxt.gameObject.SetActive(true);
+        _resultParentObj.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(2f);
 
-        _winLoseTxt.gameObject.SetActive(false);
+        _loseObj.SetActive(false);
+        _winObj.SetActive(false);
+        
     }
 }

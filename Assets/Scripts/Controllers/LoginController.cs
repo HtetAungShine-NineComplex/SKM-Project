@@ -266,7 +266,7 @@ public class LoginController : BaseSceneController
 
 			// Load lobby scene
 			//SceneManager.LoadScene(GameConstants.LOBBY_SCENE) ;
-			Managers.UIManager.ShowUI(UIs.UIMainMenu);
+			Managers.UIManager.ShowUI(UIs.UILoadingScreen);
 		}
 		else
 		{

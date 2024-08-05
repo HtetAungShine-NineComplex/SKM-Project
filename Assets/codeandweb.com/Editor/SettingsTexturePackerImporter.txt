@@ -1,11 +1,11 @@
 version: 2
 tpsheetFileNames:
 - Assets/Art/SpriteSheet/MMgirlSheet.tpsheet
-- Assets/Art/SpriteSheet/sr_sheet.tpsheet
+- Assets/Art/SpriteSheet/sr_sheet-default.tpsheet
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
 textureFileNames:
 - Assets/Art/SpriteSheet/MMgirlSheet.png
-- Assets/Art/SpriteSheet/sr_sheet.png
+- Assets/Art/SpriteSheet/sr_sheet-default.png
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.png
 normalmapFileNames:
 - 
