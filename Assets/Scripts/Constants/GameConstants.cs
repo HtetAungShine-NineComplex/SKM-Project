@@ -19,10 +19,6 @@ namespace THZ
 
         //Extensions
 
-        //blackjack
-        public const string EXTENSION_ID = "Poker";
-        public const string EXTENSION_CLASS = "delight.games.poker.PokerExtension";
-
         //shan
         public const string SHAN_EXTENSION_ID = "SKMProject";
         public const string SHAN_EXTENSION_CLASS = "game.shan.ShanExtension";
@@ -31,10 +27,12 @@ namespace THZ
         //public const string USER_ID = "userID";
         public const string USER_NAME = "userName";
         public const string USER_NAME_ARRAY = "userNameArray";
+        public const string USER_ARRAY = "userArray";
 
         //Game Event Names
         public const string BOT_JOINED = "botJoined"; //send from client to server
         public const string START_GAME = "startGame"; //send from client to server
+        public const string BET_STARTED = "betStarted"; //send from server to client
         public const string GAME_STARTED = "gameStarted"; //send from server to client
         public const string COUNTDOWN = "countdown"; //send from server to client
         public const string OWNER = "owner"; //send from server to client
@@ -54,8 +52,15 @@ namespace THZ
         public const string PLAYER_CARD_ARRAY = "playerCardArray"; //send from server
         public const string PLAYER_DRAW = "playerDraw"; //send from server
         public const string DRAW_CARD = "drawCard"; //send from client
+        public const string BET = "bet"; //send from client
+        public const string PLAYER_BET = "playerBet"; //send from server
 
         //Data Keys
+        //Amount
+        public const string BET_AMOUNT = "betAmount";
+        public const string TOTAL_AMOUNT = "totalAmount";
+        public const string BANK_AMOUNT = "bankAmount";
+
         // Card
         public const string CARD_NAME = "cardName";
         public const string CARD_VALUE = "cardValue";

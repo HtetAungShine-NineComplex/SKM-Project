@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIGameRoom : UiBase
 {
     [SerializeField] private GameplayManagerShan _gameManager;
+    [SerializeField] private CardAnimationController _cardAnimController;
     [SerializeField] private Button settingBtn;
     [SerializeField] private GameObject settingPopup;
 
@@ -14,6 +15,7 @@ public class UIGameRoom : UiBase
         base.OnShow(data);
 
         _gameManager.Initialize();
+        _cardAnimController.ListenEvents();
         settingBtn.onClick.AddListener(toggleSettingPopup);
     }
 

@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class RoomUserItem : MonoBehaviour
 {
     [SerializeField] private TMP_Text _nameTxt;
+    [SerializeField] private TMP_Text _totalAmountTxt;
     [SerializeField] private TMP_Text _totalValueTxt;
+    [SerializeField] private TMP_Text _betAmountTxt;
     [SerializeField] private GameObject _bankerStatus;
 
     [SerializeField] private GameObject _8doObj;
@@ -19,28 +24,86 @@ public class RoomUserItem : MonoBehaviour
     [SerializeField] private CardDemo _cardPrefab;
     [SerializeField] private List<CardDemo> _playerCurrentCards;
 
+    [SerializeField] private float _cardSpacing;
+    [SerializeField] private float _cardOffsetY;
+    [SerializeField] private float _maxAngle = 30f;
+
     public int ID { get; private set; } // user id to access the user item
     public string Name { get; private set; } // user id to access the user item
+    public int TotalAmount { get; private set; } // user id to access the user item
 
     private void Start()
     {
         _playerCurrentCards = new List<CardDemo>();
     }
 
+    private void Update()
+    {
+        float half = (_playerCurrentCards.Count - 1) / 2f;
+
+        for (int i = 0; i < _playerCurrentCards.Count; i++)
+        {
+            CardDemo card = _playerCurrentCards[i];
+
+            // Calculate the horizontal position
+            float xPos = (i - half) * _cardSpacing;
+
+            // Calculate the vertical position for the fan effect
+            float distanceFromCenter = Mathf.Abs(i - half);
+            float yPos = -distanceFromCenter * distanceFromCenter * _cardOffsetY;
+
+            // Calculate the rotation angle
+            float angle = (i - half) / half * _maxAngle;
+
+            // Set the target position
+            card.targetPosition = new Vector2(xPos, yPos);
+
+            // Set the rotation (assuming card has a method or property to set rotation)
+            if(_playerCurrentCards.Count > 1)
+            {
+                card.targetRotation = Quaternion.Euler(0, 0, -angle);
+            }
+            else
+            {
+                card.targetRotation = Quaternion.identity;
+            }
+        }
+    }
+
+    //card.targetPosition = Vector2.zero;
+    //card.deck_angle = (index - count_half) * -card_angle;
     public void SetId(int id)
     {
         ID = id;
     }
-
     public void SetName(string name)
     {
         Name = name;
         _nameTxt.text = name;
     }
 
+    public void SetAmount(int amount)
+    {
+        TotalAmount = amount;
+        _totalAmountTxt.text = amount.ToString();
+    }
+
     public void SetTotalValue(int value)
     {
         _totalValueTxt.text = value.ToString();
+    }
+
+    public void SetBetAmount(int value)
+    {
+        if (value == 0)
+        {
+            _betAmountTxt.text = "";
+        }
+        else
+        {
+            _betAmountTxt.text = value.ToString();
+        }
+        
     }
 
     public void IsBanker()
@@ -70,6 +133,7 @@ public class RoomUserItem : MonoBehaviour
         }
     }
 
+    [ContextMenu("Test")]
     public void AddBlankCards()
     {
         CardDemo card = Instantiate(_cardPrefab, _playerCardsRoot);
@@ -128,6 +192,7 @@ public class RoomUserItem : MonoBehaviour
     public void Reset()
     {
         SetTotalValue(0);
+        SetBetAmount(0);
         _8doObj.SetActive(false);
         _9doObj.SetActive(false);
 

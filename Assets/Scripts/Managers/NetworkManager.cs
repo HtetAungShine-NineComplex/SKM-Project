@@ -20,12 +20,14 @@ public class NetworkManager : MonoBehaviour
 
     [SerializeField] private TMP_Text _pingText;
     [SerializeField] private GameObject _gameStartObj;
-    
+
+    public static NetworkManager Instance;
 
     public SmartFox SmartFox => _smartfox;
 
     //game events
     public event Action<ISFSObject> BotJoined;
+    public event Action<ISFSObject> BetStarted;
     public event Action<ISFSObject> GameStarted;
     public event Action<ISFSObject> Countdown;
     public event Action<ISFSObject> StartCurrentTurn;
@@ -39,6 +41,7 @@ public class NetworkManager : MonoBehaviour
     public event Action<ISFSObject> PlayerDrawCard;
     public event Action<ISFSObject> PlayerHandCards;
     public event Action<ISFSObject> RoomPlayerList;
+    public event Action<ISFSObject> PlayerBet;
 
     //server events
     public event Action<User> UserEnterRoom;
@@ -46,15 +49,20 @@ public class NetworkManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(Instance.gameObject);
+        }
 
+        Instance = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
 
-        //SubscribeDelegates();
+
+        SubscribeDelegates();
     }
 
     // Update is called once per frame
@@ -87,14 +95,14 @@ public class NetworkManager : MonoBehaviour
     private void OnConnectionLost(BaseEvent evt)
     {
         UnsubscribeDelegates();
-        Managers.UIManager.ShowUI(UIs.UILogin);
+        SceneManager.LoadScene("Login");
     }
 
     public void OnExitGame()
     {
         UnsubscribeDelegates();
         _smartfox.Send(new LeaveRoomRequest());
-        Managers.UIManager.ShowUI(UIs.UILogin);
+        SceneManager.LoadScene("Login");
     }
 
     private void OnUserJoinRoom(BaseEvent evt)
@@ -111,7 +119,7 @@ public class NetworkManager : MonoBehaviour
         User user = (User)evt.Params["user"];
         Room room = (Room)evt.Params["room"];
         string info = (user.Name + " has left the game");
-        
+
         Debug.Log(info);
         UserLeaveRoom?.Invoke(user);
     }
@@ -134,8 +142,8 @@ public class NetworkManager : MonoBehaviour
 
     public void SendRequest(ExtensionRequest request)
     {
-        if(request != null && _smartfox != null && _smartfox.IsConnected)
-        _smartfox.Send(request);
+        if (request != null && _smartfox != null && _smartfox.IsConnected)
+            _smartfox.Send(request);
     }
 
     private void OnExtensionResponse(BaseEvent evt)
@@ -150,6 +158,10 @@ public class NetworkManager : MonoBehaviour
 
             case GameConstants.GAME_STARTED:
                 OnGameStarted(sfsobject);
+                break;
+
+            case GameConstants.BET_STARTED:
+                OnBetStarted(sfsobject);
                 break;
 
             case GameConstants.COUNTDOWN:
@@ -170,7 +182,7 @@ public class NetworkManager : MonoBehaviour
 
             case GameConstants.PLAYER_HIT:
                 OnPlayerHit(sfsobject);
-                    break;
+                break;
 
             case GameConstants.PLAYER_WIN:
                 OnPlayerWin(sfsobject);
@@ -195,6 +207,10 @@ public class NetworkManager : MonoBehaviour
             case GameConstants.ROOM_PLAYER_LIST:
                 OnRoomPlayerList(sfsobject);
                 break;
+
+            case GameConstants.PLAYER_BET:
+                OnPlayerBet(sfsobject);
+                break;
         }
     }
 
@@ -207,6 +223,12 @@ public class NetworkManager : MonoBehaviour
     {
         Debug.Log("Game Started");
         GameStarted?.Invoke(sfsObj);
+    }
+
+    private void OnBetStarted(ISFSObject sfsObj)
+    {
+        Debug.Log("Bet Started");
+        BetStarted?.Invoke(sfsObj);
     }
 
     private void OnCountdown(ISFSObject sfsObj)
@@ -270,5 +292,10 @@ public class NetworkManager : MonoBehaviour
     public void OnRoomPlayerList(ISFSObject sfsObj)
     {
         RoomPlayerList?.Invoke(sfsObj);
+    }
+
+    public void OnPlayerBet(ISFSObject sfsObj)
+    {
+        PlayerBet?.Invoke(sfsObj);
     }
 }
