@@ -14,6 +14,7 @@ public class CardDemo : MonoBehaviour
     public Quaternion targetRotation;
 
     public bool IsBlank {  get; private set; }
+    public string Name {  get; private set; }
 
     private void Start()
     {
@@ -31,6 +32,7 @@ public class CardDemo : MonoBehaviour
 
     public void SetCard(string cardName)
     {
+        Name = cardName;
         _mainImg.sprite = Managers.CardDataManager.GetCardSprite(cardName);
         IsBlank = false;
     }

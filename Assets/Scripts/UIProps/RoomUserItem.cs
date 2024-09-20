@@ -31,6 +31,7 @@ public class RoomUserItem : MonoBehaviour
     public int ID { get; private set; } // user id to access the user item
     public string Name { get; private set; } // user id to access the user item
     public int TotalAmount { get; private set; } // user id to access the user item
+    public bool IsBank { get; private set; }
 
     private void Start()
     {
@@ -109,11 +110,13 @@ public class RoomUserItem : MonoBehaviour
     public void IsBanker()
     {
         _bankerStatus.SetActive(true);
+        IsBank = true;
     }
 
     public void IsPlayer()
     {
         _bankerStatus.SetActive(false);
+        IsBank = false;
     }
 
     public void WinLose(bool isWin)
@@ -189,6 +192,15 @@ public class RoomUserItem : MonoBehaviour
         }
     }
 
+    public string[] GetCardsArray()
+    {
+        string[] cards = new string[_playerCurrentCards.Count];
+        for (int i = 0; i < cards.Length; i++)
+        {
+            cards[i] = _playerCurrentCards[i].Name;
+        }
+        return cards;
+    }
     public void Reset()
     {
         SetTotalValue(0);

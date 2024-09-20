@@ -30,7 +30,7 @@ public class GameplayManagerShan : MonoBehaviour
 
     //[SerializeField] private Transform _mainUserPos;
 
-    [SerializeField] private Transform[] userPositions;
+    //[SerializeField] private Transform[] userPositions;
     [SerializeField] private PlayerPos[] playerPositions;
 
     private Room _currentRoom;
@@ -447,6 +447,11 @@ public class GameplayManagerShan : MonoBehaviour
         GetUserItemByName(playerName).SetTotalValue(totalValue);
         GetUserItemByName(playerName).PlayerDo(totalValue);
         GetUserItemByName(playerName).UpdateAllCards(playerCards);
+
+        if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name || GetUserItemByName(playerName).IsBank)
+        {
+            CardViewPanel.Instance.ClosePanel();
+        }
     }
 
     private void OnDrawCard(ISFSObject sfsObj) //this will receive when a player hit
@@ -460,7 +465,8 @@ public class GameplayManagerShan : MonoBehaviour
             int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
             Debug.Log($"{GetUserItemByName(drawerName).Name} draw Card [{drawnCardName}] and total value is {totalValue}");
             GetUserItemByName(drawerName).SetTotalValue(totalValue);
-            //GetUserItemByName(drawerName).AddCard(drawnCardName);
+            GetUserItemByName(drawerName).AddCard(drawnCardName);
+            CardViewPanel.Instance.SetTwoCardsAndShow(GetUserItemByName(drawerName).GetCardsArray()[2], GetUserItemByName(drawerName).GetCardsArray()[1]);
             contrlr.DistributeCardToSinglePlayer(drawnCardName, GetUserItemByName(drawerName));
         }
         else
@@ -482,6 +488,11 @@ public class GameplayManagerShan : MonoBehaviour
         GetUserItemByName(playerName).SetTotalValue(totalValue);
 
         GetUserItemByName(playerName).UpdateAllCards(handCards);
+
+        if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name)
+        {
+            CardViewPanel.Instance.SetTwoCardsAndShow(handCards[0], handCards[1]);
+        }
     }
 
     private void OnWinEvent(ISFSObject sfsObj) //this will receive when a player win
