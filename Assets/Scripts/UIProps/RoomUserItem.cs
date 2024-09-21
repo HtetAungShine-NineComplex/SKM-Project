@@ -5,6 +5,7 @@ using System.Reflection;
 using TMPro;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoomUserItem : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class RoomUserItem : MonoBehaviour
     [SerializeField] private GameObject _winObj;
     [SerializeField] private GameObject _loseObj;
     [SerializeField] private GameObject _resultParentObj;
+    [SerializeField] private Image _cooldownFillImage;
 
     [SerializeField] private Transform _playerCardsRoot;
     [SerializeField] private CardDemo _cardPrefab;
@@ -31,7 +33,13 @@ public class RoomUserItem : MonoBehaviour
     public int ID { get; private set; } // user id to access the user item
     public string Name { get; private set; } // user id to access the user item
     public int TotalAmount { get; private set; } // user id to access the user item
+    public int TotalCardValue { get; private set; } // user id to access the user item
     public bool IsBank { get; private set; }
+
+    private bool _isMyTurn = false;
+    private bool _isBetting = false;
+    private float _duration = 15f; // Duration in seconds
+    private float _elapsedTime = 0f;
 
     private void Start()
     {
@@ -71,6 +79,51 @@ public class RoomUserItem : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        if ((_cooldownFillImage != null && _elapsedTime < _duration) && (_isMyTurn || _isBetting))
+        {
+            _elapsedTime += Time.deltaTime;
+            // Lerp slider value from 1 to 0 over the specified duration
+            _cooldownFillImage.fillAmount = Mathf.Lerp(1f, 0f, _elapsedTime / _duration);
+        }
+    }
+
+    public void SetBankObject(GameObject obj)
+    {
+        _bankerStatus = obj;
+    }
+
+    public void StartTurn()
+    {
+        _duration = 15;
+        _isMyTurn = true;
+        _cooldownFillImage.fillAmount = 1;
+        _cooldownFillImage.gameObject.SetActive(true);
+    }
+
+
+    public void EndTurn()
+    {
+        _isMyTurn = false;
+        _cooldownFillImage.fillAmount = 0;
+        _cooldownFillImage.gameObject.SetActive(false);
+    }
+
+    public void StartBet()
+    {
+        _duration = 7;
+        _cooldownFillImage.fillAmount = 1;
+        _cooldownFillImage.gameObject.SetActive(true);
+        _isBetting = true;
+    }
+
+    public void EndBet()
+    {
+        _cooldownFillImage.fillAmount = 0;
+        _cooldownFillImage.gameObject.SetActive(false);
+    }
+
     //card.targetPosition = Vector2.zero;
     //card.deck_angle = (index - count_half) * -card_angle;
     public void SetId(int id)
@@ -92,6 +145,7 @@ public class RoomUserItem : MonoBehaviour
     public void SetTotalValue(int value)
     {
         _totalValueTxt.text = value.ToString();
+        TotalCardValue = value;
     }
 
     public void SetBetAmount(int value)
@@ -144,7 +198,7 @@ public class RoomUserItem : MonoBehaviour
         _playerCurrentCards.Add(card);
     }
 
-    public void AddCard(string cardName)
+    public void AddCard(string cardName, bool isdraw)
     {
         if(_playerCurrentCards.Count == 0)
         {
@@ -168,6 +222,11 @@ public class RoomUserItem : MonoBehaviour
             CardDemo addedCard = Instantiate(_cardPrefab, _playerCardsRoot);
             addedCard.SetCard(cardName);
             _playerCurrentCards.Add(addedCard);
+
+            if (isdraw)
+            {
+                CardViewPanel.Instance.SetTwoCardsAndShow(GetCardsArray()[2], GetCardsArray()[1]);
+            }
             return;
         }
     }

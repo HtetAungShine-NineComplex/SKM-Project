@@ -77,7 +77,6 @@ public class CardDataManagerDemo : MonoBehaviour
 
     public Sprite GetCardSprite(string cardName)
     {
-        Debug.Log("Returning " + cardName);
         return _cardSpriteData[cardName];
     }
 }

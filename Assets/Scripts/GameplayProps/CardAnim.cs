@@ -18,6 +18,7 @@ public class CardAnim : MonoBehaviour
 
     public string addCardName;
     public bool hasCard = false;
+    public bool isDraw = false;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +59,7 @@ public class CardAnim : MonoBehaviour
         {
             if (hasCard)
             {
-                _targetPos.currentUser?.AddCard(addCardName);
+                _targetPos.currentUser?.AddCard(addCardName, isDraw);
             }
             else
             {

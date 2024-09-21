@@ -191,7 +191,7 @@ public class GameplayManagerShan : MonoBehaviour
             roomUserItem.transform.SetParent(_roomUserRoot, false);
             //roomUserItem.transform.localPosition = userPositions[i].localPosition;
             roomUserItem.transform.localPosition = playerPositions[i].rectTransform.localPosition;
-            playerPositions[i].currentUser = roomUserItem;
+            playerPositions[i].SetCurrentUser(roomUserItem);
             _userItems.Add(roomUserItem);
         }
     }
@@ -271,6 +271,18 @@ public class GameplayManagerShan : MonoBehaviour
     {
         //on player turn change, check if it is my turn or not by id
         string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
+
+        foreach (RoomUserItem item in _userItems)
+        {
+            if (item.Name == playerName)
+            {
+                item.StartTurn();
+            }
+            else
+            {
+                item.EndTurn();
+            }
+        }
 
         if (Managers.NetworkManager.SmartFox.MySelf.Name == playerName)
         {
@@ -416,6 +428,14 @@ public class GameplayManagerShan : MonoBehaviour
 
         Debug.Log("Bank : " + bankAmount);
         _bankAmountTxt.text = bankAmount.ToString();
+
+        foreach (RoomUserItem item in _userItems)
+        {
+            if(!item.IsBank)
+            {
+                item.StartBet();
+            }
+        }
     }
 
     public void OnPlayerBet(ISFSObject sfsObj) //send from server when a client bet
@@ -427,6 +447,12 @@ public class GameplayManagerShan : MonoBehaviour
         Debug.Log("Player : " + name + " bet " + betAmount + " and " + totalAmount);
         GetUserItemByName(name).SetAmount(totalAmount);
         GetUserItemByName(name).SetBetAmount(betAmount);
+        GetUserItemByName(name).EndBet();
+
+        if(name == GlobalManager.Instance.GetSfsClient().MySelf.Name)
+        {
+            _betBtn.gameObject.SetActive(false);
+        }
     }
 
     private void OnGameStarted(ISFSObject sfsObj) //this will receive when the game started
@@ -434,6 +460,13 @@ public class GameplayManagerShan : MonoBehaviour
         //ResetGame();
         //AddTwoCardToAllPlayers();
         _gameCDTxt.gameObject.SetActive(false);
+        foreach (RoomUserItem item in _userItems)
+        {
+            if (!item.IsBank)
+            {
+                item.EndBet();
+            }
+        }
     }
 
     private void OnPlayerDo(ISFSObject sfsObj) //this will receive when a player do
@@ -456,18 +489,22 @@ public class GameplayManagerShan : MonoBehaviour
 
     private void OnDrawCard(ISFSObject sfsObj) //this will receive when a player hit
     {
+        
         string drawerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
         CardAnimationController contrlr = GetComponent<CardAnimationController>();
 
+        GetUserItemByName(drawerName).EndTurn();
+
         if (drawerName == Managers.NetworkManager.SmartFox.MySelf.Name)
         {
+            ToggleGameplayBtns(false);
             string drawnCardName = sfsObj.GetUtfString(GameConstants.CARD_NAME);
             int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
             Debug.Log($"{GetUserItemByName(drawerName).Name} draw Card [{drawnCardName}] and total value is {totalValue}");
             GetUserItemByName(drawerName).SetTotalValue(totalValue);
-            GetUserItemByName(drawerName).AddCard(drawnCardName);
-            CardViewPanel.Instance.SetTwoCardsAndShow(GetUserItemByName(drawerName).GetCardsArray()[2], GetUserItemByName(drawerName).GetCardsArray()[1]);
-            contrlr.DistributeCardToSinglePlayer(drawnCardName, GetUserItemByName(drawerName));
+            //GetUserItemByName(drawerName).AddCard(drawnCardName);
+            
+            contrlr.DistributeCardToSinglePlayer(drawnCardName, GetUserItemByName(drawerName), true);
         }
         else
         {
@@ -489,7 +526,7 @@ public class GameplayManagerShan : MonoBehaviour
 
         GetUserItemByName(playerName).UpdateAllCards(handCards);
 
-        if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name)
+        if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name && GetUserItemByName(playerName).TotalCardValue < 8)
         {
             CardViewPanel.Instance.SetTwoCardsAndShow(handCards[0], handCards[1]);
         }
@@ -497,6 +534,11 @@ public class GameplayManagerShan : MonoBehaviour
 
     private void OnWinEvent(ISFSObject sfsObj) //this will receive when a player win
     {
+        foreach (RoomUserItem item in _userItems)
+        {
+            item.EndTurn();
+        }
+
         string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
         string[] handCards = sfsObj.GetUtfStringArray(GameConstants.PLAYER_CARD_ARRAY);
         int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
@@ -516,6 +558,11 @@ public class GameplayManagerShan : MonoBehaviour
 
     private void OnLoseEvent(ISFSObject sfsObj) //this will receive when a player lose
     {
+        foreach (RoomUserItem item in _userItems)
+        {
+            item.EndTurn();
+        }
+
         string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
         string[] handCards = sfsObj.GetUtfStringArray(GameConstants.PLAYER_CARD_ARRAY);
         int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);

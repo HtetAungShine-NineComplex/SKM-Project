@@ -20,7 +20,7 @@ public class CardAnimationController : MonoBehaviour
         StartCoroutine(DistributeCardsAnimation());
     }
 
-    public void DistributeCardToSinglePlayer(string cardName, RoomUserItem item)
+    public void DistributeCardToSinglePlayer(string cardName, RoomUserItem item, bool isDrawing)
     {
         foreach (PlayerPos pos in playerPositions)
         {
@@ -31,6 +31,7 @@ public class CardAnimationController : MonoBehaviour
                 CardAnim card = Instantiate(_cardAnim, _cardRoot);
                 card.addCardName = cardName;
                 card.hasCard = true;
+                card.isDraw = true;
                 card.SetPositions(_startPos.anchoredPosition, pos);
 
                 break;
