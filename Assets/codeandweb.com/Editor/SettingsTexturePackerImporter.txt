@@ -1,13 +1,13 @@
 version: 2
 tpsheetFileNames:
-- Assets/Art/Art/GirlCardGivingSheet.tpsheet
+- Assets/Art/Art/CardGivingSheet.tpsheet
 - Assets/Art/Art/Loading/MMgirlSheet2-default.tpsheet
 - Assets/Art/Art/MMgirlSheetUpdate2.tpsheet
 - Assets/Art/SpriteSheet/MMgirlSheet.tpsheet
 - Assets/Art/SpriteSheet/sr_sheet-default.tpsheet
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
 textureFileNames:
-- Assets/Art/Art/GirlCardGivingSheet.png
+- Assets/Art/Art/CardGivingSheet.png
 - Assets/Art/Art/Loading/MMgirlSheet2-default.png
 - Assets/Art/Art/MMgirlSheetUpdate2.png
 - Assets/Art/SpriteSheet/MMgirlSheet.png
