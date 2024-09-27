@@ -504,10 +504,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIGameRoom
       objectReference: {fileID: 0}
-    - target: {fileID: 7529548776737552585, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
-      propertyPath: _distanceOffset
-      value: 160
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

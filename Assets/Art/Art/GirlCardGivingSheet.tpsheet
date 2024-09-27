@@ -1,0 +1,20 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# https://www.codeandweb.com/texturepacker/unity
+#
+# $TexturePacker:SmartUpdate:fbb700fd1fa052ef1f05e1ed198ca577:01dea10059694e66e1487b418b469357:68403b0c4d2e0dbd113ca66c0e14cfad$
+#
+:format=40300
+:texture=GirlCardGivingSheet.png
+:size=4096x4096
+:pivotpoints=enabled
+:borders=disabled
+:alphahandling=ClearTransparentPixels
+
+Timeline 1_0000;0;2145;1262;1951; 0.5;0.5; 0;0;0;0
+Timeline 1_0001;1262;2145;1262;1951; 0.5;0.5; 0;0;0;0
+Timeline 1_0002;2524;2145;1262;1951; 0.5;0.5; 0;0;0;0
+Timeline 1_0003;0;194;1262;1951; 0.5;0.5; 0;0;0;0
+Timeline 1_0004;1262;194;1262;1951; 0.5;0.5; 0;0;0;0

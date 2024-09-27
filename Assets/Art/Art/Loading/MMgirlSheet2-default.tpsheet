@@ -1,0 +1,30 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# https://www.codeandweb.com/texturepacker/unity
+#
+# $TexturePacker:SmartUpdate:2dd24b4d6323163471ebd17f8c4c0b3f:3f4c0b62bb053dcc9fdebc9dba35a3ec:c95d1860af7c623453c152835ffa6eaa$
+#
+:format=40300
+:texture=MMgirlSheet2-default.png
+:size=4096x4096
+:pivotpoints=enabled
+:borders=disabled
+:alphahandling=ClearTransparentPixels
+
+Timeline 1_0000;0;2944;648;1152; 0.5;0.5; 0;0;0;0
+Timeline 1_0001;648;2944;648;1152; 0.5;0.5; 0;0;0;0
+Timeline 1_0002;1296;2944;648;1152; 0.5;0.5; 0;0;0;0
+Timeline 1_0003;1944;2944;648;1152; 0.5;0.5; 0;0;0;0
+Timeline 1_0004;2592;2944;648;1152; 0.5;0.5; 0;0;0;0
+Timeline 1_0005;3240;2944;648;1152; 0.5;0.5; 0;0;0;0
+Timeline 1_0006;0;1792;648;1152; 0.5;0.5; 0;0;0;0
+Timeline 1_0007;648;1792;648;1152; 0.5;0.5; 0;0;0;0
+Timeline 1_0008;1296;1792;648;1152; 0.5;0.5; 0;0;0;0
+Timeline 1_0009;1944;1792;648;1152; 0.5;0.5; 0;0;0;0
+Timeline 1_0010;2592;1792;648;1152; 0.5;0.5; 0;0;0;0
+Timeline 1_0011;3240;1792;648;1152; 0.5;0.5; 0;0;0;0
+Timeline 1_0012;0;640;648;1152; 0.5;0.5; 0;0;0;0
+Timeline 1_0013;648;640;648;1152; 0.5;0.5; 0;0;0;0
+Timeline 1_0014;1296;640;648;1152; 0.5;0.5; 0;0;0;0

@@ -860,8 +860,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -399, y: -107}
-  m_SizeDelta: {x: 571.7136, y: 1016.3799}
+  m_AnchoredPosition: {x: -562, y: -47}
+  m_SizeDelta: {x: 511.9874, y: 911.3125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2989500748740079928
 CanvasRenderer:
@@ -891,7 +891,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1250083112, guid: c79c6f53ba9ffc04e9c7634eb6090c09, type: 3}
+  m_Sprite: {fileID: 1837593381, guid: 9101640226d21624290f12facadef8ae, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2044,6 +2044,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2301508969378764026, guid: e16b2eba5d43a284885efe80825a9534, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048345429307032751, guid: e16b2eba5d43a284885efe80825a9534, type: 3}
+      propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
