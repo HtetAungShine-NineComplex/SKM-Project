@@ -9,6 +9,7 @@ public class CardAnimationController : MonoBehaviour
     [SerializeField] private PlayerPos[] playerPositions;
     [SerializeField] private Transform _cardRoot;
     [SerializeField] private RectTransform _startPos;
+    [SerializeField] private Animator _girlAnimator;
 
     public void ListenEvents()
     {
@@ -20,7 +21,7 @@ public class CardAnimationController : MonoBehaviour
         StartCoroutine(DistributeCardsAnimation());
     }
 
-    public void DistributeCardToSinglePlayer(string cardName, RoomUserItem item, bool isDrawing)
+    public void DistributeCardToSinglePlayer(string cardName, int totalValue, RoomUserItem item)
     {
         foreach (PlayerPos pos in playerPositions)
         {
@@ -28,10 +29,12 @@ public class CardAnimationController : MonoBehaviour
 
             if (pos.currentUser == item)
             {
+                _girlAnimator.SetTrigger("Play");
                 CardAnim card = Instantiate(_cardAnim, _cardRoot);
                 card.addCardName = cardName;
                 card.hasCard = true;
                 card.isDraw = true;
+                card.totalValue = totalValue;
                 card.SetPositions(_startPos.anchoredPosition, pos);
 
                 break;
@@ -47,6 +50,7 @@ public class CardAnimationController : MonoBehaviour
 
             if (pos.currentUser == item)
             {
+                _girlAnimator.SetTrigger("Play");
                 CardAnim card = Instantiate(_cardAnim, _cardRoot);
                 card.hasCard = false;
                 card.SetPositions(_startPos.anchoredPosition, pos);
@@ -63,7 +67,7 @@ public class CardAnimationController : MonoBehaviour
             foreach (PlayerPos pos in playerPositions)
             {
                 if (pos.currentUser == null) continue;
-
+                _girlAnimator.SetTrigger("Play");
                 CardAnim card = Instantiate(_cardAnim, _cardRoot);
                 card.SetPositions(_startPos.anchoredPosition, pos);
 

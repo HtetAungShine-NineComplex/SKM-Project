@@ -97,6 +97,7 @@ public class RoomUserItem : MonoBehaviour
     public void StartTurn()
     {
         _duration = 15;
+        _elapsedTime = 0;
         _isMyTurn = true;
         _cooldownFillImage.fillAmount = 1;
         _cooldownFillImage.gameObject.SetActive(true);
@@ -114,6 +115,7 @@ public class RoomUserItem : MonoBehaviour
     {
         _duration = 7;
         _cooldownFillImage.fillAmount = 1;
+        _elapsedTime = 0;
         _cooldownFillImage.gameObject.SetActive(true);
         _isBetting = true;
     }
@@ -198,7 +200,7 @@ public class RoomUserItem : MonoBehaviour
         _playerCurrentCards.Add(card);
     }
 
-    public void AddCard(string cardName, bool isdraw)
+    public void AddCard(string cardName)
     {
         if(_playerCurrentCards.Count == 0)
         {
@@ -222,11 +224,6 @@ public class RoomUserItem : MonoBehaviour
             CardDemo addedCard = Instantiate(_cardPrefab, _playerCardsRoot);
             addedCard.SetCard(cardName);
             _playerCurrentCards.Add(addedCard);
-
-            if (isdraw)
-            {
-                CardViewPanel.Instance.SetTwoCardsAndShow(GetCardsArray()[2], GetCardsArray()[1]);
-            }
             return;
         }
     }

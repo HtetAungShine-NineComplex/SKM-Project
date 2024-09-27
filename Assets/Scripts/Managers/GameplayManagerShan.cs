@@ -501,10 +501,10 @@ public class GameplayManagerShan : MonoBehaviour
             string drawnCardName = sfsObj.GetUtfString(GameConstants.CARD_NAME);
             int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
             Debug.Log($"{GetUserItemByName(drawerName).Name} draw Card [{drawnCardName}] and total value is {totalValue}");
-            GetUserItemByName(drawerName).SetTotalValue(totalValue);
+            //GetUserItemByName(drawerName).SetTotalValue(totalValue);
             //GetUserItemByName(drawerName).AddCard(drawnCardName);
             
-            contrlr.DistributeCardToSinglePlayer(drawnCardName, GetUserItemByName(drawerName), true);
+            contrlr.DistributeCardToSinglePlayer(drawnCardName, totalValue, GetUserItemByName(drawerName));
         }
         else
         {

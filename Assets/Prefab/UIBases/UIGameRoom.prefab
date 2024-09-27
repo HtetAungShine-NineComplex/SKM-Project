@@ -2866,6 +2866,7 @@ MonoBehaviour:
   - {fileID: 2018273353605589934}
   _cardRoot: {fileID: 2280564488769783310}
   _startPos: {fileID: 4673649396874612635}
+  _girlAnimator: {fileID: 5801162123827204168}
 --- !u!1 &3848476976543237366
 GameObject:
   m_ObjectHideFlags: 0
