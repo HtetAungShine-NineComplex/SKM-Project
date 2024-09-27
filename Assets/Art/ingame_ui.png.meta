@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: ingame_ui_0
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 896
+        width: 249
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f26ff12bd33fa69428f7b2ad57db6b3c
+      internalID: 258084993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ingame_ui_1
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 896
+        width: 323
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf9b932235f6f584e8a5eca1af2f2920
+      internalID: 981595056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ingame_ui_2
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 783
+        width: 249
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 678cbdab81ea7124b9759c3d50268a7a
+      internalID: 1241537332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ingame_ui_3
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 787
+        width: 323
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ca6e7c787e98c84bbc1bf2ff8bf1c1b
+      internalID: 1185780104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ingame_ui_4
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 667
+        width: 249
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 942fd3a7c78d76044b96511631885845
+      internalID: 844836126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ingame_ui_5
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 164
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3820e2cc2e0c914fb47e32bf560fbe3
+      internalID: 1837286266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ingame_ui_6
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 102
+        width: 959
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a927f77250e3c364584ed49ca6978b70
+      internalID: 255368572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ingame_ui_7
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 58
+        width: 959
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6c0df6aea9dce346a7743eac65619e5
+      internalID: 379164656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +300,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ingame_ui_0: 258084993
+      ingame_ui_1: 981595056
+      ingame_ui_2: 1241537332
+      ingame_ui_3: 1185780104
+      ingame_ui_4: 844836126
+      ingame_ui_5: 1837286266
+      ingame_ui_6: 255368572
+      ingame_ui_7: 379164656
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
