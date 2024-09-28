@@ -5,6 +5,7 @@ tpsheetFileNames:
 - Assets/Art/Art/MMgirlSheetUpdate2.tpsheet
 - Assets/Art/SpriteSheet/MMgirlSheet.tpsheet
 - Assets/Art/SpriteSheet/sr_sheet-default.tpsheet
+- Assets/Art/WinFX/Winning_FX.tpsheet
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
 textureFileNames:
 - Assets/Art/Art/CardGivingSheet.png
@@ -12,8 +13,10 @@ textureFileNames:
 - Assets/Art/Art/MMgirlSheetUpdate2.png
 - Assets/Art/SpriteSheet/MMgirlSheet.png
 - Assets/Art/SpriteSheet/sr_sheet-default.png
+- Assets/Art/WinFX/Winning_FX.png
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.png
 normalmapFileNames:
+- 
 - 
 - 
 - 

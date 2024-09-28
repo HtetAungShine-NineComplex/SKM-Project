@@ -30,6 +30,11 @@ public class CardDemo : MonoBehaviour
         _transform.localRotation = Quaternion.Lerp(_transform.localRotation, targetRotation, Time.deltaTime * _speed);
     }
 
+    public void SetColor(Color color)
+    {
+        _mainImg.color = color;
+    }
+
     public void SetCard(string cardName)
     {
         Name = cardName;

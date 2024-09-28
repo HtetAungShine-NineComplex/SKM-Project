@@ -14,17 +14,22 @@ public class RoomUserItem : MonoBehaviour
     [SerializeField] private TMP_Text _totalValueTxt;
     [SerializeField] private TMP_Text _betAmountTxt;
     [SerializeField] private GameObject _bankerStatus;
+    [SerializeField] private TextFloatFx _textFloatPrefab;
 
     [SerializeField] private GameObject _8doObj;
     [SerializeField] private GameObject _9doObj;
-    [SerializeField] private GameObject _winObj;
+    [SerializeField] private GameObject _x2Obj;
+    [SerializeField] private GameObject _x3Obj;
+    [SerializeField] private GameObject[] _winObj;
     [SerializeField] private GameObject _loseObj;
     [SerializeField] private GameObject _resultParentObj;
     [SerializeField] private Image _cooldownFillImage;
 
+    [SerializeField] private RectTransform _playerCardsPanel;
     [SerializeField] private Transform _playerCardsRoot;
     [SerializeField] private CardDemo _cardPrefab;
     [SerializeField] private List<CardDemo> _playerCurrentCards;
+    [SerializeField] private Color _loseColor;
 
     [SerializeField] private float _cardSpacing;
     [SerializeField] private float _cardOffsetY;
@@ -41,9 +46,17 @@ public class RoomUserItem : MonoBehaviour
     private float _duration = 15f; // Duration in seconds
     private float _elapsedTime = 0f;
 
+    private Vector3 _originalCardPos;
+
+    private void Awake()
+    {
+        _originalCardPos = _playerCardsPanel.anchoredPosition;
+    }
+
     private void Start()
     {
         _playerCurrentCards = new List<CardDemo>();
+        
     }
 
     private void Update()
@@ -144,10 +157,44 @@ public class RoomUserItem : MonoBehaviour
         _totalAmountTxt.text = amount.ToString();
     }
 
+    public void SetModifier(int amount)
+    {
+        _x2Obj.SetActive(false);
+        _x3Obj.SetActive(false);
+
+        if (amount == 1)
+        {
+
+            return;
+        }
+        else if(amount == 2)
+        {
+            _x2Obj.SetActive(true);
+        }    
+        else if(amount == 3)
+        {
+            _x3Obj.SetActive(true);
+        }
+    }
+
     public void SetTotalValue(int value)
     {
         _totalValueTxt.text = value.ToString();
         TotalCardValue = value;
+    }
+
+    public void ShowCards()
+    {
+        _playerCardsPanel.transform.localPosition = Vector3.zero;
+
+        if (IsBank)
+        {
+            _playerCardsPanel.transform.localScale = new Vector3(2.3f, 2.3f, 1f);
+        }
+        else
+        {
+            _playerCardsPanel.transform.localScale = new Vector3(1.7f, 1.7f, 1f);
+        }
     }
 
     public void SetBetAmount(int value)
@@ -175,9 +222,9 @@ public class RoomUserItem : MonoBehaviour
         IsBank = false;
     }
 
-    public void WinLose(bool isWin)
+    public void WinLose(bool isWin, int amountChanged)
     {
-        StartCoroutine(ShowWinOrLose(isWin));
+        StartCoroutine(ShowWinOrLose(isWin, amountChanged));
     }
 
     public void PlayerDo(int value) //8 or 9
@@ -259,6 +306,9 @@ public class RoomUserItem : MonoBehaviour
     }
     public void Reset()
     {
+        _playerCardsPanel.anchoredPosition = _originalCardPos;
+        _playerCardsPanel.localScale = new Vector3(1.4f, 1.4f, 1f);
+
         SetTotalValue(0);
         SetBetAmount(0);
         _8doObj.SetActive(false);
@@ -272,23 +322,41 @@ public class RoomUserItem : MonoBehaviour
         _playerCurrentCards.Clear();
     }
      
-    IEnumerator ShowWinOrLose(bool isWin)
+    IEnumerator ShowWinOrLose(bool isWin, int amountChanged)
     {
         if(isWin)
         {
-            _winObj.SetActive(true);
+            TextFloatFx fx = Instantiate(_textFloatPrefab, transform);
+            fx.SetAmount("+", amountChanged);
+            foreach (GameObject item in _winObj)
+            {
+                item.SetActive(true);
+            }
         }
         else
         {
+            TextFloatFx fx = Instantiate(_textFloatPrefab, transform);
+            fx.SetAmount("-", amountChanged);
+            foreach (CardDemo card in _playerCurrentCards)
+            {
+                card.SetColor(_loseColor);
+            }
             _loseObj.SetActive(true);
         }
 
         _resultParentObj.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         _loseObj.SetActive(false);
-        _winObj.SetActive(false);
+        foreach (CardDemo card in _playerCurrentCards)
+        {
+            card.SetColor(Color.white);
+        }
+        foreach (GameObject item in _winObj)
+        {
+            item.SetActive(false);
+        }
         
     }
 }

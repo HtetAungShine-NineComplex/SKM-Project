@@ -520,11 +520,18 @@ public class GameplayManagerShan : MonoBehaviour
 
         string[] handCards = sfsObj.GetUtfStringArray(GameConstants.PLAYER_CARD_ARRAY);
 
-
         int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
-        GetUserItemByName(playerName).SetTotalValue(totalValue);
+        int modifier = sfsObj.GetInt(GameConstants.MODIFIER);
+        bool isDo = sfsObj.GetBool(GameConstants.IS_DO);
 
+        GetUserItemByName(playerName).SetTotalValue(totalValue);
+        GetUserItemByName(playerName).SetModifier(modifier);
         GetUserItemByName(playerName).UpdateAllCards(handCards);
+
+        if (isDo)
+        {
+            GetUserItemByName(playerName).PlayerDo(totalValue);
+        }
 
         if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name && GetUserItemByName(playerName).TotalCardValue < 8)
         {
@@ -537,6 +544,7 @@ public class GameplayManagerShan : MonoBehaviour
         foreach (RoomUserItem item in _userItems)
         {
             item.EndTurn();
+            item.ShowCards();
         }
 
         string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
@@ -544,6 +552,14 @@ public class GameplayManagerShan : MonoBehaviour
         int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
         int totalAmount = sfsObj.GetInt(GameConstants.TOTAL_AMOUNT);
         int bankAmount = sfsObj.GetInt(GameConstants.BANK_AMOUNT);
+        int modifier = sfsObj.GetInt(GameConstants.MODIFIER);
+        int amountChanged = sfsObj.GetInt(GameConstants.AMOUNT_CHANGED);
+        bool isDo = sfsObj.GetBool(GameConstants.IS_DO);
+
+        if (isDo)
+        {
+            GetUserItemByName(playerName).PlayerDo(totalValue);
+        }
 
         Debug.Log("Bank : " + bankAmount);
         _bankAmountTxt.text = bankAmount.ToString();
@@ -552,7 +568,8 @@ public class GameplayManagerShan : MonoBehaviour
 
         GetUserItemByName(playerName).SetTotalValue(totalValue);
         GetUserItemByName(playerName).SetAmount(totalAmount);
-        GetUserItemByName(playerName).WinLose(true);
+        GetUserItemByName(playerName).SetModifier(modifier);
+        GetUserItemByName(playerName).WinLose(true, amountChanged);
         ToggleGameplayBtns(false);
     }
 
@@ -561,6 +578,8 @@ public class GameplayManagerShan : MonoBehaviour
         foreach (RoomUserItem item in _userItems)
         {
             item.EndTurn();
+            item.ShowCards();
+
         }
 
         string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
@@ -568,6 +587,14 @@ public class GameplayManagerShan : MonoBehaviour
         int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
         int totalAmount = sfsObj.GetInt(GameConstants.TOTAL_AMOUNT);
         int bankAmount = sfsObj.GetInt(GameConstants.BANK_AMOUNT);
+        int modifier = sfsObj.GetInt(GameConstants.MODIFIER);
+        int amountChanged = sfsObj.GetInt(GameConstants.AMOUNT_CHANGED);
+        bool isDo = sfsObj.GetBool(GameConstants.IS_DO);
+
+        if (isDo)
+        {
+            GetUserItemByName(playerName).PlayerDo(totalValue);
+        }
 
         Debug.Log("Bank : " + bankAmount);
         _bankAmountTxt.text = bankAmount.ToString();
@@ -581,7 +608,8 @@ public class GameplayManagerShan : MonoBehaviour
 
         GetUserItemByName(playerName).SetTotalValue(totalValue);
         GetUserItemByName(playerName).SetAmount(totalAmount);
-        GetUserItemByName(playerName).WinLose(false);
+        GetUserItemByName(playerName).SetModifier(modifier);
+        GetUserItemByName(playerName).WinLose(false, amountChanged);
         ToggleGameplayBtns(false);
     }
 

@@ -67,6 +67,11 @@ public class CardViewPanel : MonoBehaviour
 
     public void ClosePanel()
     {
+        if (!_root.activeSelf)
+        {
+            return;
+        }
+
         _draggableCard.isDragging = false;
         _cards[1].transform.position = _cards[0].transform.position;
         _root.SetActive(false);

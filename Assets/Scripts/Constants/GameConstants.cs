@@ -60,13 +60,16 @@ namespace THZ
         public const string BET_AMOUNT = "betAmount";
         public const string TOTAL_AMOUNT = "totalAmount";
         public const string BANK_AMOUNT = "bankAmount";
+        public const string AMOUNT_CHANGED = "amountChanged";
 
         // Card
         public const string CARD_NAME = "cardName";
         public const string CARD_VALUE = "cardValue";
         public const string SUIT = "suit";
         public const string IS_ACE = "isAce";
+        public const string IS_DO = "isDo";
         public const string TOTAL_VALUE = "totalValue";
+        public const string MODIFIER = "modifier";
 
         // Card Names
         // Clubs
