@@ -56,6 +56,7 @@ public class GameplayManagerShan : MonoBehaviour
         ToggleGameplayBtns(false);
     }
 
+    
     private void ListenServerEvents()
     {
         Managers.NetworkManager.UserEnterRoom += OnUserEnterRoom;
