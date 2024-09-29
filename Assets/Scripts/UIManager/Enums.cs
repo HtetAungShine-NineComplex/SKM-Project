@@ -8,5 +8,6 @@ public enum UIs
     UILogin,
     UIRoom,
     UIGameRoom,
-    UILoadingScreen
+    UILoadingScreen,
+    UInew
 }

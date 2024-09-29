@@ -15,8 +15,10 @@ public class UIGameRoom : UiBase
         base.OnShow(data);
 
         _gameManager.Initialize();
+        //
         _cardAnimController.ListenEvents();
         settingBtn.onClick.AddListener(toggleSettingPopup);
+
     }
 
     public override void OnClose()
