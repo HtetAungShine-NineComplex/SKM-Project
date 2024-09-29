@@ -21,7 +21,7 @@ public class CardAnimationController : MonoBehaviour
         StartCoroutine(DistributeCardsAnimation());
     }
 
-    public void DistributeCardToSinglePlayer(string cardName, int totalValue, RoomUserItem item)
+    public void DistributeCardToSinglePlayer(string cardName, int totalValue, int modifier, RoomUserItem item)
     {
         foreach (PlayerPos pos in playerPositions)
         {

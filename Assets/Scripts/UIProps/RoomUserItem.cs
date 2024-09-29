@@ -174,6 +174,8 @@ public class RoomUserItem : MonoBehaviour
         _x2Obj.SetActive(false);
         _x3Obj.SetActive(false);
 
+        Debug.Log("Modifier : " + amount);
+
         if (amount == 1)
         {
 

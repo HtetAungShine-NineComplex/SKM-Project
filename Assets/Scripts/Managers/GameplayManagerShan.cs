@@ -477,6 +477,7 @@ public class GameplayManagerShan : MonoBehaviour
     {
         string[] playerCards = sfsObj.GetUtfStringArray(GameConstants.PLAYER_CARD_ARRAY);
         int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
+        int modifier = sfsObj.GetInt(GameConstants.MODIFIER);
         string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
 
         Debug.Log($"{playerName} is DO with Cards [{playerCards[0]}, {playerCards[1]}] and total value of {totalValue}");
@@ -484,6 +485,7 @@ public class GameplayManagerShan : MonoBehaviour
         GetUserItemByName(playerName).SetTotalValue(totalValue);
         GetUserItemByName(playerName).PlayerDo(totalValue);
         GetUserItemByName(playerName).UpdateAllCards(playerCards);
+        GetUserItemByName(playerName).SetModifier(modifier);
 
         if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name || GetUserItemByName(playerName).IsBank)
         {
@@ -504,11 +506,12 @@ public class GameplayManagerShan : MonoBehaviour
             ToggleGameplayBtns(false);
             string drawnCardName = sfsObj.GetUtfString(GameConstants.CARD_NAME);
             int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
+            int modifier = sfsObj.GetInt(GameConstants.MODIFIER);
             Debug.Log($"{GetUserItemByName(drawerName).Name} draw Card [{drawnCardName}] and total value is {totalValue}");
             //GetUserItemByName(drawerName).SetTotalValue(totalValue);
             //GetUserItemByName(drawerName).AddCard(drawnCardName);
             
-            contrlr.DistributeCardToSinglePlayer(drawnCardName, totalValue, GetUserItemByName(drawerName));
+            contrlr.DistributeCardToSinglePlayer(drawnCardName, totalValue, modifier, GetUserItemByName(drawerName));
         }
         else
         {
