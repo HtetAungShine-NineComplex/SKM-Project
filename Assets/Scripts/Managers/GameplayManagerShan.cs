@@ -274,6 +274,8 @@ public class GameplayManagerShan : MonoBehaviour
 
         foreach (RoomUserItem item in _userItems)
         {
+            item.ToggleLoadingObject(false);
+
             if (item.Name == playerName)
             {
                 item.StartTurn();
@@ -462,6 +464,7 @@ public class GameplayManagerShan : MonoBehaviour
         _gameCDTxt.gameObject.SetActive(false);
         foreach (RoomUserItem item in _userItems)
         {
+            //item.ToggleLoadingObject(true);
             if (!item.IsBank)
             {
                 item.EndBet();

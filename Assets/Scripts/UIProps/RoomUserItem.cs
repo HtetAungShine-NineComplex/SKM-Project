@@ -23,6 +23,7 @@ public class RoomUserItem : MonoBehaviour
     [SerializeField] private GameObject[] _winObj;
     [SerializeField] private GameObject _loseObj;
     [SerializeField] private GameObject _resultParentObj;
+    [SerializeField] private GameObject _loadingObject;
     [SerializeField] private Image _cooldownFillImage;
 
     [SerializeField] private RectTransform _playerCardsPanel;
@@ -100,6 +101,17 @@ public class RoomUserItem : MonoBehaviour
             // Lerp slider value from 1 to 0 over the specified duration
             _cooldownFillImage.fillAmount = Mathf.Lerp(1f, 0f, _elapsedTime / _duration);
         }
+    }
+
+    public void ToggleLoadingObject(bool toggle)
+    {
+        if (Name == GlobalManager.Instance.GetSfsClient().MySelf.Name)
+        {
+            _loadingObject.SetActive(false);
+            return;
+        }
+
+        _loadingObject.SetActive(toggle);
     }
 
     public void SetBankObject(GameObject obj)
@@ -189,12 +201,21 @@ public class RoomUserItem : MonoBehaviour
 
         if (IsBank)
         {
-            _playerCardsPanel.transform.localScale = new Vector3(2.3f, 2.3f, 1f);
+            StartCoroutine(ShowingBankCards());
         }
         else
         {
             _playerCardsPanel.transform.localScale = new Vector3(1.7f, 1.7f, 1f);
         }
+    }
+
+    IEnumerator ShowingBankCards()
+    {
+        _playerCardsPanel.transform.localScale = new Vector3(2.3f, 2.3f, 1f);
+
+        yield return new WaitForSeconds(3f);
+
+        _playerCardsPanel.transform.localScale = new Vector3(1.7f, 1.7f, 1f);
     }
 
     public void SetBetAmount(int value)
@@ -229,6 +250,8 @@ public class RoomUserItem : MonoBehaviour
 
     public void PlayerDo(int value) //8 or 9
     {
+        ToggleLoadingObject(false);
+
         if(value == 8)
         {
             _8doObj.SetActive(true);
@@ -306,6 +329,8 @@ public class RoomUserItem : MonoBehaviour
     }
     public void Reset()
     {
+        ToggleLoadingObject(false);
+
         _playerCardsPanel.anchoredPosition = _originalCardPos;
         _playerCardsPanel.localScale = new Vector3(1.4f, 1.4f, 1f);
 

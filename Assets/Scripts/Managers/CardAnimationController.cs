@@ -74,5 +74,11 @@ public class CardAnimationController : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
         }
+
+        foreach (PlayerPos pos in playerPositions)
+        {
+            if(pos.currentUser != null)
+            pos.currentUser.ToggleLoadingObject(true);
+        }
     }
 }
