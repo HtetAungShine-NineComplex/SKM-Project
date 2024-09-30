@@ -24,6 +24,7 @@ public class GameplayManagerShan : MonoBehaviour
     [SerializeField] private Button _standBtn;
     [SerializeField] private Button _startBtn;
     [SerializeField] private Button _betBtn;
+    [SerializeField] private GameObject _betBtnPanel;///srat
     [SerializeField] private TMP_Text _gameCDTxt;
     [SerializeField] private TMP_Text _currentPlayerTurnTxt;
     [SerializeField] private TMP_Text _bankAmountTxt;
@@ -319,6 +320,7 @@ public class GameplayManagerShan : MonoBehaviour
 
     private void StartGame() //send to server when the room owner press start
     {
+        Debug.Log("user tried to start!"); //srat
         if (_userItems.Count < 2)
         {
             Debug.Log("Need at least 2 players to start the game");
@@ -338,7 +340,7 @@ public class GameplayManagerShan : MonoBehaviour
         ExtensionRequest request = new ExtensionRequest(GameConstants.BET, data, _currentRoom);
         Managers.NetworkManager.SendRequest(request);
 
-        _betBtn.gameObject.SetActive(false);
+        _betBtnPanel.gameObject.SetActive(false);
     }
 
     public void DrawCard() //send to server when this client draw a card
@@ -382,6 +384,7 @@ public class GameplayManagerShan : MonoBehaviour
         //GetUserItemByID(id).IsBanker();
         if (playerName == Managers.NetworkManager.SmartFox.MySelf.Name)
         {
+            
             _startBtn.onClick.AddListener(() => StartGame());
             _startBtn.gameObject.SetActive(true);
         }
@@ -427,7 +430,7 @@ public class GameplayManagerShan : MonoBehaviour
         ResetGame();
         //AddTwoCardToAllPlayers();
         _gameCDTxt.gameObject.SetActive(false);
-        _betBtn.gameObject.SetActive(true);
+        _betBtnPanel.gameObject.SetActive(true);
 
         Debug.Log("Bank : " + bankAmount);
         _bankAmountTxt.text = bankAmount.ToString();
@@ -454,7 +457,7 @@ public class GameplayManagerShan : MonoBehaviour
 
         if(name == GlobalManager.Instance.GetSfsClient().MySelf.Name)
         {
-            _betBtn.gameObject.SetActive(false);
+            _betBtnPanel.gameObject.SetActive(false);
         }
     }
 

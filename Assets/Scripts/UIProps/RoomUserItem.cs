@@ -166,7 +166,7 @@ public class RoomUserItem : MonoBehaviour
     public void SetAmount(int amount)
     {
         TotalAmount = amount;
-        _totalAmountTxt.text = amount.ToString();
+        _totalAmountTxt.text ="$ "+ amount.ToString();
     }
 
     public void SetModifier(int amount)
