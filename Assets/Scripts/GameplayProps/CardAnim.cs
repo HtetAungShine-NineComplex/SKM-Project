@@ -20,6 +20,7 @@ public class CardAnim : MonoBehaviour
     public bool hasCard = false;
     public bool isDraw = false;
     public int totalValue = 0;
+    public int modifier = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +65,7 @@ public class CardAnim : MonoBehaviour
 
                 _targetPos.currentUser?.AddCard(addCardName);
                 _targetPos.currentUser?.SetTotalValue(totalValue);
+                _targetPos.currentUser?.SetModifier(modifier);
             }
             else
             {

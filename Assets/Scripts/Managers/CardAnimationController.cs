@@ -35,6 +35,7 @@ public class CardAnimationController : MonoBehaviour
                 card.hasCard = true;
                 card.isDraw = true;
                 card.totalValue = totalValue;
+                card.modifier = modifier;
                 card.SetPositions(_startPos.anchoredPosition, pos);
 
                 break;

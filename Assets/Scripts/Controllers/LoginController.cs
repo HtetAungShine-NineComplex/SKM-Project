@@ -9,6 +9,9 @@ using Sfs2X.Util;
 using TMPro;
 using THZ;
 using System.Collections.Generic;
+using Proyecto26;
+using Newtonsoft.Json;
+using Shan.API;
 
 /**
  * Script attached to the Controller object in the Login scene.
@@ -41,6 +44,7 @@ public class LoginController : BaseSceneController
 	//----------------------------------------------------------
 
 	[SerializeField] private TMP_InputField nameInput;
+	[SerializeField] private TMP_InputField pwdInput;
     [SerializeField] private Button loginButton;
     [SerializeField] private TMP_Text errorText;
 
@@ -84,7 +88,52 @@ public class LoginController : BaseSceneController
 	 */
 	public void OnLoginButtonClick()
 	{
-		Connect();
+		//Connect();
+
+		Login(nameInput.text, pwdInput.text);
+	}
+
+	public void Login(string phone, string password) //post
+	{
+		errorText.text = "";
+		EnableUI(false);
+
+		APILoginRequest reqData = new APILoginRequest(phone, password);
+		string uri = Managers.DataLoader.NetworkData.URI + Managers.DataLoader.NetworkData.login;
+
+
+        RequestHelper currentRequest = new RequestHelper
+		{
+			Uri = uri
+			,
+			BodyString = JsonConvert.SerializeObject(reqData)
+			,
+			EnableDebug = true
+		};
+		RestClient.Post(currentRequest)
+		.Then(res =>
+		{
+			EnableUI(true);
+
+			LoginResponse r = JsonConvert.DeserializeObject<LoginResponse>(res.Text);
+
+			if (r.status == "success")
+			{
+                PlayerPrefs.SetString("token", r.data.token);
+                PlayerPrefs.SetString("userName", r.data.user.name);
+
+                Connect();
+            }
+			else
+			{
+				errorText.text = r.message;
+			}
+		})
+		.Catch(err => { 
+			Debug.Log(err.Message);
+            EnableUI(true);
+            errorText.text = "Incorrect Username or Password";
+        });
 	}
 	#endregion
 
@@ -98,6 +147,7 @@ public class LoginController : BaseSceneController
 	private void EnableUI(bool enable)
 	{
 		nameInput.interactable = enable;
+		pwdInput.interactable = enable;
 		loginButton.interactable = enable;
     }
 
@@ -204,7 +254,7 @@ public class LoginController : BaseSceneController
 			Debug.Log("Connection mode is: " + sfs.ConnectionMode);
 
 			// Login
-			sfs.Send(new LoginRequest(nameInput.text));
+			sfs.Send(new LoginRequest(PlayerPrefs.GetString("userName")));
 		}
 		else
 		{

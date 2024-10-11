@@ -362,7 +362,22 @@ public class GameplayManagerShan : MonoBehaviour
         ToggleGameplayBtns(false);
     }
 
-    public void LeaveRoom() //send to server when this client stand
+    public void LeaveRoomToMainMenu() //send to server when this client stand
+    {
+        Room currentRoom = Managers.NetworkManager.SmartFox.LastJoinedRoom;
+        if (currentRoom != null)
+        {
+            Managers.NetworkManager.SmartFox.Send(new LeaveRoomRequest(currentRoom));
+            Debug.Log("Leaving room: " + currentRoom.Name);
+            SceneManager.LoadScene("MainMenu");
+        }
+        else
+        {
+            Debug.LogWarning("No room to leave.");
+        }
+    }
+
+    public void LeaveRoomToLobby() //send to server when this client stand
     {
         Room currentRoom = Managers.NetworkManager.SmartFox.LastJoinedRoom;
         if (currentRoom != null)
