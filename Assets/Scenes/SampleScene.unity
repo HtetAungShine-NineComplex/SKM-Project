@@ -1589,6 +1589,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8112134465246792558, guid: 4ee931c72b09ec74087d4fb848f9957c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestJoinRoom
+      objectReference: {fileID: 0}
     - target: {fileID: 8273905636676374184, guid: 4ee931c72b09ec74087d4fb848f9957c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

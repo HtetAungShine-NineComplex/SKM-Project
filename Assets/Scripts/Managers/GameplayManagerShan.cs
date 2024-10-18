@@ -17,6 +17,7 @@ public class GameplayManagerShan : MonoBehaviour
     private List<RoomUserItem> _userItems;
 
     [SerializeField] private GameObject _turnTxt;
+    [SerializeField] private GameObject _pleaseWaitTxt;
     [SerializeField] private RoomUserItem _roomUserItemPrefab;
     [SerializeField] private Transform _roomUserRoot;
     [SerializeField] private TMP_Text _roomNameTxt;
@@ -24,10 +25,10 @@ public class GameplayManagerShan : MonoBehaviour
     [SerializeField] private Button _standBtn;
     [SerializeField] private Button _startBtn;
     [SerializeField] private Button _betBtn;
-    [SerializeField] private GameObject _betBtnPanel;///srat
     [SerializeField] private TMP_Text _gameCDTxt;
     [SerializeField] private TMP_Text _currentPlayerTurnTxt;
     [SerializeField] private TMP_Text _bankAmountTxt;
+    [SerializeField] private BetPanelAmountController _betAmountCtrlr;
 
     //[SerializeField] private Transform _mainUserPos;
 
@@ -35,6 +36,11 @@ public class GameplayManagerShan : MonoBehaviour
     [SerializeField] private PlayerPos[] playerPositions;
 
     private Room _currentRoom;
+
+    int bet1;
+    int bet2;
+    int bet3;
+    int maxBet;
 
     private void Awake()
     {
@@ -77,6 +83,7 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.PlayerHandCards += OnPlayerHandCard;
         Managers.NetworkManager.RoomPlayerList += OnRoomPlayerList;
         Managers.NetworkManager.PlayerBet += OnPlayerBet;
+        Managers.NetworkManager.PleaseWait += OnPleaseWait;
     }
 
     public void RemovenServerEvents()
@@ -96,6 +103,7 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.PlayerHandCards -= OnPlayerHandCard;
         Managers.NetworkManager.RoomPlayerList -= OnRoomPlayerList;
         Managers.NetworkManager.PlayerBet -= OnPlayerBet;
+        Managers.NetworkManager.PleaseWait -= OnPleaseWait;
     }
 
     private void AddTwoCardToAllPlayers()
@@ -332,15 +340,39 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.SendRequest(request);
     }
 
-    public void Bet() //send to server when this client bet
+    public void Bet(int betBtnID) //send to server when this client bet
     {
+        int betAmount = 0;
+        switch (betBtnID)
+        {
+            case 0:
+                betAmount = bet1;
+                break;
+
+            case 1:
+                betAmount = bet2;
+                break;
+
+            case 2:
+                betAmount = bet3;
+                break;
+
+            case 3:
+                betAmount = maxBet;
+                break;
+
+            default:
+                break;
+        }
+
         ISFSObject data = new SFSObject();
         data.PutUtfString(GameConstants.USER_NAME, Managers.NetworkManager.SmartFox.MySelf.Name);
+        data.PutInt(GameConstants.BET_AMOUNT, betAmount);
         //data.PutUtfString(GameConstants.BET_AMOUNT, 1000);
         ExtensionRequest request = new ExtensionRequest(GameConstants.BET, data, _currentRoom);
         Managers.NetworkManager.SendRequest(request);
 
-        _betBtnPanel.gameObject.SetActive(false);
+        _betAmountCtrlr.gameObject.SetActive(false);
     }
 
     public void DrawCard() //send to server when this client draw a card
@@ -441,11 +473,17 @@ public class GameplayManagerShan : MonoBehaviour
     private void OnBetStarted(ISFSObject sfsObj) //this will receive when the bet state started
     {
         int bankAmount = sfsObj.GetInt(GameConstants.BANK_AMOUNT);
+        bet1 = sfsObj.GetInt("bet1");
+        bet2 = sfsObj.GetInt("bet2");
+        bet3 = sfsObj.GetInt("bet3");
+        maxBet = bankAmount;
+
+        _betAmountCtrlr.SetBtnAmounts(bet1, bet2, bet3, bankAmount);
 
         ResetGame();
         //AddTwoCardToAllPlayers();
         _gameCDTxt.gameObject.SetActive(false);
-        _betBtnPanel.gameObject.SetActive(true);
+        _betAmountCtrlr.gameObject.SetActive(true);
 
         Debug.Log("Bank : " + bankAmount);
         _bankAmountTxt.text = bankAmount.ToString();
@@ -459,6 +497,11 @@ public class GameplayManagerShan : MonoBehaviour
         }
     }
 
+    public void OnPleaseWait(ISFSObject sfsObj) //send from server when a client
+    {
+        _pleaseWaitTxt.SetActive(true);
+    }
+
     public void OnPlayerBet(ISFSObject sfsObj) //send from server when a client bet
     {
         string name = sfsObj.GetUtfString(GameConstants.USER_NAME);
@@ -468,11 +511,12 @@ public class GameplayManagerShan : MonoBehaviour
         Debug.Log("Player : " + name + " bet " + betAmount + " and " + totalAmount);
         GetUserItemByName(name).SetAmount(totalAmount);
         GetUserItemByName(name).SetBetAmount(betAmount);
+        GetUserItemByName(name).OnBet(betAmount);
         GetUserItemByName(name).EndBet();
 
         if(name == GlobalManager.Instance.GetSfsClient().MySelf.Name)
         {
-            _betBtnPanel.gameObject.SetActive(false);
+            _betAmountCtrlr.gameObject.SetActive(false);
         }
     }
 
@@ -662,6 +706,7 @@ public class GameplayManagerShan : MonoBehaviour
 
     void ResetGame()
     {
+        _pleaseWaitTxt.SetActive(false);
         ToggleGameplayBtns(false);
 
         foreach (RoomUserItem item in _userItems)

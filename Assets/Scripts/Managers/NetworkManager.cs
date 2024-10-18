@@ -21,8 +21,6 @@ public class NetworkManager : MonoBehaviour
     [SerializeField] private TMP_Text _pingText;
     [SerializeField] private GameObject _gameStartObj;
 
-    public static NetworkManager Instance;
-
     public SmartFox SmartFox => _smartfox;
 
     //game events
@@ -42,6 +40,7 @@ public class NetworkManager : MonoBehaviour
     public event Action<ISFSObject> PlayerHandCards;
     public event Action<ISFSObject> RoomPlayerList;
     public event Action<ISFSObject> PlayerBet;
+    public event Action<ISFSObject> PleaseWait;
 
     //server events
     public event Action<User> UserEnterRoom;
@@ -49,12 +48,6 @@ public class NetworkManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(Instance.gameObject);
-        }
-
-        Instance = this;
     }
 
     // Start is called before the first frame update
@@ -211,6 +204,10 @@ public class NetworkManager : MonoBehaviour
             case GameConstants.PLAYER_BET:
                 OnPlayerBet(sfsobject);
                 break;
+
+            case GameConstants.PLEASE_WAIT:
+                OnPleaseWait(sfsobject);
+                break;
         }
     }
 
@@ -297,5 +294,10 @@ public class NetworkManager : MonoBehaviour
     public void OnPlayerBet(ISFSObject sfsObj)
     {
         PlayerBet?.Invoke(sfsObj);
+    }
+
+    public void OnPleaseWait(ISFSObject sfsObj)
+    {
+        PleaseWait?.Invoke(sfsObj);
     }
 }

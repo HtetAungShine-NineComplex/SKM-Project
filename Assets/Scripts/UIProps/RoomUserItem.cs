@@ -15,6 +15,7 @@ public class RoomUserItem : MonoBehaviour
     [SerializeField] private TMP_Text _betAmountTxt;
     [SerializeField] private GameObject _bankerStatus;
     [SerializeField] private TextFloatFx _textFloatPrefab;
+    [SerializeField] private CoinAnimController _coinAnimCtrlr;
 
     [SerializeField] private GameObject _8doObj;
     [SerializeField] private GameObject _9doObj;
@@ -35,6 +36,8 @@ public class RoomUserItem : MonoBehaviour
     [SerializeField] private float _cardSpacing;
     [SerializeField] private float _cardOffsetY;
     [SerializeField] private float _maxAngle = 30f;
+
+    private Transform _playerCoinsRoot;
 
     public int ID { get; private set; } // user id to access the user item
     public string Name { get; private set; } // user id to access the user item
@@ -103,6 +106,11 @@ public class RoomUserItem : MonoBehaviour
         }
     }
 
+    public void SetPlayerCoinsRoot(Transform root)
+    {
+        _playerCoinsRoot = root;
+    }
+
     public void ToggleLoadingObject(bool toggle)
     {
         if (Name == GlobalManager.Instance.GetSfsClient().MySelf.Name)
@@ -143,6 +151,11 @@ public class RoomUserItem : MonoBehaviour
         _elapsedTime = 0;
         _cooldownFillImage.gameObject.SetActive(true);
         _isBetting = true;
+    }
+
+    public void OnBet(int betAmount)
+    {
+        _coinAnimCtrlr.GenerateCoins(betAmount, _playerCoinsRoot);
     }
 
     public void EndBet()

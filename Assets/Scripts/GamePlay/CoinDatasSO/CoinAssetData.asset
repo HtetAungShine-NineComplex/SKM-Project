@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 206255f259da3d249bffa44ca4538d7f, type: 3}
+  m_Name: CoinAssetData
+  m_EditorClassIdentifier: 
+  data:
+  - amount: 100
+    sprite: {fileID: -810112716, guid: ac56dd818f9423e48a5c4d66684bedba, type: 3}
+  - amount: 500
+    sprite: {fileID: 997054845, guid: ac56dd818f9423e48a5c4d66684bedba, type: 3}
+  - amount: 1000
+    sprite: {fileID: 55064990, guid: ac56dd818f9423e48a5c4d66684bedba, type: 3}
+  - amount: 5000
+    sprite: {fileID: -181293734, guid: ac56dd818f9423e48a5c4d66684bedba, type: 3}
+  - amount: 10000
+    sprite: {fileID: 1396778179, guid: ac56dd818f9423e48a5c4d66684bedba, type: 3}
+  - amount: 50000
+    sprite: {fileID: -347720215, guid: ac56dd818f9423e48a5c4d66684bedba, type: 3}

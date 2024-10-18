@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 2065540545816779967}
   - component: {fileID: 7228839242177910525}
   - component: {fileID: 3567557548350591939}
+  - component: {fileID: 2981169623382674859}
   m_Layer: 5
   m_Name: RoomUserItem
   m_TagString: Untagged
@@ -497,6 +498,7 @@ MonoBehaviour:
   _betAmountTxt: {fileID: 8415249886218998050}
   _bankerStatus: {fileID: 7320715781353243284}
   _textFloatPrefab: {fileID: 2865320064553252566, guid: 6547201c0efe6cf4886bb6b9c6e505cc, type: 3}
+  _coinAnimCtrlr: {fileID: 2981169623382674859}
   _8doObj: {fileID: 7240093915750658842}
   _9doObj: {fileID: 5125946004888326103}
   _x2Obj: {fileID: 1527876139190761463}
@@ -516,6 +518,21 @@ MonoBehaviour:
   _cardSpacing: 30
   _cardOffsetY: 7
   _maxAngle: 15
+--- !u!114 &2981169623382674859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348277001952070144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f044f4adc4edd445a1ce924d8231752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 11400000, guid: 3b601edc3d298e44299f893a55b7b4cc, type: 2}
+  _coinPrefab: {fileID: 3963212432588891698, guid: 3dd4a4ec16e78b1439c7247a9b2f4037, type: 3}
+  _coinTransform: {fileID: 0}
 --- !u!1 &1527876139190761463
 GameObject:
   m_ObjectHideFlags: 0

@@ -54,6 +54,8 @@ namespace THZ
         public const string DRAW_CARD = "drawCard"; //send from client
         public const string BET = "bet"; //send from client
         public const string PLAYER_BET = "playerBet"; //send from server
+        public const string PLEASE_WAIT = "pleaseWait"; //send from server
+
 
         //Data Keys
         //Amount
@@ -61,6 +63,9 @@ namespace THZ
         public const string TOTAL_AMOUNT = "totalAmount";
         public const string BANK_AMOUNT = "bankAmount";
         public const string AMOUNT_CHANGED = "amountChanged";
+        public const string REQUEST_ROOM_AMOUNT = "requestRoomAmount";
+        public const string MIN_BET = "minBet";
+        public const string MAX_BET = "maxBet";
 
         // Card
         public const string CARD_NAME = "cardName";

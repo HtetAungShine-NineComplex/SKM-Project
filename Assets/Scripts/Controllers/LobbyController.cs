@@ -10,6 +10,7 @@ using Sfs2X.Entities;
 using Sfs2X.Requests;
 using THZ;
 using TMPro;
+using Sfs2X.Entities.Data;
 
 /**
  * Script attached to the Controller object in the Lobby scene.
@@ -83,6 +84,13 @@ public class LobbyController : BaseSceneController
         settings.Extension = new RoomExtension(GameConstants.SHAN_EXTENSION_ID, GameConstants.SHAN_EXTENSION_CLASS);
         // Request Room creation to server
         sfs.Send(new CreateRoomRequest(settings, true, sfs.LastJoinedRoom));
+    }
+
+	public void RequestJoinRoom()
+	{
+        SFSObject data = new SFSObject();
+        data.PutInt(GameConstants.REQUEST_ROOM_AMOUNT, 1000);
+        GlobalManager.Instance.GetSfsClient().Send(new ExtensionRequest("joinRoom", data));
     }
 
 	/**

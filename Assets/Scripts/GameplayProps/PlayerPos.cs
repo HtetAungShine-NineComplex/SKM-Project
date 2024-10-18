@@ -6,6 +6,7 @@ public class PlayerPos : MonoBehaviour
 {
     public RoomUserItem currentUser;
     public RectTransform rectTransform;
+    public RectTransform coinTransform;
     public GameObject bankObj;
 
     private void Awake()
@@ -30,5 +31,6 @@ public class PlayerPos : MonoBehaviour
     {
         currentUser = item;
         currentUser.SetBankObject(bankObj);
+        currentUser.SetPlayerCoinsRoot(coinTransform);
     }
 }
