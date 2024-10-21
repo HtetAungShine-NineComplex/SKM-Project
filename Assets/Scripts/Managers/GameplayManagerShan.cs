@@ -28,6 +28,9 @@ public class GameplayManagerShan : MonoBehaviour
     [SerializeField] private TMP_Text _gameCDTxt;
     [SerializeField] private TMP_Text _currentPlayerTurnTxt;
     [SerializeField] private TMP_Text _bankAmountTxt;
+
+    [SerializeField] private BankDisplay _bankDisplay;
+
     [SerializeField] private BetPanelAmountController _betAmountCtrlr;
 
     //[SerializeField] private Transform _mainUserPos;
@@ -446,6 +449,7 @@ public class GameplayManagerShan : MonoBehaviour
         int bankAmount = sfsObj.GetInt(GameConstants.BANK_AMOUNT);
 
         _bankAmountTxt.text = bankAmount.ToString();
+        _bankDisplay.DisplayNumber(bankAmount.ToString());
 
         foreach (RoomUserItem item in _userItems)
         {
@@ -487,6 +491,7 @@ public class GameplayManagerShan : MonoBehaviour
 
         Debug.Log("Bank : " + bankAmount);
         _bankAmountTxt.text = bankAmount.ToString();
+        _bankDisplay.DisplayNumber(bankAmount.ToString());
 
         foreach (RoomUserItem item in _userItems)
         {
@@ -633,6 +638,8 @@ public class GameplayManagerShan : MonoBehaviour
         Debug.Log("Bank : " + bankAmount);
         _bankAmountTxt.text = bankAmount.ToString();
 
+        _bankDisplay.DisplayNumber(bankAmount.ToString());
+
         GetUserItemByName(playerName).UpdateAllCards(handCards);
 
         GetUserItemByName(playerName).SetTotalValue(totalValue);
@@ -667,6 +674,8 @@ public class GameplayManagerShan : MonoBehaviour
 
         Debug.Log("Bank : " + bankAmount);
         _bankAmountTxt.text = bankAmount.ToString();
+
+        _bankDisplay.DisplayNumber(bankAmount.ToString());
 
         foreach (string handCard in handCards)
         {

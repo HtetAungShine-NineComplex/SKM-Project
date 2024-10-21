@@ -30,6 +30,12 @@ public class UIMainMenu : UiBase
     [SerializeField] private Button _settingBtn;
     [SerializeField] private Button _CloseSettingBtn;
     [SerializeField] private GameObject _UIMainMenuSetting;
+
+    [Header("History")]
+    [SerializeField] private Button _historyBtn;
+    [SerializeField] private Button _CloseHistoryBtn;
+    [SerializeField] private GameObject _UILifeTimeHistory;
+
     public override void OnShow(UIBaseData data)
     {
         base.OnShow(data);
@@ -43,6 +49,9 @@ public class UIMainMenu : UiBase
 
         _settingBtn.onClick.AddListener(OpenMainMenuSetting);
         _CloseSettingBtn.onClick.AddListener(CloseMainMenuSetting);
+
+        _historyBtn.onClick.AddListener(OpenLifeTimeHistory);
+        _CloseHistoryBtn.onClick.AddListener(CloseLifeTimeHistory);
         UpdateAvator();
     }
 
@@ -140,6 +149,25 @@ public class UIMainMenu : UiBase
         if (_UIMainMenuSetting != null)
         {
             _UIMainMenuSetting.SetActive(false);
+            Debug.Log("closed mainmenu setting panel!");
+        }
+    }
+    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void OpenLifeTimeHistory()
+    {
+        if (_UILifeTimeHistory != null)
+        {
+            _UILifeTimeHistory.SetActive(true);
+            Debug.Log("opened mainmenu setting panel!");
+        }
+    }
+
+    public void CloseLifeTimeHistory()
+    {
+        if (_UILifeTimeHistory != null)
+        {
+            _UILifeTimeHistory.SetActive(false);
             Debug.Log("closed mainmenu setting panel!");
         }
     }
