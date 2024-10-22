@@ -524,13 +524,9 @@ public class GameplayManagerShan : MonoBehaviour
         _betAmountCtrlr.SetBtnAmounts(bet1, bet2, bet3, bankAmount);
         _betAmountCtrlr.gameObject.SetActive(true);
 
-<<<<<<< Updated upstream
         Debug.Log("Bank : " + bankAmount);
         _bankAmountTxt.text = bankAmount.ToString();
         _bankDisplay.DisplayNumber(bankAmount.ToString());
-=======
-        
->>>>>>> Stashed changes
 
     }
 
