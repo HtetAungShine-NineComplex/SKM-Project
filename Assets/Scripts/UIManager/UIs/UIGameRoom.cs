@@ -18,6 +18,7 @@ public class UIGameRoom : UiBase
         //
         _cardAnimController.ListenEvents();
         settingBtn.onClick.AddListener(toggleSettingPopup);
+        Managers.AudioManager.StopBGMusic();
 
     }
 

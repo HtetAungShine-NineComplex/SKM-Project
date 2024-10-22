@@ -71,6 +71,7 @@ public class CardAnimationController : MonoBehaviour
                 _girlAnimator.SetTrigger("Play");
                 CardAnim card = Instantiate(_cardAnim, _cardRoot);
                 card.SetPositions(_startPos.anchoredPosition, pos);
+                Managers.AudioManager.PlayDistributeCardClip();
 
                 yield return new WaitForSeconds(0.5f);
             }

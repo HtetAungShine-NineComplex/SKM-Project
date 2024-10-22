@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89bb5a9346f30ff4984057fce04629bd, type: 3}
+  m_Name: AudioAssetData
+  m_EditorClassIdentifier: 
+  timeTickingClip: {fileID: 8300000, guid: 78094dc151080ff4d9e519ddf4a644b2, type: 3}
+  startingNewGameClip: {fileID: 8300000, guid: c7e6368461f316141bdb1fad24daa072, type: 3}
+  wontDrawCardClip: {fileID: 8300000, guid: d23e0ebde71d507489246155f184e1fe, type: 3}
+  willDrawCardClip: {fileID: 8300000, guid: 3c3800e616c4ba848bbf038157c88920, type: 3}
+  changingBankerClip: {fileID: 8300000, guid: 49fb029056539ee4a8ebb42db95e41ec, type: 3}
+  winClip: {fileID: 8300000, guid: f716da0cc9b49964a96f91c9089f2ae0, type: 3}
+  loseClip: {fileID: 8300000, guid: fe7acc3c8624ac346aae1430a1ee3a8c, type: 3}
+  drawCardClip: {fileID: 8300000, guid: 1c45a8d6692a1ee45b2d7f682ed51a61, type: 3}
+  distrubuteCardClip: {fileID: 8300000, guid: d8bac578239a3434499ff8def9a35983, type: 3}
+  playersAreBettingClip: {fileID: 8300000, guid: 53cfbc36aa960e54a94fdaa5cad25749, type: 3}
+  yourTurnToBankClip: {fileID: 8300000, guid: 6b37dfa6038f4b548b0c8219b9428b14, type: 3}

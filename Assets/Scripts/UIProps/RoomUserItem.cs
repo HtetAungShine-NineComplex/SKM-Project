@@ -254,8 +254,25 @@ public class RoomUserItem : MonoBehaviour
 
     public void IsPlayer()
     {
+        if(IsBank)
+        {
+            StartCoroutine(BankAudio());
+        }
+
         _bankerStatus.SetActive(false);
         IsBank = false;
+    }
+
+    IEnumerator BankAudio()
+    {
+        Managers.AudioManager.PlayChangingBankerClip();
+
+        yield return new WaitForSeconds(1f);
+
+        if (Name == GlobalManager.Instance.GetSfsClient().MySelf.Name)
+        {
+            Managers.AudioManager.PlayYourTurnToBankClip();
+        }
     }
 
     public void WinLose(bool isWin, int amountChanged)
@@ -366,6 +383,11 @@ public class RoomUserItem : MonoBehaviour
     {
         if(isWin)
         {
+            if(Name == GlobalManager.Instance.GetSfsClient().MySelf.Name)
+            {
+                Managers.AudioManager.PlayWinClip();
+            }
+
             TextFloatFx fx = Instantiate(_textFloatPrefab, transform);
             fx.SetAmount("+", amountChanged);
             foreach (GameObject item in _winObj)
@@ -375,6 +397,11 @@ public class RoomUserItem : MonoBehaviour
         }
         else
         {
+            if (Name == GlobalManager.Instance.GetSfsClient().MySelf.Name)
+            {
+                Managers.AudioManager.PlayLoseClip();
+            }
+
             TextFloatFx fx = Instantiate(_textFloatPrefab, transform);
             fx.SetAmount("-", amountChanged);
             foreach (CardDemo card in _playerCurrentCards)

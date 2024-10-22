@@ -11,6 +11,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class GameplayManagerShan : MonoBehaviour
 {
@@ -380,6 +381,7 @@ public class GameplayManagerShan : MonoBehaviour
 
     public void DrawCard() //send to server when this client draw a card
     {
+        Managers.AudioManager.PlayWillDrawCardClip();
         ISFSObject data = new SFSObject();
         data.PutUtfString(GameConstants.USER_NAME, Managers.NetworkManager.SmartFox.MySelf.Name);
         ExtensionRequest request = new ExtensionRequest(GameConstants.DRAW_CARD, data, _currentRoom);
@@ -390,6 +392,7 @@ public class GameplayManagerShan : MonoBehaviour
 
     public void Stand() //send to server when this client stand
     {
+        Managers.AudioManager.PlayWontDrawCardClip();
         ISFSObject data = new SFSObject();
         ExtensionRequest request = new ExtensionRequest(GameConstants.STAND, data, _currentRoom);
         Managers.NetworkManager.SendRequest(request);
@@ -471,35 +474,64 @@ public class GameplayManagerShan : MonoBehaviour
         int countdown = sfsObj.GetInt(GameConstants.COUNTDOWN);
         _gameCDTxt.gameObject.SetActive(true);
         _gameCDTxt.text = "Game will start in: " + countdown;
+        if(countdown == 8)
+        {
+            Managers.AudioManager.PlayStartingNewGameClip();
+        }
+
+        Managers.AudioManager.PlayTimeTickingClip();
         ResetGame();
     }
 
     private void OnBetStarted(ISFSObject sfsObj) //this will receive when the bet state started
     {
+        Managers.AudioManager.PlayPlayersAreBettingClip();
+        ResetGame();
+        //AddTwoCardToAllPlayers();
+        _gameCDTxt.gameObject.SetActive(false);
+
+        bool isMeBank = false;
+        foreach (RoomUserItem item in _userItems)
+        {
+            if (!item.IsBank)
+            {
+                item.StartBet();
+            }
+            else
+            {
+                if(item.Name == GlobalManager.Instance.GetSfsClient().MySelf.Name)
+                {
+                    isMeBank = true;
+                }
+            }
+        }
+
+        
+
         int bankAmount = sfsObj.GetInt(GameConstants.BANK_AMOUNT);
+        _bankAmountTxt.text = bankAmount.ToString();
+
+        if (isMeBank)
+        {
+            return;
+        }
+
         bet1 = sfsObj.GetInt("bet1");
         bet2 = sfsObj.GetInt("bet2");
         bet3 = sfsObj.GetInt("bet3");
         maxBet = bankAmount;
 
         _betAmountCtrlr.SetBtnAmounts(bet1, bet2, bet3, bankAmount);
-
-        ResetGame();
-        //AddTwoCardToAllPlayers();
-        _gameCDTxt.gameObject.SetActive(false);
         _betAmountCtrlr.gameObject.SetActive(true);
 
+<<<<<<< Updated upstream
         Debug.Log("Bank : " + bankAmount);
         _bankAmountTxt.text = bankAmount.ToString();
         _bankDisplay.DisplayNumber(bankAmount.ToString());
+=======
+        
+>>>>>>> Stashed changes
 
-        foreach (RoomUserItem item in _userItems)
-        {
-            if(!item.IsBank)
-            {
-                item.StartBet();
-            }
-        }
     }
 
     public void OnPleaseWait(ISFSObject sfsObj) //send from server when a client
@@ -562,7 +594,7 @@ public class GameplayManagerShan : MonoBehaviour
 
     private void OnDrawCard(ISFSObject sfsObj) //this will receive when a player hit
     {
-        
+        Managers.AudioManager.PlayDrawCardClip();
         string drawerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
         CardAnimationController contrlr = GetComponent<CardAnimationController>();
 

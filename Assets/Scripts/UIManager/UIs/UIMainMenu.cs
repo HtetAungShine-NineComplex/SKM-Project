@@ -40,6 +40,7 @@ public class UIMainMenu : UiBase
     {
         base.OnShow(data);
 
+        Managers.AudioManager.PlayBGMusic();
         _lobbyBtn.onClick.AddListener(ToLobby);
         _avatorSelectionBtn.onClick.AddListener(OpenAvatorSelection);//srat
 
