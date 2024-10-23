@@ -24,6 +24,7 @@ public class MainScript : MonoBehaviour {
 		RestClient.DefaultRequestHeaders["Authorization"] = "Bearer ...";
 
 		RequestHelper requestOptions = null;
+		
 
 		RestClient.GetArray<Post>(basePath + "/posts").Then(res => {
 			this.LogMessage("Posts", JsonHelper.ArrayToJsonString<Post>(res, true));

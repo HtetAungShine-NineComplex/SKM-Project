@@ -12,4 +12,5 @@ public class NetworkData : ScriptableObject
     public string login;
     public string register;
     public string userInfo;
+    public string roomconfig;
 }

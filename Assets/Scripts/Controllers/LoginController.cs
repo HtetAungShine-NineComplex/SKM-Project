@@ -121,6 +121,8 @@ public class LoginController : BaseSceneController
 			{
                 PlayerPrefs.SetString("token", r.data.token);
                 PlayerPrefs.SetString("userName", r.data.user.name);
+				Debug.Log("admin token" + r.data.token);
+				PlayerPrefs.Save();
 
                 Connect();
             }

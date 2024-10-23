@@ -57,4 +57,26 @@ namespace Shan.API
         public string status;
         public UserInfoData data;
     }
+
+    [Serializable]
+    public class RoomConfigData
+    {
+        public int id;
+        public string name;
+        public int min_amount;
+        public int max_amount;
+        public List<int> bet_amounts;
+        public DateTime created_at;
+        public DateTime updated_at;
+    }
+
+    [Serializable]
+    public class RoomConfigResponse
+    {
+        public string status;
+        public List<RoomConfigData> data;
+        public string message;
+    }
+
+
 }

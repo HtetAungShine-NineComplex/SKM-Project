@@ -16,3 +16,4 @@ MonoBehaviour:
   login: auth/login
   register: auth/register
   userInfo: auth/user-info
+  roomconfig: room-configs
