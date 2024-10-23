@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Proyecto26;
 using Shan.API;
 using Newtonsoft.Json;
+using Sfs2X;
 
 public class UIRoom : UiBase
 {
@@ -14,6 +15,9 @@ public class UIRoom : UiBase
 
     // A list to store RoomConfig objects
     [SerializeField] private List<RoomConfigData> savedRoomConfigs = new List<RoomConfigData>();
+
+    public Transform gameListContent;
+    public GameListItem gameListItemPrefab;
 
     public override void OnShow(UIBaseData data)
     {

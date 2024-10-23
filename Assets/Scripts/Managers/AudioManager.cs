@@ -77,4 +77,14 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource.PlayOneShot(_audioData.yourTurnToBankClip);
     }
+    
+    public void Play8DoClip()
+    {
+        _audioSource.PlayOneShot(_audioData._8doClip);
+    }
+
+    public void Play9DoClip()
+    {
+        _audioSource.PlayOneShot(_audioData._9doClip);
+    }
 }

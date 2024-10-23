@@ -17,4 +17,6 @@ public class AudioAssetData : ScriptableObject
     public AudioClip distrubuteCardClip;
     public AudioClip playersAreBettingClip;
     public AudioClip yourTurnToBankClip;
+    public AudioClip _8doClip;
+    public AudioClip _9doClip;
 }

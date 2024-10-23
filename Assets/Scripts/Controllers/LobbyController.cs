@@ -126,7 +126,7 @@ public class LobbyController : BaseSceneController
 		sfs.AddEventListener(SFSEvent.ROOM_JOIN_ERROR, OnRoomJoinError);
 
         // Populate list of available games
-        PopulateGamesList();
+        //PopulateGamesList();
     }
 
 	/**
@@ -174,10 +174,39 @@ public class LobbyController : BaseSceneController
 			AddGameListItem(room);
 	}
 
-	/**
+    public void UpdateRoomList(string RoomName)
+    {
+        // Initialize list
+        gameListItems = new Dictionary<int, GameListItem>();
+
+		for (int i = 0; i < gameListContent.childCount; i++)
+		{
+			Destroy(gameListContent.GetChild(i).gameObject);
+		}
+
+        // For the game list we use a scrollable area containing a separate prefab for each Game Room
+        // The prefab contains clickable buttons to join the game
+        List<Room> rooms = sfs.RoomManager.GetRoomList();
+
+        // Display game list items
+        foreach (Room room in rooms)
+		{
+			if(room.GetVariable("name").GetStringValue() == RoomName)
+			{
+                AddGameListItem(room);
+            }
+			else
+			{
+				return;
+			}
+        }
+           
+    }
+
+    /**
 	 * Create Game List Item prefab instance and add to games list.
 	 */
-	private void AddGameListItem(Room room)
+    private void AddGameListItem(Room room)
 	{
 		// Show only game rooms
 		// Also password protected Rooms are skipped, to make this example simpler
@@ -215,7 +244,7 @@ public class LobbyController : BaseSceneController
 		Room room = (Room)evt.Params["room"];
 
 		// Display game list item
-		AddGameListItem(room);
+		//AddGameListItem(room);
 	}
 
 	public void OnRoomRemoved(BaseEvent evt)

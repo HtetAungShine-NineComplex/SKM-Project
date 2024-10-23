@@ -8,13 +8,13 @@ public class CoinAssetData : ScriptableObject
 {
     public List<CoinData> data;
 
-    public Sprite GetSpriteByAmount(int amount)
+    public CoinData GetCoinDataByAmount(int amount)
     {
         foreach (CoinData coin in data)
         {
             if (coin.amount == amount)
             {
-                return coin.sprite;
+                return coin;
             }
         }
 

@@ -88,9 +88,9 @@ public class LoginController : BaseSceneController
 	 */
 	public void OnLoginButtonClick()
 	{
-		//Connect();
+		Connect();
 
-		Login(nameInput.text, pwdInput.text);
+		//ogin(nameInput.text, pwdInput.text);
 	}
 
 	public void Login(string phone, string password) //post

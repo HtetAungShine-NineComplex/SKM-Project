@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ public class CoinAnim : MonoBehaviour
 {
     public RectTransform rectTransform;
     public Image image;
+    public TMP_Text txt;
     public float speed;
 
     private Vector2 _startPos;
@@ -70,5 +72,10 @@ public class CoinAnim : MonoBehaviour
     public void SetSprite(Sprite sprite)
     {
         image.sprite = sprite;
+    }
+
+    public void SetValueString(string text)
+    {
+        txt.text = text;
     }
 }

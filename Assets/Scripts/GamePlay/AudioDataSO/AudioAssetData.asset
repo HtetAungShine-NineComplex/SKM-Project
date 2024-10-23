@@ -23,3 +23,5 @@ MonoBehaviour:
   distrubuteCardClip: {fileID: 8300000, guid: d8bac578239a3434499ff8def9a35983, type: 3}
   playersAreBettingClip: {fileID: 8300000, guid: 53cfbc36aa960e54a94fdaa5cad25749, type: 3}
   yourTurnToBankClip: {fileID: 8300000, guid: 6b37dfa6038f4b548b0c8219b9428b14, type: 3}
+  _8doClip: {fileID: 8300000, guid: d704125f2d964124093ca5d08c19e253, type: 3}
+  _9doClip: {fileID: 8300000, guid: 6c9cae6f94b118247a958d2e936c6283, type: 3}

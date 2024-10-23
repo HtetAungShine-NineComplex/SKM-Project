@@ -20,7 +20,7 @@ public class GameListItem : MonoBehaviour
 	 */
 	public void Init(Room room)
 	{
-		nameText.text = room.Name;
+		//nameText.text = room.Name;
 		roomId = room.Id;
 
 		SetState(room);
@@ -34,7 +34,7 @@ public class GameListItem : MonoBehaviour
 		int playerSlots = room.MaxUsers - room.UserCount;
 
 		// Set player count and spectator count in game list item
-		totalPlayerTxt.text = $"{room.UserCount} / {room.MaxUsers}";
+		totalPlayerTxt.text = $"{room.UserCount} / 8";
 
 		// Enable/disable game play button
 		joinBtn.interactable = playerSlots > 0;

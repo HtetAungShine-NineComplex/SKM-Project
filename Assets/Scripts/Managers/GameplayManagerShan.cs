@@ -302,7 +302,7 @@ public class GameplayManagerShan : MonoBehaviour
 
         if (Managers.NetworkManager.SmartFox.MySelf.Name == playerName)
         {
-            ShowObjectForSecs(_turnTxt, 2);
+            //ShowObjectForSecs(_turnTxt, 2);
             ToggleGameplayBtns(true);
         }
         else
@@ -585,6 +585,14 @@ public class GameplayManagerShan : MonoBehaviour
         if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name || GetUserItemByName(playerName).IsBank)
         {
             CardViewPanel.Instance.ClosePanel();
+            if(totalValue == 8)
+            {
+                Managers.AudioManager.Play8DoClip();
+            }
+            else if (totalValue == 9)
+            {
+                Managers.AudioManager.Play9DoClip();
+            }
         }
     }
 

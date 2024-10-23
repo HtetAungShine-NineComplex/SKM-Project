@@ -65,9 +65,21 @@ public class CoinAnimController : MonoBehaviour
         {
             CoinAnim coin = Instantiate(_coinPrefab, new Vector3(i * 2.0f, 0, 0), Quaternion.identity, this.transform);
 
-            Sprite sprite = _data.GetSpriteByAmount(coinValue);
+            CoinData data = _data.GetCoinDataByAmount(coinValue);
+            Sprite sprite = data.sprite;
             coin.SetSprite(sprite);
             coin.SetPositions(transform.position, _coinTransform);
+            coin.SetValueString(ConvertToK(data.amount));
         }
     }
+
+    public string ConvertToK(int number)
+    {
+        if (number >= 1000)
+        {
+            return (number / 1000).ToString() + "k";
+        }
+        return number.ToString();
+    }
+
 }
