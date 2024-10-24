@@ -332,7 +332,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6115695867265469321}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3235993033967856035}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+        m_MethodName: RequestJoinRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3610952911488069311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,6 +835,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2514425824507724328}
   - component: {fileID: 873956828681628073}
+  - component: {fileID: 3235993033967856035}
   m_Layer: 5
   m_Name: UIMainMenu
   m_TagString: Untagged
@@ -872,7 +885,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896e0e4ec9128c9488dfa34f9be02921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lobbyBtn: {fileID: 198087013351610224}
+  _lobbyBtn: {fileID: 3671825971247847700}
+  _menuController: {fileID: 3235993033967856035}
   _usernameTxt: {fileID: 7252223739536359433}
   _balanceTxt: {fileID: 4981703700097135220}
   _UIAvatorSelection: {fileID: 3490860039418900076}
@@ -888,6 +902,18 @@ MonoBehaviour:
   _historyBtn: {fileID: 7426646018374016715}
   _CloseHistoryBtn: {fileID: 6083914965197564073}
   _UILifeTimeHistory: {fileID: 3049012171990005318}
+--- !u!114 &3235993033967856035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3425920129250904309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa134660373785c4798809db77fe60f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3828060229431555284
 GameObject:
   m_ObjectHideFlags: 0

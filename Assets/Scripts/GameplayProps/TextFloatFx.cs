@@ -17,7 +17,7 @@ public class TextFloatFx : MonoBehaviour
         _move = true;
         _speed *= Screen.height / 800;
 
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 6f);
     }
 
 
@@ -41,7 +41,7 @@ public class TextFloatFx : MonoBehaviour
 
         // Fade out the text over time
         float alpha = _canvasGroup.alpha;
-        alpha -= Time.deltaTime;
+        alpha -= Time.deltaTime * 0.2f;
         _canvasGroup.alpha = alpha;
     }
 

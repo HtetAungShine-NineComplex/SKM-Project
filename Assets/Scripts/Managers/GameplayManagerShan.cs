@@ -585,7 +585,11 @@ public class GameplayManagerShan : MonoBehaviour
         if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name || GetUserItemByName(playerName).IsBank)
         {
             CardViewPanel.Instance.ClosePanel();
-            if(totalValue == 8)
+        }
+
+        if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name)
+        {
+            if (totalValue == 8)
             {
                 Managers.AudioManager.Play8DoClip();
             }

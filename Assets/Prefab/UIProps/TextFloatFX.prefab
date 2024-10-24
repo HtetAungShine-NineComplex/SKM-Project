@@ -94,13 +94,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 47.21
-  m_fontSizeBase: 47.21
+  m_fontSize: 54.19
+  m_fontSizeBase: 54.19
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _amountTxt: {fileID: 9142792154404555118}
   _canvasGroup: {fileID: 3142309808240045297}
-  _speed: 200
+  _speed: 50
   _transform: {fileID: 7569932978537870952}
 --- !u!225 &3142309808240045297
 CanvasGroup:

@@ -226,6 +226,8 @@ public class RoomUserItem : MonoBehaviour
 
     IEnumerator ShowingBankCards()
     {
+        yield return new WaitForSeconds(1f);
+
         _playerCardsPanel.transform.localScale = new Vector3(2.3f, 2.3f, 1f);
 
         yield return new WaitForSeconds(3f);
@@ -332,9 +334,37 @@ public class RoomUserItem : MonoBehaviour
 
     public void UpdateAllCards(string[] cards)
     {
+        if (IsBank)
+        {
+            StartCoroutine(BankCardsUpdate(cards));
+            return;
+        }
+
         if (_playerCurrentCards.Count > 0)
         {
             foreach(CardDemo card in _playerCurrentCards)
+            {
+                Destroy(card.gameObject);
+            }
+
+            _playerCurrentCards = new List<CardDemo>();
+        }
+
+        foreach (string cardName in cards)
+        {
+            CardDemo addedCard = Instantiate(_cardPrefab, _playerCardsRoot);
+            addedCard.SetCard(cardName);
+            _playerCurrentCards.Add(addedCard);
+        }
+    }
+
+    IEnumerator BankCardsUpdate(string[] cards)
+    {
+        yield return new WaitForSeconds(1f);
+
+        if (_playerCurrentCards.Count > 0)
+        {
+            foreach (CardDemo card in _playerCurrentCards)
             {
                 Destroy(card.gameObject);
             }

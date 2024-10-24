@@ -12,7 +12,7 @@ using UnityEngine.UI;
 public class UIMainMenu : UiBase
 {
     [SerializeField] private Button _lobbyBtn; //sample
-
+    [SerializeField] private MainMenuController _menuController;
     [Header("UserInfoTexts")]
     [SerializeField] private TMP_Text _usernameTxt;
     [SerializeField] private TMP_Text _balanceTxt;
@@ -39,7 +39,7 @@ public class UIMainMenu : UiBase
     public override void OnShow(UIBaseData data)
     {
         base.OnShow(data);
-
+        _menuController.AddSmartFoxListeners();
         Managers.AudioManager.PlayBGMusic();
         _lobbyBtn.onClick.AddListener(ToLobby);
         _avatorSelectionBtn.onClick.AddListener(OpenAvatorSelection);//srat
@@ -180,6 +180,7 @@ public class UIMainMenu : UiBase
         base.OnClose();
         _lobbyBtn.onClick.RemoveAllListeners();
         _avatorSelectionBtn.onClick.RemoveAllListeners();//srat
+        _menuController.RemoveSmartFoxListeners();
     }
 
     private void ToLobby()
