@@ -88,9 +88,10 @@ public class LoginController : BaseSceneController
 	 */
 	public void OnLoginButtonClick()
 	{
-		Connect();
+		//Connect();
+		
 
-		//ogin(nameInput.text, pwdInput.text);
+		Login(nameInput.text, pwdInput.text);
 	}
 
 	public void Login(string phone, string password) //post
@@ -122,7 +123,7 @@ public class LoginController : BaseSceneController
                 PlayerPrefs.SetString("token", r.data.token);
                 PlayerPrefs.SetString("userName", r.data.user.name);
 				Debug.Log("admin token" + r.data.token);
-				PlayerPrefs.Save();
+				//PlayerPrefs.Save();
 
                 Connect();
             }
