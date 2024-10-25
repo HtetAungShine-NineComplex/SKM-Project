@@ -11,7 +11,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class GameplayManagerShan : MonoBehaviour
 {
