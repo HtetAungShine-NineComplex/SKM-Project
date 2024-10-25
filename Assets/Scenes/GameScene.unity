@@ -1986,7 +1986,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3049012171990005318, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3198637074724862416, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2120,6 +2120,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4938570288676081751, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4981703700097135220, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: m_fontSize
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 4981703700097135220, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 4981703700097135220, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5017502863694243819, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2156,6 +2172,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5198672221322732608, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -109
+      objectReference: {fileID: 0}
+    - target: {fileID: 5198672221322732608, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5680789211001439629, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2175,6 +2199,10 @@ PrefabInstance:
     - target: {fileID: 5712122772393625864, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
       propertyPath: m_Name
       value: ClosseHistoryUI_Btn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138831213952073050, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6166648056756933395, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2298,11 +2326,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7304745714221082481, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.9999999
       objectReference: {fileID: 0}
     - target: {fileID: 7304745714221082481, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.4453097
       objectReference: {fileID: 0}
     - target: {fileID: 7408106390301855325, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
       propertyPath: m_Type
@@ -2356,6 +2384,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8109263833456693543, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -7.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369738108357089293, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 32.4584
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369738108357089293, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 32.4584
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633210642160200933, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 012882e51452f154f80d70201dfa7a99, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

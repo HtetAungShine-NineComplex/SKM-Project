@@ -39,6 +39,7 @@ public class UIMainMenu : UiBase
     public override void OnShow(UIBaseData data)
     {
         base.OnShow(data);
+        GetUserInfo();
         _menuController.AddSmartFoxListeners();
         Managers.AudioManager.PlayBGMusic();
         _lobbyBtn.onClick.AddListener(ToLobby);
@@ -54,6 +55,8 @@ public class UIMainMenu : UiBase
         _historyBtn.onClick.AddListener(OpenLifeTimeHistory);
         _CloseHistoryBtn.onClick.AddListener(CloseLifeTimeHistory);
         UpdateAvator();
+
+        
     }
 
     public void GetUserInfo()
@@ -76,6 +79,7 @@ public class UIMainMenu : UiBase
             if(r.status == "success")
             {
                 _usernameTxt.text = r.data.name;
+                Debug.Log("username: " + r.data.name);
                 _balanceTxt.text = r.data.balance;
             }
         })
