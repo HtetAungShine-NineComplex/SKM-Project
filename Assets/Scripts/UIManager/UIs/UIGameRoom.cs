@@ -27,6 +27,7 @@ public class UIGameRoom : UiBase
         base.OnClose();
 
         _gameManager.RemovenServerEvents();
+        _cardAnimController.RemoveEvents();
     }
 
     private void toggleSettingPopup()

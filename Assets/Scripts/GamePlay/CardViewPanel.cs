@@ -15,6 +15,11 @@ public class CardViewPanel : MonoBehaviour
     private float _duration = 7f; // Duration in seconds
     private float _elapsedTime = 0f;
 
+    private RoomUserItem _myItem;
+
+    private bool _isDo;
+    private int _total;
+
     private void Awake()
     {
         Instance = this;
@@ -27,7 +32,7 @@ public class CardViewPanel : MonoBehaviour
 
     private void Update()
     {
-        if(_elapsedTime >= 3 && _root.activeSelf)
+        if(_elapsedTime >= _duration && _root.activeSelf)
         {
             ClosePanel();
         }
@@ -51,12 +56,15 @@ public class CardViewPanel : MonoBehaviour
         }
     }
 
-    public void SetTwoCardsAndShow(string firstCard, string secCard)
+    public void SetTwoCardsAndShow(string firstCard, string secCard, RoomUserItem myItem, bool isDo = false, int total = 0)
     {
         if (_root.activeSelf)
         {
             return;
         }
+        _myItem = myItem;
+        _isDo = isDo;
+        _total = total;
 
         _cards[0].SetCard(firstCard);
         _cards[1].SetCard(secCard);
@@ -72,6 +80,19 @@ public class CardViewPanel : MonoBehaviour
             return;
         }
 
+        if (_isDo)
+        {
+            _myItem.PlayerDo(_total);
+
+            if (_total == 8)
+            {
+                Managers.AudioManager.Play8DoClip();
+            }
+            else if (_total == 9)
+            {
+                Managers.AudioManager.Play9DoClip();
+            }
+        }
         _draggableCard.isDragging = false;
         _cards[1].transform.position = _cards[0].transform.position;
         _root.SetActive(false);

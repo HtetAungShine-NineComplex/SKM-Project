@@ -16,6 +16,11 @@ public class CardAnimationController : MonoBehaviour
         Managers.NetworkManager.GameStarted += DistributeCardsToAll;
     }
 
+    public void RemoveEvents()
+    {
+        Managers.NetworkManager.GameStarted -= DistributeCardsToAll;
+    }
+
     public void DistributeCardsToAll(ISFSObject obj)
     {
         StartCoroutine(DistributeCardsAnimation());

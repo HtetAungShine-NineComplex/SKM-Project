@@ -44,6 +44,7 @@ public class RoomUserItem : MonoBehaviour
     public int TotalAmount { get; private set; } // user id to access the user item
     public int TotalCardValue { get; private set; } // user id to access the user item
     public bool IsBank { get; private set; }
+    public bool IsDo { get; private set; }
 
     private bool _isMyTurn = false;
     private bool _isBetting = false;
@@ -109,6 +110,11 @@ public class RoomUserItem : MonoBehaviour
     public void SetPlayerCoinsRoot(Transform root)
     {
         _playerCoinsRoot = root;
+    }
+
+    public void SetBetText(TMP_Text txt)
+    {
+        _betAmountTxt = txt;
     }
 
     public void ToggleLoadingObject(bool toggle)
@@ -285,6 +291,7 @@ public class RoomUserItem : MonoBehaviour
     public void PlayerDo(int value) //8 or 9
     {
         ToggleLoadingObject(false);
+        IsDo = true;
 
         if(value == 8)
         {
@@ -392,6 +399,7 @@ public class RoomUserItem : MonoBehaviour
     public void Reset()
     {
         ToggleLoadingObject(false);
+        IsDo = false;
 
         _playerCardsPanel.anchoredPosition = _originalCardPos;
         _playerCardsPanel.localScale = new Vector3(1.4f, 1.4f, 1f);

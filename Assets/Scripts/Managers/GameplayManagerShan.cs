@@ -406,7 +406,7 @@ public class GameplayManagerShan : MonoBehaviour
         {
             Managers.NetworkManager.SmartFox.Send(new LeaveRoomRequest(currentRoom));
             Debug.Log("Leaving room: " + currentRoom.Name);
-            SceneManager.LoadScene("MainMenu");
+            Managers.UIManager.ShowUI(UIs.UIMainMenu);
         }
         else
         {
@@ -421,7 +421,7 @@ public class GameplayManagerShan : MonoBehaviour
         {
             Managers.NetworkManager.SmartFox.Send(new LeaveRoomRequest(currentRoom));
             Debug.Log("Leaving room: " + currentRoom.Name);
-            SceneManager.LoadScene("MainMenu");
+            Managers.UIManager.ShowUI(UIs.UIRoom);
         }
         else
         {
@@ -583,19 +583,12 @@ public class GameplayManagerShan : MonoBehaviour
 
         if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name || GetUserItemByName(playerName).IsBank)
         {
-            CardViewPanel.Instance.ClosePanel();
+            //CardViewPanel.Instance.ClosePanel();
         }
 
         if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name)
         {
-            if (totalValue == 8)
-            {
-                Managers.AudioManager.Play8DoClip();
-            }
-            else if (totalValue == 9)
-            {
-                Managers.AudioManager.Play9DoClip();
-            }
+            
         }
     }
 
@@ -643,12 +636,12 @@ public class GameplayManagerShan : MonoBehaviour
 
         if (isDo)
         {
-            GetUserItemByName(playerName).PlayerDo(totalValue);
+            //GetUserItemByName(playerName).PlayerDo(totalValue);
         }
 
-        if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name && GetUserItemByName(playerName).TotalCardValue < 8)
+        if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name)
         {
-            CardViewPanel.Instance.SetTwoCardsAndShow(handCards[0], handCards[1]);
+            CardViewPanel.Instance.SetTwoCardsAndShow(handCards[0], handCards[1], GetUserItemByName(playerName), isDo, totalValue);
         }
     }
 

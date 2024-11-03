@@ -90,6 +90,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainImg: {fileID: 5786188332109731772}
   _backSprite: {fileID: 21300000, guid: 5334c9fd468f7834fb0a36342161003e, type: 3}
+  _transform: {fileID: 0}
+  _speed: 0
+  targetPosition: {x: 0, y: 0}
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1764357022240036191
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +156,7 @@ MonoBehaviour:
   - {fileID: 8619754678955570915}
   - {fileID: 5219045084450047159}
   _root: {fileID: 1881167333085263002}
-  _distanceOffset: 160
+  _distanceOffset: 300
   _draggableCard: {fileID: 4498054007976031308}
   _slider: {fileID: 6466217518828774864}
 --- !u!1 &1852886370239909304
@@ -502,6 +506,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainImg: {fileID: 2393245487225859180}
   _backSprite: {fileID: 21300000, guid: 5334c9fd468f7834fb0a36342161003e, type: 3}
+  _transform: {fileID: 0}
+  _speed: 0
+  targetPosition: {x: 0, y: 0}
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6147431352394972166
 GameObject:
   m_ObjectHideFlags: 0

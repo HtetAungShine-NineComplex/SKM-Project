@@ -12,7 +12,7 @@ public class CoinAnim : MonoBehaviour
     public float speed;
 
     private Vector2 _startPos;
-    private Transform _targetPos;
+    private Vector3 _targetPos;
 
     private Vector2 _randomTargetPos;
 
@@ -48,22 +48,22 @@ public class CoinAnim : MonoBehaviour
     }
 
 
-    public void SetPositions(Vector2 start, Transform targetPOs)
+    public void SetPositions(Vector2 start, Vector3 targetPOs)
     {
         _startPos = start;
         _targetPos = targetPOs;
 
         // Define a range for the random offset
-        float randomRange = 30f; // Adjust this range as needed
+        //float randomRange = 30f; // Adjust this range as needed
 
         // Generate a random offset around the target position
-        Vector2 randomOffset = new Vector2(
+       /* Vector2 randomOffset = new Vector2(
             Random.Range(-randomRange, randomRange),
             Random.Range(-randomRange, randomRange)
-        );
+        );*/
 
         // Calculate a random target position based on the original _targetPos and randomOffset
-        _randomTargetPos = (Vector2)_targetPos.position + randomOffset;
+        _randomTargetPos = (Vector2)_targetPos;
 
         // Set the starting position
         rectTransform.position = start;

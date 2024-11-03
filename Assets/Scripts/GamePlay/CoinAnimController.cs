@@ -8,6 +8,8 @@ public class CoinAnimController : MonoBehaviour
     [SerializeField] private CoinAnim _coinPrefab;
     [SerializeField] private Transform _coinTransform;
 
+    private float yPos;
+
     private void Awake()
     {
         
@@ -27,6 +29,7 @@ public class CoinAnimController : MonoBehaviour
 
     public void GenerateCoins(int betAmount, Transform coinTrns)
     {
+        yPos = 0;
         _coinTransform = coinTrns;
 
         int num50kCoins = betAmount / 50000;
@@ -57,7 +60,7 @@ public class CoinAnimController : MonoBehaviour
         SpawnCoins(num100Coins, 100);
     }
 
-    private void SpawnCoins(int count, int coinValue)
+    /*private void SpawnCoins(int count, int coinValue)
     {
         if(count  == 0) return;
 
@@ -70,6 +73,27 @@ public class CoinAnimController : MonoBehaviour
             coin.SetSprite(sprite);
             coin.SetPositions(transform.position, _coinTransform);
             coin.SetValueString(ConvertToK(data.amount));
+        }
+    }*/
+
+    private void SpawnCoins(int count, int coinValue)
+    {
+        if (count == 0) return;
+
+        for (int i = 0; i < count; i++)
+        {
+            
+
+            CoinAnim coin = Instantiate(_coinPrefab, transform.position, Quaternion.identity, this.transform);
+
+            CoinData data = _data.GetCoinDataByAmount(coinValue);
+            Sprite sprite = data.sprite;
+            coin.SetSprite(sprite);
+            coin.SetPositions(transform.position, _coinTransform.position + (Vector3.up * yPos));
+            coin.SetValueString(ConvertToK(data.amount));
+
+            yPos += 5 ;
+
         }
     }
 

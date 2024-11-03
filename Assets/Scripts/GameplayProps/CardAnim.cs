@@ -61,7 +61,7 @@ public class CardAnim : MonoBehaviour
         {
             if (hasCard)
             {
-                CardViewPanel.Instance.SetTwoCardsAndShow(addCardName, _targetPos.currentUser?.GetCardsArray()[1]);
+                CardViewPanel.Instance.SetTwoCardsAndShow(addCardName, _targetPos.currentUser?.GetCardsArray()[1], _targetPos.currentUser);
 
                 _targetPos.currentUser?.AddCard(addCardName);
                 _targetPos.currentUser?.SetTotalValue(totalValue);
@@ -70,6 +70,7 @@ public class CardAnim : MonoBehaviour
             else
             {
                 _targetPos.currentUser?.AddBlankCards();
+                Debug.Log("added blank card to : " + _targetPos.currentUser.Name);
             }
             Destroy(this.gameObject);
         }
