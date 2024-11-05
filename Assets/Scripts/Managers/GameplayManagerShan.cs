@@ -28,6 +28,7 @@ public class GameplayManagerShan : MonoBehaviour
     [SerializeField] private TMP_Text _gameCDTxt;
     [SerializeField] private TMP_Text _currentPlayerTurnTxt;
     [SerializeField] private TMP_Text _bankAmountTxt;
+    [SerializeField] private BankCoinAnimationController _bankCoinController;
 
     [SerializeField] private BankDisplay _bankDisplay;
 
@@ -39,11 +40,15 @@ public class GameplayManagerShan : MonoBehaviour
     [SerializeField] private PlayerPos[] playerPositions;
 
     private Room _currentRoom;
+    private string _curBankName;
 
     int bet1;
     int bet2;
     int bet3;
     int maxBet;
+
+    private List<RoomUserItem> _winPlayers;
+    private List<RoomUserItem> _losePlayers;
 
     private void Awake()
     {
@@ -52,7 +57,8 @@ public class GameplayManagerShan : MonoBehaviour
 
     private void Start()
     {
-        
+        _winPlayers = new List<RoomUserItem>();
+        _losePlayers = new List<RoomUserItem>();
     }
 
     public void Initialize()
@@ -87,6 +93,7 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.RoomPlayerList += OnRoomPlayerList;
         Managers.NetworkManager.PlayerBet += OnPlayerBet;
         Managers.NetworkManager.PleaseWait += OnPleaseWait;
+        Managers.NetworkManager.MatchEnd += OnMatchEnd;
     }
 
     public void RemovenServerEvents()
@@ -107,6 +114,7 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.RoomPlayerList -= OnRoomPlayerList;
         Managers.NetworkManager.PlayerBet -= OnPlayerBet;
         Managers.NetworkManager.PleaseWait -= OnPleaseWait;
+        Managers.NetworkManager.MatchEnd -= OnMatchEnd;
     }
 
     private void AddTwoCardToAllPlayers()
@@ -457,8 +465,19 @@ public class GameplayManagerShan : MonoBehaviour
         {
             if (item.Name == playerName)
             {
+                if (item.Name != _curBankName)
+                {
+                    if (!string.IsNullOrEmpty(_curBankName))
+                    {
+                        _bankCoinController.SendAllCoinsToPlayer(GetUserItemByName(_curBankName).transform);
+                    }
+                    
+                    _bankCoinController.GenerateCoinsIntoTable(bankAmount, item.transform);
+                }
+
                 item.IsBanker();
                 item.SetAmount(totalAmount);
+                _curBankName = item.Name;
             }
             else
             {
@@ -489,6 +508,8 @@ public class GameplayManagerShan : MonoBehaviour
         //AddTwoCardToAllPlayers();
         _gameCDTxt.gameObject.SetActive(false);
 
+        RoomUserItem bank = null;
+
         bool isMeBank = false;
         foreach (RoomUserItem item in _userItems)
         {
@@ -498,6 +519,8 @@ public class GameplayManagerShan : MonoBehaviour
             }
             else
             {
+                bank = item;
+
                 if(item.Name == GlobalManager.Instance.GetSfsClient().MySelf.Name)
                 {
                     isMeBank = true;
@@ -526,7 +549,7 @@ public class GameplayManagerShan : MonoBehaviour
         Debug.Log("Bank : " + bankAmount);
         _bankAmountTxt.text = bankAmount.ToString();
         _bankDisplay.DisplayNumber(bankAmount.ToString());
-
+        //_bankCoinController.GenerateCoinsIntoTable(bankAmount, bank.transform);
     }
 
     public void OnPleaseWait(ISFSObject sfsObj) //send from server when a client
@@ -678,6 +701,7 @@ public class GameplayManagerShan : MonoBehaviour
         GetUserItemByName(playerName).SetAmount(totalAmount);
         GetUserItemByName(playerName).SetModifier(modifier);
         GetUserItemByName(playerName).WinLose(true, amountChanged);
+        _winPlayers.Add(GetUserItemByName(playerName));
         ToggleGameplayBtns(false);
     }
 
@@ -720,6 +744,7 @@ public class GameplayManagerShan : MonoBehaviour
         GetUserItemByName(playerName).SetAmount(totalAmount);
         GetUserItemByName(playerName).SetModifier(modifier);
         GetUserItemByName(playerName).WinLose(false, amountChanged);
+        _losePlayers.Add(GetUserItemByName(playerName));
         ToggleGameplayBtns(false);
     }
 
@@ -729,6 +754,39 @@ public class GameplayManagerShan : MonoBehaviour
         int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
         //Debug.Log("Player Total Value : " + totalValue);
         GetUserItemByName(playerName).SetTotalValue(totalValue);
+    }
+
+    private void OnMatchEnd(ISFSObject sfsObj)
+    {
+        Debug.Log("match endddddddddd");
+        StartCoroutine(WinLoseCoinAnim());
+    }
+
+    IEnumerator WinLoseCoinAnim()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        if(_losePlayers.Count > 0)
+        {
+            foreach(RoomUserItem player in _losePlayers)
+            {
+                _bankCoinController.GenerateCoinsIntoTable(player.AmountChanged, player.transform);
+
+                yield return new WaitForSeconds(1);
+            }
+        }
+
+        //yield return new WaitForSeconds(1f);
+
+        if (_winPlayers.Count > 0)
+        {
+            foreach (RoomUserItem player in _winPlayers)
+            {
+                _bankCoinController.TakeCoinsFromTable(player.AmountChanged, player.transform);
+
+                yield return new WaitForSeconds(1f);
+            }
+        }
     }
 
     private void ShowObjectForSecs(GameObject obj, int duration)
@@ -749,6 +807,8 @@ public class GameplayManagerShan : MonoBehaviour
     {
         _pleaseWaitTxt.SetActive(false);
         ToggleGameplayBtns(false);
+        _winPlayers.Clear();
+        _losePlayers.Clear();
 
         foreach (RoomUserItem item in _userItems)
         {

@@ -41,6 +41,7 @@ public class NetworkManager : MonoBehaviour
     public event Action<ISFSObject> RoomPlayerList;
     public event Action<ISFSObject> PlayerBet;
     public event Action<ISFSObject> PleaseWait;
+    public event Action<ISFSObject> MatchEnd;
 
     //server events
     public event Action<User> UserEnterRoom;
@@ -208,6 +209,10 @@ public class NetworkManager : MonoBehaviour
             case GameConstants.PLEASE_WAIT:
                 OnPleaseWait(sfsobject);
                 break;
+            
+            case GameConstants.MATCH_END:
+                MatchEnd(sfsobject);
+                break;
         }
     }
 
@@ -299,5 +304,10 @@ public class NetworkManager : MonoBehaviour
     public void OnPleaseWait(ISFSObject sfsObj)
     {
         PleaseWait?.Invoke(sfsObj);
+    }
+
+    public void OnMatchEnd(ISFSObject sfsObj)
+    {
+        MatchEnd?.Invoke(sfsObj);
     }
 }

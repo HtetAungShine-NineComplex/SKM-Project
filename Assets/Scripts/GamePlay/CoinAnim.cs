@@ -10,36 +10,39 @@ public class CoinAnim : MonoBehaviour
     public Image image;
     public TMP_Text txt;
     public float speed;
+    public int value;
 
     private Vector2 _startPos;
     private Vector3 _targetPos;
 
     private Vector2 _randomTargetPos;
 
+    private bool _destroyAtTarget = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (GetComponentInParent<CoinAnimController>() == null)
+        {
+            return;
+        }
+
         Vector3 parentSize = GetComponentInParent<CoinAnimController>().transform.localScale;
 
-        transform.localScale = new Vector3(0.65f / parentSize.x, 0.65f / parentSize.y, 1);
+        transform.localScale = new Vector3(0.65f / parentSize.x, 0.65f / parentSize.y, 2);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    void LateUpdate()
-    {
-
-        
-
-        
 
         float currentDistance = Vector2.Distance(rectTransform.position, _randomTargetPos);
-        if (currentDistance <= 0.1f)
+        if (currentDistance <= 0.01f)
         {
+            if (_destroyAtTarget)
+            {
+                Destroy(gameObject);
+            }
+
             return;
         }
 
@@ -48,10 +51,12 @@ public class CoinAnim : MonoBehaviour
     }
 
 
-    public void SetPositions(Vector2 start, Vector3 targetPOs)
+    public void SetPositions(Vector2 start, Vector3 targetPOs, bool destroy = false, float sped = 6f)
     {
         _startPos = start;
         _targetPos = targetPOs;
+        _destroyAtTarget = destroy;
+        speed = sped;
 
         // Define a range for the random offset
         //float randomRange = 30f; // Adjust this range as needed

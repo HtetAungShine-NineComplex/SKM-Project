@@ -55,6 +55,7 @@ namespace THZ
         public const string BET = "bet"; //send from client
         public const string PLAYER_BET = "playerBet"; //send from server
         public const string PLEASE_WAIT = "pleaseWait"; //send from server
+        public const string MATCH_END = "matchEnd"; //send from server
 
 
         //Data Keys

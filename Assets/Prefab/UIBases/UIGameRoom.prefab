@@ -372,6 +372,7 @@ RectTransform:
   m_Children:
   - {fileID: 5468154448561206214}
   - {fileID: 7401622227552805739}
+  - {fileID: 6860877577332877163}
   - {fileID: 6989581175292586626}
   - {fileID: 8111648906117567256}
   - {fileID: 4673649396874612635}
@@ -2963,6 +2964,7 @@ GameObject:
   - component: {fileID: 8757322693748274816}
   - component: {fileID: 3706920003231791677}
   - component: {fileID: 4277446205280663670}
+  - component: {fileID: 4252945683287217307}
   m_Layer: 5
   m_Name: UIGameRoom
   m_TagString: Untagged
@@ -3050,6 +3052,7 @@ MonoBehaviour:
   _gameCDTxt: {fileID: 8083016475668579245}
   _currentPlayerTurnTxt: {fileID: 1951619271667489842}
   _bankAmountTxt: {fileID: 6901270465992066890}
+  _bankCoinController: {fileID: 4252945683287217307}
   _bankDisplay: {fileID: 5583726568611394059}
   _betAmountCtrlr: {fileID: 6145555735752048520}
   playerPositions:
@@ -3084,6 +3087,22 @@ MonoBehaviour:
   _cardRoot: {fileID: 2280564488769783310}
   _startPos: {fileID: 4673649396874612635}
   _girlAnimator: {fileID: 5801162123827204168}
+--- !u!114 &4252945683287217307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3474436324237979677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522aa06ecd159ef44aaf71577368c5d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 11400000, guid: 3b601edc3d298e44299f893a55b7b4cc, type: 2}
+  _coinPrefab: {fileID: 3963212432588891698, guid: 3dd4a4ec16e78b1439c7247a9b2f4037, type: 3}
+  _coinTransform: {fileID: 6860877577332877163}
+  _testPlayer: {fileID: 867554861694076647}
 --- !u!1 &3578963035381152013
 GameObject:
   m_ObjectHideFlags: 0
@@ -4369,6 +4388,41 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &4856662167225069128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6860877577332877163}
+  m_Layer: 5
+  m_Name: BankCoinRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6860877577332877163
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856662167225069128}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2280564488769783310}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4941338689626317116
 GameObject:
   m_ObjectHideFlags: 0
@@ -7240,6 +7294,18 @@ PrefabInstance:
       value: 77
       objectReference: {fileID: 0}
     - target: {fileID: 4992726462144982353, guid: 36f74028d2931b740a51cbf087f34887, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5494848
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992726462144982353, guid: 36f74028d2931b740a51cbf087f34887, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5494848
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992726462144982353, guid: 36f74028d2931b740a51cbf087f34887, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5494848
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992726462144982353, guid: 36f74028d2931b740a51cbf087f34887, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -7273,7 +7339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4992726462144982353, guid: 36f74028d2931b740a51cbf087f34887, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 93.61
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4992726462144982353, guid: 36f74028d2931b740a51cbf087f34887, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -45,6 +45,7 @@ public class RoomUserItem : MonoBehaviour
     public int TotalCardValue { get; private set; } // user id to access the user item
     public bool IsBank { get; private set; }
     public bool IsDo { get; private set; }
+    public int AmountChanged { get; set; }
 
     private bool _isMyTurn = false;
     private bool _isBetting = false;
@@ -285,6 +286,7 @@ public class RoomUserItem : MonoBehaviour
 
     public void WinLose(bool isWin, int amountChanged)
     {
+        AmountChanged = amountChanged;
         StartCoroutine(ShowWinOrLose(isWin, amountChanged));
     }
 
@@ -403,6 +405,8 @@ public class RoomUserItem : MonoBehaviour
 
         _playerCardsPanel.anchoredPosition = _originalCardPos;
         _playerCardsPanel.localScale = new Vector3(1.4f, 1.4f, 1f);
+
+        AmountChanged = 0;
 
         SetTotalValue(0);
         SetBetAmount(0);
