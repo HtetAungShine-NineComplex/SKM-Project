@@ -470,7 +470,7 @@ public class BankCoinAnimationController : MonoBehaviour
 
         int num100Coins = coinAmount / 100;
 
-        if(coinAmount > 0)
+        if(coinAmount > 0 && coinAmount < 100)
         {
             num100Coins = 1;
         }
@@ -542,8 +542,18 @@ public class BankCoinAnimationController : MonoBehaviour
 
     public void ResetTable()
     {
+        if (_coinLists == null)
+        {
+            return;
+        }
+
         foreach (var coinList in _coinLists.Values)
         {
+            if(coinList == null)
+            {
+                continue;
+            }
+
             foreach (CoinAnim coin in coinList)
             {
                 Destroy(coin.gameObject);

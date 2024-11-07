@@ -18,6 +18,8 @@ public class Managers : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
+
         UIManager = _uiManager;
         NetworkManager = _networkManager;
         CardDataManager = _cardDataManager;

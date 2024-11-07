@@ -815,6 +815,7 @@ public class GameplayManagerShan : MonoBehaviour
             foreach(RoomUserItem player in _losePlayers)
             {
                 _bankCoinController.GenerateCoinsIntoTable(player.AmountChanged, player.transform);
+                Debug.Log(player.Name + "'s amount changed is : " + player.AmountChanged);
 
                 yield return new WaitForSeconds(1);
             }

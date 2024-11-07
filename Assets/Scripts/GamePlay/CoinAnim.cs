@@ -35,7 +35,7 @@ public class CoinAnim : MonoBehaviour
     void Update()
     {
 
-        float currentDistance = Vector2.Distance(rectTransform.position, _randomTargetPos);
+        float currentDistance = Vector2.Distance(transform.position, _randomTargetPos);
         if (currentDistance <= 0.01f)
         {
             if (_destroyAtTarget)
@@ -47,7 +47,7 @@ public class CoinAnim : MonoBehaviour
         }
 
         // Move towards the random target position
-        rectTransform.position = Vector2.Lerp(rectTransform.position, _randomTargetPos, Time.deltaTime * speed);
+        transform.position = Vector2.Lerp(transform.position, _randomTargetPos, Time.deltaTime * speed);
     }
 
 
@@ -71,7 +71,7 @@ public class CoinAnim : MonoBehaviour
         _randomTargetPos = (Vector2)_targetPos;
 
         // Set the starting position
-        rectTransform.position = start;
+        transform.position = start;
     }
 
     public void SetSprite(Sprite sprite)

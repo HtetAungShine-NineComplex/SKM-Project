@@ -121,7 +121,7 @@ public class LoginController : BaseSceneController
 			if (r.status == "success")
 			{
                 PlayerPrefs.SetString("token", r.data.token);
-                PlayerPrefs.SetString("userName", r.data.user.name);
+				Managers.DataLoader.CurrentName = r.data.user.name;
 				Debug.Log("admin token" + r.data.token);
 				//PlayerPrefs.Save();
 
@@ -257,7 +257,7 @@ public class LoginController : BaseSceneController
 			Debug.Log("Connection mode is: " + sfs.ConnectionMode);
 
 			// Login
-			sfs.Send(new LoginRequest(PlayerPrefs.GetString("userName")));
+			sfs.Send(new LoginRequest(Managers.DataLoader.CurrentName));
 		}
 		else
 		{

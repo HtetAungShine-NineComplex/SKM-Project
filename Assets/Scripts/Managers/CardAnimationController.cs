@@ -23,6 +23,8 @@ public class CardAnimationController : MonoBehaviour
 
     public void DistributeCardsToAll(ISFSObject obj)
     {
+        Debug.Log("Callig distrubute cards to all from game start event....");
+
         StartCoroutine(DistributeCardsAnimation());
     }
 
@@ -78,7 +80,7 @@ public class CardAnimationController : MonoBehaviour
                 card.SetPositions(_startPos.anchoredPosition, pos);
                 Managers.AudioManager.PlayDistributeCardClip();
 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.1f);
             }
         }
 
