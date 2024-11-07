@@ -563,10 +563,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3261527122740948180, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 159.207
+      objectReference: {fileID: 0}
+    - target: {fileID: 3261527122740948180, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 155.0898
+      objectReference: {fileID: 0}
+    - target: {fileID: 3261527122740948180, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 770
+      objectReference: {fileID: 0}
+    - target: {fileID: 3261527122740948180, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 371
+      objectReference: {fileID: 0}
     - target: {fileID: 3474436324237979677, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
       propertyPath: m_Name
       value: UIGameRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 3474436324237979677, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3554285269349455306, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -598,6 +618,22 @@ PrefabInstance:
     - target: {fileID: 3929528845921015643, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726633788606315193, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
+      propertyPath: m_Color.a
+      value: 0.23921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726633788606315193, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
+      propertyPath: m_Color.b
+      value: 0.89599997
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726633788606315193, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
+      propertyPath: m_Color.g
+      value: 0.89599997
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726633788606315193, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
+      propertyPath: m_Color.r
+      value: 0.89599997
       objectReference: {fileID: 0}
     - target: {fileID: 7241475204361307844, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1790,9 +1826,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 873956828681628073, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: _avatorMale
+      value: 
+      objectReference: {fileID: 21300000, guid: ae3ab5361af20734295c153e368b5e4a, type: 3}
+    - target: {fileID: 873956828681628073, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
       propertyPath: _historyBtn
       value: 
       objectReference: {fileID: 2024578616}
+    - target: {fileID: 873956828681628073, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: _avatorFemale
+      value: 
+      objectReference: {fileID: 21300000, guid: 573918064c8a722439c45830bbfab713, type: 3}
     - target: {fileID: 873956828681628073, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
       propertyPath: _CloseHistoryBtn
       value: 
@@ -1817,6 +1861,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1741338460719092846, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 573918064c8a722439c45830bbfab713, type: 3}
     - target: {fileID: 1973209647844906938, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2009,6 +2057,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3490860039418900076, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3730777741561852781, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2173,6 +2225,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClosseHistoryUI_Btn
       objectReference: {fileID: 0}
+    - target: {fileID: 6119040540669789018, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ae3ab5361af20734295c153e368b5e4a, type: 3}
     - target: {fileID: 6138831213952073050, guid: 4bb1fa3d67b8a6f4cad1861dcde82284, type: 3}
       propertyPath: m_IsActive
       value: 0

@@ -891,8 +891,8 @@ MonoBehaviour:
   _balanceTxt: {fileID: 4981703700097135220}
   _UIAvatorSelection: {fileID: 3490860039418900076}
   _avatorSelectionBtn: {fileID: 1204602616951240480}
-  _avatorMale: {fileID: 21300000, guid: 88de395026637424999b487885477052, type: 3}
-  _avatorFemale: {fileID: 21300000, guid: fb89339bc1187d94a9f75c0ceb8d3c0e, type: 3}
+  _avatorMale: {fileID: 21300000, guid: ae3ab5361af20734295c153e368b5e4a, type: 3}
+  _avatorFemale: {fileID: 21300000, guid: 573918064c8a722439c45830bbfab713, type: 3}
   _choosedMale: 0
   MaleBtn: {fileID: 2650438139263019015}
   FemaleBtn: {fileID: 716087451483424658}
