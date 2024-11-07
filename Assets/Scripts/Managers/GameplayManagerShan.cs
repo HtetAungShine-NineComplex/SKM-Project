@@ -25,6 +25,10 @@ public class GameplayManagerShan : MonoBehaviour
     [SerializeField] private Button _standBtn;
     [SerializeField] private Button _startBtn;
     [SerializeField] private Button _betBtn;
+    [SerializeField] private Button _leaveLobbyBtn;
+    [SerializeField] private Button _leaveMenuBtn;
+    [SerializeField] private Color _normalColor;
+    [SerializeField] private Color _leaveColor;
     [SerializeField] private TMP_Text _gameCDTxt;
     [SerializeField] private TMP_Text _currentPlayerTurnTxt;
     [SerializeField] private TMP_Text _bankAmountTxt;
@@ -50,6 +54,9 @@ public class GameplayManagerShan : MonoBehaviour
     private List<RoomUserItem> _winPlayers;
     private List<RoomUserItem> _losePlayers;
 
+    private bool _leavingToMenu = false;
+    private bool _leavingToLobby = false;
+
     private void Awake()
     {
         _userItems = new List<RoomUserItem>();
@@ -70,7 +77,15 @@ public class GameplayManagerShan : MonoBehaviour
         //PopulateUserList();
 
         ToggleGameplayBtns(false);
-    }
+
+        _leaveMenuBtn.image.color = _normalColor;
+        _leaveMenuBtn.interactable = true ;
+        _leaveLobbyBtn.image.color = _normalColor;
+        _leaveLobbyBtn.interactable = true ;
+
+        _leavingToMenu = false;
+        _leavingToLobby = false;
+}
 
     
     private void ListenServerEvents()
@@ -115,6 +130,9 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.PlayerBet -= OnPlayerBet;
         Managers.NetworkManager.PleaseWait -= OnPleaseWait;
         Managers.NetworkManager.MatchEnd -= OnMatchEnd;
+
+        //ResetGame();
+        _bankCoinController.ResetTable();
     }
 
     private void AddTwoCardToAllPlayers()
@@ -409,6 +427,19 @@ public class GameplayManagerShan : MonoBehaviour
 
     public void LeaveRoomToMainMenu() //send to server when this client stand
     {
+        if(_leavingToMenu || _leavingToLobby)
+        {
+            return;
+        }
+
+        _leavingToMenu = true;
+
+        _leaveMenuBtn.image.color = _leaveColor;
+        _leaveMenuBtn.interactable = false;
+    }
+
+    public void OnLeaveToMainMenu()
+    {
         Room currentRoom = Managers.NetworkManager.SmartFox.LastJoinedRoom;
         if (currentRoom != null)
         {
@@ -423,6 +454,19 @@ public class GameplayManagerShan : MonoBehaviour
     }
 
     public void LeaveRoomToLobby() //send to server when this client stand
+    {
+        if (_leavingToMenu || _leavingToLobby)
+        {
+            return;
+        }
+
+        _leavingToLobby = true;
+
+        _leaveLobbyBtn.image.color = _leaveColor;
+        _leaveLobbyBtn.interactable = false;
+    }
+
+    public void OnLeaveToLobby()
     {
         Room currentRoom = Managers.NetworkManager.SmartFox.LastJoinedRoom;
         if (currentRoom != null)
@@ -786,6 +830,15 @@ public class GameplayManagerShan : MonoBehaviour
 
                 yield return new WaitForSeconds(1f);
             }
+        }
+
+        if (_leavingToMenu)
+        {
+            OnLeaveToMainMenu();
+        }
+        else if (_leavingToLobby)
+        {
+            OnLeaveToLobby();
         }
     }
 

@@ -10,12 +10,12 @@ public class BankCoinAnimationController : MonoBehaviour
     [SerializeField] private Transform _coinTransform;
     [SerializeField] private Transform _testPlayer;
 
-    public List<CoinAnim> coins50k = new List<CoinAnim>();
-    public List<CoinAnim> coins10k = new List<CoinAnim>();
-    public List<CoinAnim> coins5k = new List<CoinAnim>();
-    public List<CoinAnim> coins1k = new List<CoinAnim>();
-    public List<CoinAnim> coins500 = new List<CoinAnim>();
-    public List<CoinAnim> coins100 = new List<CoinAnim>();
+    [HideInInspector] public List<CoinAnim> coins50k = new List<CoinAnim>();
+    [HideInInspector] public List<CoinAnim> coins10k = new List<CoinAnim>();
+    [HideInInspector] public List<CoinAnim> coins5k = new List<CoinAnim>();
+    [HideInInspector] public List<CoinAnim> coins1k = new List<CoinAnim>();
+    [HideInInspector] public List<CoinAnim> coins500 = new List<CoinAnim>();
+    [HideInInspector] public List<CoinAnim> coins100 = new List<CoinAnim>();
 
     // Create a dictionary referencing each list by denomination
     private Dictionary<int, List<CoinAnim>> _coinLists;

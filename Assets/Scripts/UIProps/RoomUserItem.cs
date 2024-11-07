@@ -21,6 +21,7 @@ public class RoomUserItem : MonoBehaviour
     [SerializeField] private GameObject _9doObj;
     [SerializeField] private GameObject _x2Obj;
     [SerializeField] private GameObject _x3Obj;
+    [SerializeField] private GameObject _x5Obj;
     [SerializeField] private GameObject[] _winObj;
     [SerializeField] private GameObject _loseObj;
     [SerializeField] private GameObject _resultParentObj;
@@ -193,6 +194,7 @@ public class RoomUserItem : MonoBehaviour
     {
         _x2Obj.SetActive(false);
         _x3Obj.SetActive(false);
+        _x5Obj.SetActive(false);
 
         Debug.Log("Modifier : " + amount);
 
@@ -208,6 +210,10 @@ public class RoomUserItem : MonoBehaviour
         else if(amount == 3)
         {
             _x3Obj.SetActive(true);
+        }
+        else if( amount == 5)
+        {
+            _x5Obj.SetActive(true);
         }
     }
 

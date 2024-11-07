@@ -12,7 +12,7 @@ public class CardViewPanel : MonoBehaviour
     [SerializeField] private DraggableCard _draggableCard;
     [SerializeField] private Slider _slider;
 
-    private float _duration = 7f; // Duration in seconds
+    private float _duration = 30f; // Duration in seconds
     private float _elapsedTime = 0f;
 
     private RoomUserItem _myItem;

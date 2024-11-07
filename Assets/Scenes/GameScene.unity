@@ -451,10 +451,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 338068811735916162, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2392794605006833107, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -571,10 +567,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIGameRoom
       objectReference: {fileID: 0}
-    - target: {fileID: 3474436324237979677, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3554285269349455306, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -591,10 +583,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3706920003231791677, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
-      propertyPath: _bankDisplay
-      value: 
-      objectReference: {fileID: 744196464}
     - target: {fileID: 3929528845921015643, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -610,10 +598,6 @@ PrefabInstance:
     - target: {fileID: 3929528845921015643, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4335593393785688463, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7241475204361307844, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
       propertyPath: m_AnchorMax.y
@@ -689,17 +673,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2392794605006833107, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
   m_PrefabInstance: {fileID: 744196462}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &744196464 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5583726568611394059, guid: 2f4f5fedf2155e940b624f824e68ff65, type: 3}
-  m_PrefabInstance: {fileID: 744196462}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 730fce71e7c33564ca20cdad5d957d75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &852633258
 GameObject:
   m_ObjectHideFlags: 0

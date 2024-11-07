@@ -3049,6 +3049,10 @@ MonoBehaviour:
   _standBtn: {fileID: 2358489127824862747}
   _startBtn: {fileID: 3480658567642944535}
   _betBtn: {fileID: 4812692640140612568}
+  _leaveLobbyBtn: {fileID: 6426043066769991343}
+  _leaveMenuBtn: {fileID: 8216294551228877046}
+  _normalColor: {r: 0.11372549, g: 0.09803922, b: 0.1882353, a: 0.6}
+  _leaveColor: {r: 1, g: 0, b: 0, a: 0.6}
   _gameCDTxt: {fileID: 8083016475668579245}
   _currentPlayerTurnTxt: {fileID: 1951619271667489842}
   _bankAmountTxt: {fileID: 6901270465992066890}
@@ -3103,6 +3107,12 @@ MonoBehaviour:
   _coinPrefab: {fileID: 3963212432588891698, guid: 3dd4a4ec16e78b1439c7247a9b2f4037, type: 3}
   _coinTransform: {fileID: 6860877577332877163}
   _testPlayer: {fileID: 867554861694076647}
+  coins50k: []
+  coins10k: []
+  coins5k: []
+  coins1k: []
+  coins500: []
+  coins100: []
 --- !u!1 &3578963035381152013
 GameObject:
   m_ObjectHideFlags: 0
