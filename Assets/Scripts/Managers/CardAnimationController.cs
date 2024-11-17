@@ -80,14 +80,14 @@ public class CardAnimationController : MonoBehaviour
                 card.SetPositions(_startPos.anchoredPosition, pos);
                 Managers.AudioManager.PlayDistributeCardClip();
 
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.4f);
             }
         }
 
-        foreach (PlayerPos pos in playerPositions)
+        /*foreach (PlayerPos pos in playerPositions)
         {
             if(pos.currentUser != null)
             pos.currentUser.ToggleLoadingObject(true);
-        }
+        }*/
     }
 }

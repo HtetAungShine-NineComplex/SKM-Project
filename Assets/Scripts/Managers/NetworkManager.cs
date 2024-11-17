@@ -29,6 +29,8 @@ public class NetworkManager : MonoBehaviour
     public event Action<ISFSObject> GameStarted;
     public event Action<ISFSObject> Countdown;
     public event Action<ISFSObject> StartCurrentTurn;
+    public event Action<ISFSObject> StartPlayersTurn;
+    public event Action<ISFSObject> StartBankerTurn;
     public event Action<ISFSObject> PlayerHit;
     public event Action<ISFSObject> PlayerWin;
     public event Action<ISFSObject> PlayerLose;
@@ -173,6 +175,14 @@ public class NetworkManager : MonoBehaviour
             case GameConstants.START_CURRENT_TURN:
                 OnStartCurrentTurn(sfsobject);
                 break;
+            
+            case GameConstants.START_PLAYERS_TURN:
+                OnStartPlayersTurn(sfsobject);
+                break;
+            
+            case GameConstants.START_BANKER_TURN:
+                OnStartBankerTurn(sfsobject);
+                break;
 
             case GameConstants.PLAYER_HIT:
                 OnPlayerHit(sfsobject);
@@ -254,6 +264,16 @@ public class NetworkManager : MonoBehaviour
     private void OnStartCurrentTurn(ISFSObject sfsObj)
     {
         StartCurrentTurn?.Invoke(sfsObj);
+    }
+    
+    private void OnStartPlayersTurn(ISFSObject sfsObj)
+    {
+        StartPlayersTurn?.Invoke(sfsObj);
+    }
+    
+    private void OnStartBankerTurn(ISFSObject sfsObj)
+    {
+        StartBankerTurn?.Invoke(sfsObj);
     }
 
     public void OnPlayerHit(ISFSObject sfsObj)

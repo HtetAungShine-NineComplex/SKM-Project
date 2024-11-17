@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bfeda8d5a6056eb478ce25be45795090
+guid: 2ec3ce844fd8914429605da4f6828078
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -81,6 +81,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -119,30 +132,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ingame_ui_0
+      name: bet_bar_0
       rect:
         serializedVersion: 2
-        x: 36
-        y: 896
-        width: 249
-        height: 86
+        x: 39
+        y: 21
+        width: 30
+        height: 477
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f26ff12bd33fa69428f7b2ad57db6b3c
-      internalID: 258084993
+      spriteID: 479e28a3310fb2549b9eb357dd073afd
+      internalID: 1643350743
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ingame_ui_1
+      name: bet_bar_1
       rect:
         serializedVersion: 2
-        x: 317
-        y: 896
-        width: 323
-        height: 86
+        x: 88
+        y: 26
+        width: 22
+        height: 467
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf9b932235f6f584e8a5eca1af2f2920
-      internalID: 981595056
+      spriteID: 219af3c44ca900248a1311e38905054e
+      internalID: -1090924162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ingame_ui_2
+      name: bet_bar_2
       rect:
         serializedVersion: 2
-        x: 36
-        y: 783
-        width: 249
-        height: 86
+        x: 121
+        y: 95
+        width: 120
+        height: 59
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 678cbdab81ea7124b9759c3d50268a7a
-      internalID: 1241537332
+      spriteID: 52316f67481d44c45afbdd585c4229c2
+      internalID: -1863988367
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ingame_ui_3
+      name: bet_bar_3
       rect:
         serializedVersion: 2
-        x: 317
-        y: 787
-        width: 323
-        height: 86
+        x: 149
+        y: 35
+        width: 48
+        height: 49
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,155 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ca6e7c787e98c84bbc1bf2ff8bf1c1b
-      internalID: 1185780104
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ingame_ui_4
-      rect:
-        serializedVersion: 2
-        x: 36
-        y: 667
-        width: 249
-        height: 86
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 942fd3a7c78d76044b96511631885845
-      internalID: 844836126
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ingame_ui_5
-      rect:
-        serializedVersion: 2
-        x: 358
-        y: 667
-        width: 249
-        height: 86
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a3820e2cc2e0c914fb47e32bf560fbe3
-      internalID: 1837286266
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ingame_ui_6
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 510
-        width: 100
-        height: 87
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a927f77250e3c364584ed49ca6978b70
-      internalID: 255368572
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ingame_ui_7
-      rect:
-        serializedVersion: 2
-        x: 21
-        y: 334
-        width: 990
-        height: 61
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c6c0df6aea9dce346a7743eac65619e5
-      internalID: 379164656
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ingame_ui_8
-      rect:
-        serializedVersion: 2
-        x: 62
-        y: 164
-        width: 140
-        height: 140
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2e6bdef17ced1154c8ccc0f8779803a6
-      internalID: -1037371546
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ingame_ui_9
-      rect:
-        serializedVersion: 2
-        x: 36
-        y: 105
-        width: 953
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69281671f81e8814fb70c1a3814cfb05
-      internalID: 1680672866
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ingame_ui_10
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 58
-        width: 959
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1648efdd6de2f5a4a96aede6a9c8c1f1
-      internalID: -1989271749
+      spriteID: be32b30d581b5414eb4dac72971d6ba8
+      internalID: 963596245
       vertices: []
       indices: 
       edges: []
@@ -377,17 +230,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ingame_ui_0: 258084993
-      ingame_ui_1: 981595056
-      ingame_ui_10: -1989271749
-      ingame_ui_2: 1241537332
-      ingame_ui_3: 1185780104
-      ingame_ui_4: 844836126
-      ingame_ui_5: 1837286266
-      ingame_ui_6: 255368572
-      ingame_ui_7: 379164656
-      ingame_ui_8: -1037371546
-      ingame_ui_9: 1680672866
+      bet_bar_0: 1643350743
+      bet_bar_1: -1090924162
+      bet_bar_2: -1863988367
+      bet_bar_3: 963596245
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

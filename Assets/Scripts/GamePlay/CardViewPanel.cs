@@ -8,9 +8,13 @@ public class CardViewPanel : MonoBehaviour
 
     [SerializeField] private List<CardDemo> _cards = new List<CardDemo>();
     [SerializeField] private GameObject _root;
+    [SerializeField] private GameObject _actionBtnsRoot;
+    [SerializeField] private GameObject _doneBtn;
+    [SerializeField] private GameObject _anim;
     [SerializeField] private float _distanceOffset;
     [SerializeField] private DraggableCard _draggableCard;
     [SerializeField] private Slider _slider;
+    [SerializeField] private Button _catchBtn;
 
     private float _duration = 30f; // Duration in seconds
     private float _elapsedTime = 0f;
@@ -19,6 +23,7 @@ public class CardViewPanel : MonoBehaviour
 
     private bool _isDo;
     private int _total;
+    private bool _hasThirdCard;
 
     private void Awake()
     {
@@ -37,12 +42,26 @@ public class CardViewPanel : MonoBehaviour
             ClosePanel();
         }
 
-        float dis = Vector3.Distance(_cards[1].transform.position, _cards[0].transform.position);
+        // Calculate the positional difference between the two cards
+        Vector3 difference = _cards[1].transform.position - _cards[0].transform.position;
 
-        if (dis >= _distanceOffset)
+        // Check if the x (right) or y (bottom) components exceed the offset
+        if (difference.x >= _distanceOffset || difference.y <= -_distanceOffset)
         {
-            _cards[1].transform.position = _cards[0].transform.position;
-            ClosePanel();
+            //_cards[1].transform.position = _cards[0].transform.position;
+
+            if (_isDo)
+            {
+                ToggleActionPanel(false);
+            }
+            else
+            {
+                if (!_hasThirdCard)
+                {
+                    ToggleActionPanel(true);
+                }
+            }
+            // ClosePanel(); Uncomment if you want to close the panel here
         }
     }
 
@@ -71,6 +90,56 @@ public class CardViewPanel : MonoBehaviour
         _elapsedTime = 0;
         _slider.value = 1;
         _root.SetActive(true);
+        _hasThirdCard = false;
+
+        _actionBtnsRoot.SetActive(false);
+        _doneBtn.SetActive(false);
+        _anim.SetActive(false);
+        
+    }
+
+    public void OnDrawCard(string drawnCard)
+    {
+        _cards[0].SetCard(drawnCard);
+        _hasThirdCard = true;
+        ToggleActionPanel(false);
+        ToggleCatchBtn(false);
+        _anim.SetActive(false);
+        _anim.SetActive(true);
+        _myItem.EndTurn();
+    }
+
+    public void ToggleActionPanel(bool isOn)
+    {
+        if (_myItem.IsBank && !_catchBtn.gameObject.activeSelf && !_actionBtnsRoot.activeSelf)
+        {
+            ToggleCatchBtn(true);
+        }
+
+        _actionBtnsRoot.SetActive(isOn);
+        _doneBtn.SetActive(!isOn);
+
+        
+    }
+
+    public void ToggleCatchBtn(bool isOn)
+    {
+        if (isOn)
+        {
+            StartCoroutine(CatchButtonDelay());
+        }
+        else
+        {
+            _catchBtn.gameObject.SetActive(isOn);
+        }
+    }
+
+    IEnumerator CatchButtonDelay()
+    {
+        _catchBtn.gameObject.SetActive(true);
+        yield return new WaitForSeconds(10f);
+
+        _catchBtn.gameObject.SetActive(false);
     }
 
     public void ClosePanel()
@@ -79,6 +148,8 @@ public class CardViewPanel : MonoBehaviour
         {
             return;
         }
+
+        StopAllCoroutines();
 
         if (_isDo)
         {
@@ -96,6 +167,7 @@ public class CardViewPanel : MonoBehaviour
         _draggableCard.isDragging = false;
         _cards[1].transform.position = _cards[0].transform.position;
         _root.SetActive(false);
+        ToggleCatchBtn(false);
     }
 }
 

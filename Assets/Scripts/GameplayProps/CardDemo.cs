@@ -9,6 +9,7 @@ public class CardDemo : MonoBehaviour
     [SerializeField] private Sprite _backSprite;
     [SerializeField] private RectTransform _transform;
     [SerializeField] private float _speed;
+    [SerializeField] private bool _active = true;
 
     public Vector2 targetPosition;
     public Quaternion targetRotation;
@@ -18,12 +19,20 @@ public class CardDemo : MonoBehaviour
 
     private void Start()
     {
-        _transform.anchoredPosition = Vector2.zero;
-        targetRotation = Quaternion.identity;
+        if (_active)
+        {
+            _transform.anchoredPosition = Vector2.zero;
+            targetRotation = Quaternion.identity;
+        }
     }
 
     private void LateUpdate()
     {
+        if (!_active)
+        {
+            return;
+        }
+
         _transform.anchoredPosition = Vector2.Lerp(_transform.anchoredPosition, targetPosition, Time.deltaTime * _speed);
 
         // Smoothly rotate the card to the target rotation

@@ -32,6 +32,8 @@ public class GameplayManagerShan : MonoBehaviour
     [SerializeField] private TMP_Text _gameCDTxt;
     [SerializeField] private TMP_Text _currentPlayerTurnTxt;
     [SerializeField] private TMP_Text _bankAmountTxt;
+    [SerializeField] private GameObject _warningObj;
+    [SerializeField] private TMP_Text _warningCount;
     [SerializeField] private BankCoinAnimationController _bankCoinController;
 
     [SerializeField] private BankDisplay _bankDisplay;
@@ -94,6 +96,8 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.UserLeaveRoom += OnUserLeaveRoom;
         Managers.NetworkManager.BotJoined += OnBotJoined;
         Managers.NetworkManager.StartCurrentTurn += OnStartCurrentTurn;
+        Managers.NetworkManager.StartPlayersTurn += OnStartPlayersTurn;
+        Managers.NetworkManager.StartBankerTurn += OnStartBankerTurn;
         Managers.NetworkManager.Owner += OnOwner;
         Managers.NetworkManager.Banker += OnBanker;
         Managers.NetworkManager.GameStarted += OnGameStarted;
@@ -116,6 +120,8 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.UserEnterRoom -= OnUserEnterRoom;
         Managers.NetworkManager.UserLeaveRoom -= OnUserLeaveRoom;
         Managers.NetworkManager.StartCurrentTurn -= OnStartCurrentTurn;
+        Managers.NetworkManager.StartPlayersTurn -= OnStartPlayersTurn;
+        Managers.NetworkManager.StartBankerTurn -= OnStartBankerTurn;
         Managers.NetworkManager.Owner -= OnOwner;
         Managers.NetworkManager.Banker -= OnBanker;
         Managers.NetworkManager.GameStarted -= OnGameStarted;
@@ -306,6 +312,42 @@ public class GameplayManagerShan : MonoBehaviour
         return null;
     }
 
+    public void OnStartPlayersTurn(ISFSObject sfsObj)
+    {
+
+        foreach (RoomUserItem item in _userItems)
+        {
+            item.ToggleLoadingObject(false);
+            if (!item.IsBank)
+            {
+                item.StartTurn();
+            }
+        }
+        _currentPlayerTurnTxt.text = "All Players Turn...";
+    }
+
+    public void OnStartBankerTurn(ISFSObject sfsObj)
+    {
+        Debug.Log("Banker turnnnnnnnnnnnnn");
+        foreach (RoomUserItem item in _userItems)
+        {
+            item.ToggleLoadingObject(false);
+            if (item.IsBank)
+            {
+                if(Managers.NetworkManager.SmartFox.MySelf.Name == item.name)
+                {
+                    //CardViewPanel.Instance.ToggleCatchBtn(true);
+                }
+                item.StartTurn();
+            }
+            else
+            {
+                item.EndTurn();
+            }
+        }
+        //_currentPlayerTurnTxt.text = "Banker Turn...";
+    }
+
     public void OnStartCurrentTurn(ISFSObject sfsObj)
     {
         //on player turn change, check if it is my turn or not by id
@@ -314,6 +356,7 @@ public class GameplayManagerShan : MonoBehaviour
         foreach (RoomUserItem item in _userItems)
         {
             item.ToggleLoadingObject(false);
+            //item.StartTurn();
 
             if (item.Name == playerName)
             {
@@ -340,7 +383,7 @@ public class GameplayManagerShan : MonoBehaviour
 
     public void ToggleGameplayBtns(bool show)
     {
-        if (show)
+        /*if (show)
         {
             _hitBtn.onClick.AddListener(() => DrawCard());
             _standBtn.onClick.AddListener(() => Stand());
@@ -352,7 +395,7 @@ public class GameplayManagerShan : MonoBehaviour
         }
 
         _hitBtn.gameObject.SetActive(show);
-        _standBtn.gameObject.SetActive(show);
+        _standBtn.gameObject.SetActive(show);*/
     }
 
     private void StartGame() //send to server when the room owner press start
@@ -404,6 +447,19 @@ public class GameplayManagerShan : MonoBehaviour
         _betAmountCtrlr.gameObject.SetActive(false);
     }
 
+    public void BetWithSlider() //send to server when this client bet
+    {
+        int betAmount = _betAmountCtrlr.SliderBetValue;
+        ISFSObject data = new SFSObject();
+        data.PutUtfString(GameConstants.USER_NAME, Managers.NetworkManager.SmartFox.MySelf.Name);
+        data.PutInt(GameConstants.BET_AMOUNT, betAmount);
+        //data.PutUtfString(GameConstants.BET_AMOUNT, 1000);
+        ExtensionRequest request = new ExtensionRequest(GameConstants.BET, data, _currentRoom);
+        Managers.NetworkManager.SendRequest(request);
+
+        _betAmountCtrlr.gameObject.SetActive(false);
+    }
+
     public void DrawCard() //send to server when this client draw a card
     {
         Managers.AudioManager.PlayWillDrawCardClip();
@@ -413,6 +469,7 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.SendRequest(request);
 
         ToggleGameplayBtns(false);
+        CardViewPanel.Instance.ToggleActionPanel(false);
     }
 
     public void Stand() //send to server when this client stand
@@ -423,6 +480,17 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.SendRequest(request);
 
         ToggleGameplayBtns(false);
+        CardViewPanel.Instance.ClosePanel();
+    }
+
+    public void CatchThree() //send to server when this client catch
+    {
+        CardViewPanel.Instance.ToggleCatchBtn(false);
+        ISFSObject data = new SFSObject();
+        data.PutUtfString(GameConstants.USER_NAME, Managers.NetworkManager.SmartFox.MySelf.Name);
+        ExtensionRequest request = new ExtensionRequest(GameConstants.BANK_CATCH, data, _currentRoom);
+        Managers.NetworkManager.SendRequest(request);
+        //_catchBtn.interactable = false;
     }
 
     public void LeaveRoomToMainMenu() //send to server when this client stand
@@ -501,6 +569,17 @@ public class GameplayManagerShan : MonoBehaviour
         string playerName = sfsObj.GetUtfString(GameConstants.USER_NAME);
         int totalAmount = sfsObj.GetInt(GameConstants.TOTAL_AMOUNT);
         int bankAmount = sfsObj.GetInt(GameConstants.BANK_AMOUNT);
+        bool warning = sfsObj.GetBool(GameConstants.BANK_WARNING);
+
+        if (warning)
+        {
+            _warningObj.SetActive(true);
+            _warningCount.text = "" +sfsObj.GetInt(GameConstants.WARNING_COUNT);
+        }
+        else
+        {
+            _warningObj.SetActive(false);
+        }
 
         _bankAmountTxt.text = bankAmount.ToString();
         _bankDisplay.DisplayNumber(bankAmount.ToString());
@@ -599,6 +678,14 @@ public class GameplayManagerShan : MonoBehaviour
     public void OnPleaseWait(ISFSObject sfsObj) //send from server when a client
     {
         _pleaseWaitTxt.SetActive(true);
+        if(_userItems.Count > 0)
+        {
+            ResetGame();
+            foreach (RoomUserItem item in _userItems)
+            {
+                Destroy(item.gameObject);
+            }
+        }
     }
 
     public void OnPlayerBet(ISFSObject sfsObj) //send from server when a client bet
@@ -648,9 +735,9 @@ public class GameplayManagerShan : MonoBehaviour
         GetUserItemByName(playerName).UpdateAllCards(playerCards);
         GetUserItemByName(playerName).SetModifier(modifier);
 
-        if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name || GetUserItemByName(playerName).IsBank)
+        if (GetUserItemByName(playerName).IsBank)
         {
-            //CardViewPanel.Instance.ClosePanel();
+            CardViewPanel.Instance.ClosePanel();
         }
 
         if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name)
@@ -670,9 +757,11 @@ public class GameplayManagerShan : MonoBehaviour
         if (drawerName == Managers.NetworkManager.SmartFox.MySelf.Name)
         {
             ToggleGameplayBtns(false);
+            
             string drawnCardName = sfsObj.GetUtfString(GameConstants.CARD_NAME);
             int totalValue = sfsObj.GetInt(GameConstants.TOTAL_VALUE);
             int modifier = sfsObj.GetInt(GameConstants.MODIFIER);
+            CardViewPanel.Instance.OnDrawCard(drawnCardName);
             Debug.Log($"{GetUserItemByName(drawerName).Name} draw Card [{drawnCardName}] and total value is {totalValue}");
             //GetUserItemByName(drawerName).SetTotalValue(totalValue);
             //GetUserItemByName(drawerName).AddCard(drawnCardName);
@@ -803,6 +892,7 @@ public class GameplayManagerShan : MonoBehaviour
     private void OnMatchEnd(ISFSObject sfsObj)
     {
         Debug.Log("match endddddddddd");
+        CardViewPanel.Instance.ClosePanel();
         StartCoroutine(WinLoseCoinAnim());
     }
 

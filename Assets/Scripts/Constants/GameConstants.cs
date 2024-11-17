@@ -37,7 +37,10 @@ namespace THZ
         public const string COUNTDOWN = "countdown"; //send from server to client
         public const string OWNER = "owner"; //send from server to client
         public const string BANKER = "banker"; //send from server to client
+        public const string BANK_CATCH = "bankerCatch"; //send from server to client
         public const string START_CURRENT_TURN = "startCurrentTurn"; //send from server
+        public const string START_PLAYERS_TURN = "startPlayersTurn"; //send from server
+        public const string START_BANKER_TURN = "startBankerTurn"; //send from server
         public const string PLAYER_HIT = "playerHit"; //send from server
         public const string PLAYER_WIN = "playerWin"; //send from server
         public const string PLAYER_LOSE = "playerLose"; //send from server
@@ -63,6 +66,8 @@ namespace THZ
         public const string BET_AMOUNT = "betAmount";
         public const string TOTAL_AMOUNT = "totalAmount";
         public const string BANK_AMOUNT = "bankAmount";
+        public const string BANK_WARNING = "bankWarning";
+        public const string WARNING_COUNT = "warningCount";
         public const string AMOUNT_CHANGED = "amountChanged";
         public const string REQUEST_ROOM_AMOUNT = "requestRoomAmount";
         public const string MIN_BET = "minBet";
