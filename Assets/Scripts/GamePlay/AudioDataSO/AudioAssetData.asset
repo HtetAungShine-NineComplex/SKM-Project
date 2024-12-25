@@ -25,3 +25,7 @@ MonoBehaviour:
   yourTurnToBankClip: {fileID: 8300000, guid: 6b37dfa6038f4b548b0c8219b9428b14, type: 3}
   _8doClip: {fileID: 8300000, guid: d704125f2d964124093ca5d08c19e253, type: 3}
   _9doClip: {fileID: 8300000, guid: 6c9cae6f94b118247a958d2e936c6283, type: 3}
+  firstWarningClip: {fileID: 8300000, guid: 9639150b3da97b746854d9b54e78092d, type: 3}
+  secondWarningClip: {fileID: 8300000, guid: e952c96db9b1b854aa260361c9e2980b, type: 3}
+  thirdWarningClip: {fileID: 8300000, guid: b1b2e15a8b03ac34e81825794ac37667, type: 3}
+  winWarningClip: {fileID: 8300000, guid: 1bb6f7e3e0d89ec40bf56a472983c6c3, type: 3}

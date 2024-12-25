@@ -58,7 +58,10 @@ namespace THZ
         public const string BET = "bet"; //send from client
         public const string PLAYER_BET = "playerBet"; //send from server
         public const string PLEASE_WAIT = "pleaseWait"; //send from server
-        public const string MATCH_END = "matchEnd"; //send from server
+        public const string MATCH_END = "matchEnd"; //send from serve
+
+        public const string BANK_CHANGING = "bankChanging"; 
+        public const string IS_BANK_WIN = "isBankWin";
 
 
         //Data Keys
@@ -79,6 +82,7 @@ namespace THZ
         public const string SUIT = "suit";
         public const string IS_ACE = "isAce";
         public const string IS_DO = "isDo";
+        public const string IS_WAITING = "isWaiting";
         public const string TOTAL_VALUE = "totalValue";
         public const string MODIFIER = "modifier";
 

@@ -19,4 +19,8 @@ public class AudioAssetData : ScriptableObject
     public AudioClip yourTurnToBankClip;
     public AudioClip _8doClip;
     public AudioClip _9doClip;
+    public AudioClip firstWarningClip;
+    public AudioClip secondWarningClip;
+    public AudioClip thirdWarningClip;
+    public AudioClip winWarningClip;
 }

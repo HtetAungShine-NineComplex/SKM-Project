@@ -32,6 +32,7 @@ public class PlayerPos : MonoBehaviour
         else 
         {
             betPanel.SetActive(!currentUser.IsBank);
+            bankObj.SetActive(currentUser.IsBank);
         }
     }
 

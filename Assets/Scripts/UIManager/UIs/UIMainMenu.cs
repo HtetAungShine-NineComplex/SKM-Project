@@ -1,6 +1,11 @@
 using Newtonsoft.Json;
 using Proyecto26;
+using Sfs2X;
+using Sfs2X.Core;
+using Sfs2X.Requests;
+using Sfs2X.Util;
 using Shan.API;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using THZ;
@@ -11,6 +16,7 @@ using UnityEngine.UI;
 
 public class UIMainMenu : UiBase
 {
+    [SerializeField] private Button _playBtn; //sample
     [SerializeField] private Button _lobbyBtn; //sample
     [SerializeField] private MainMenuController _menuController;
     [Header("UserInfoTexts")]
@@ -36,11 +42,25 @@ public class UIMainMenu : UiBase
     [SerializeField] private Button _CloseHistoryBtn;
     [SerializeField] private GameObject _UILifeTimeHistory;
 
+    [SerializeField] private GameObject _noTokenPanel;
+
+    private SmartFox sfs;
+
     public override void OnShow(UIBaseData data)
     {
         base.OnShow(data);
+#if UNITY_WEBGL && !UNITY_EDITOR
+        if (Managers.isTokenEmpty)
+        {
+            _noTokenPanel.SetActive(true);
+            return;
+        }
+        _noTokenPanel.SetActive(false);
+#endif
+
+        //Connect();
         GetUserInfo();
-        _menuController.AddSmartFoxListeners();
+        
         Managers.AudioManager.PlayBGMusic();
         _lobbyBtn.onClick.AddListener(ToLobby);
         _avatorSelectionBtn.onClick.AddListener(OpenAvatorSelection);//srat
@@ -56,7 +76,8 @@ public class UIMainMenu : UiBase
         _CloseHistoryBtn.onClick.AddListener(CloseLifeTimeHistory);
         UpdateAvator();
 
-        
+        _lobbyBtn.interactable = false;
+        _playBtn.interactable = false;
     }
 
     public void GetUserInfo()
@@ -79,11 +100,126 @@ public class UIMainMenu : UiBase
             if(r.status == "success")
             {
                 _usernameTxt.text = r.data.name;
+                Managers.DataLoader.CurrentName = r.data.name;
                 Debug.Log("username: " + r.data.name);
                 _balanceTxt.text = r.data.balance;
+#if UNITY_WEBGL
+				Connect();
+#endif
             }
         })
         .Catch(err => Debug.Log(err.Message));
+    }
+
+    public void Connect()
+    {
+        // Set connection parameters
+        ConfigData cfg = new ConfigData();
+        cfg.Host = Managers.DataLoader.NetworkData.host;
+
+#if UNITY_WEBGL //&& !UNITY_EDITOR
+
+        Debug.Log("Webgl");
+        cfg.Port = Managers.DataLoader.NetworkData.webSocketPort;
+        //cfg.Port = tcpPort;
+#else
+        cfg.Port = tcpPort;
+#endif
+        cfg.UdpHost = Managers.DataLoader.NetworkData.host;
+        cfg.UdpPort = Managers.DataLoader.NetworkData.UdpPort;
+        cfg.Zone = Managers.DataLoader.NetworkData.zone;
+        cfg.Debug = Managers.DataLoader.NetworkData.debug;
+
+#if UNITY_WEBGL //&& !UNITY_EDITOR
+        GlobalManager.Instance.CreateSfsClient(UseWebSocket.WSS_BIN);
+#else
+        sfs = gm.CreateSfsClient();
+#endif
+        sfs = GlobalManager.Instance.GetSfsClient();
+
+        sfs.Logger.EnableConsoleTrace = Managers.DataLoader.NetworkData.debug;
+
+        AddSmartFoxListeners();
+        _menuController.AddSmartFoxListeners();
+        Managers.NetworkManager.SubscribeDelegates();
+
+        sfs.Connect(cfg);
+    }
+
+    private void AddSmartFoxListeners()
+    {
+        sfs.AddEventListener(SFSEvent.CONNECTION, OnConnection);
+        sfs.AddEventListener(SFSEvent.CONNECTION_LOST, OnConnectionLost);
+        sfs.AddEventListener(SFSEvent.LOGIN, OnLogin);
+        sfs.AddEventListener(SFSEvent.LOGIN_ERROR, OnLoginError);
+    }
+
+    public void RemoveSmartFoxListeners()
+    {
+        // NOTE
+        // If this scene is stopped before a connection is established, the SmartFox client instance
+        // could still be null, causing an error when trying to remove its listeners
+
+        if (sfs != null)
+        {
+            sfs.RemoveEventListener(SFSEvent.CONNECTION, OnConnection);
+            sfs.RemoveEventListener(SFSEvent.CONNECTION_LOST, OnConnectionLost);
+            sfs.RemoveEventListener(SFSEvent.LOGIN, OnLogin);
+            sfs.RemoveEventListener(SFSEvent.LOGIN_ERROR, OnLoginError);
+        }
+    }
+
+    private void OnConnection(BaseEvent evt)
+    {
+        // Check if the conenction was established or not
+        if ((bool)evt.Params["success"])
+        {
+            Debug.Log("SFS2X API version: " + sfs.Version);
+            Debug.Log("Connection mode is: " + sfs.ConnectionMode);
+
+            // Login
+            sfs.Send(new LoginRequest(Managers.DataLoader.CurrentName));
+        }
+        else
+        {
+
+        }
+    }
+
+    private void OnConnectionLost(BaseEvent evt)
+    {
+        // Remove SFS listeners
+        RemoveSmartFoxListeners();
+
+        // Show error message
+        string reason = (string)evt.Params["reason"];
+
+        if (reason != ClientDisconnectionReason.MANUAL)
+        {
+
+        }
+    }
+
+    private void OnLogin(BaseEvent evt)
+    {
+#if !UNITY_WEBGL
+    // Initialize UDP communication
+    sfs.InitUDP();
+#else
+        // For WebGL, you might want to initialize WebSocket or handle differently
+        Debug.Log("WebGL does not support UDP. Proceeding without UDP initialization.");
+        //OnUdpInit(new BaseEvent("udpInit", new Dictionary<string, object> { { "success", true } }));
+        _lobbyBtn.interactable = true;
+        _playBtn.interactable = true;
+#endif
+    }
+
+    private void OnLoginError(BaseEvent evt)
+    {
+        // Disconnect
+        // NOTE: this causes a CONNECTION_LOST event with reason "manual", which in turn removes all SFS listeners
+        sfs.Disconnect();
+
     }
 
     private void UpdateAvator() //srat

@@ -22,7 +22,7 @@ public class LoginController : BaseSceneController
 	// Editor public properties
 	//----------------------------------------------------------
 
-	[Tooltip("IP address or domain name of the SmartFoxServer instance")]
+	/*[Tooltip("IP address or domain name of the SmartFoxServer instance")]
 	public string host = "127.0.0.1";
 
 	[Tooltip("TCP listening port of the SmartFoxServer instance, used for TCP socket connection")]
@@ -37,7 +37,7 @@ public class LoginController : BaseSceneController
 	public string zone = "DelightShan";
 
 	[Tooltip("Display SmartFoxServer client debug messages")]
-	public bool debug = false;
+	public bool debug = false;*/
 
 	//----------------------------------------------------------
 	// UI elements
@@ -122,10 +122,13 @@ public class LoginController : BaseSceneController
 			{
                 PlayerPrefs.SetString("token", r.data.token);
 				Managers.DataLoader.CurrentName = r.data.user.name;
-				Debug.Log("admin token" + r.data.token);
-				//PlayerPrefs.Save();
 
-                Connect();
+                //PlayerPrefs.Save();
+#if !UNITY_WEBGL
+				Connect();
+#endif
+                //Connect();
+                Debug.Log(" token : " + r.data.token);
             }
 			else
 			{
@@ -157,7 +160,7 @@ public class LoginController : BaseSceneController
 	/**
 	 * Connect to SmartFoxServer.
 	 */
-	private void Connect()
+	public void Connect()
 	{
 		// Disable user interface
 		EnableUI(false);
@@ -167,39 +170,31 @@ public class LoginController : BaseSceneController
 
 		// Set connection parameters
 		ConfigData cfg = new ConfigData();
-		cfg.Host = host;
+		cfg.Host = Managers.DataLoader.NetworkData.host;
 
 #if UNITY_WEBGL //&& !UNITY_EDITOR
 
 		Debug.Log("Webgl");
-        cfg.Port = webSocketPort;
+        cfg.Port = Managers.DataLoader.NetworkData.webSocketPort;
         //cfg.Port = tcpPort;
 #else
         cfg.Port = tcpPort;
 #endif
-        cfg.UdpHost = host;
-        cfg.UdpPort = UdpPort;
-        cfg.Zone = zone;
-		cfg.Debug = debug;
+        cfg.UdpHost = Managers.DataLoader.NetworkData.host;
+        cfg.UdpPort = Managers.DataLoader.NetworkData.UdpPort;
+        cfg.Zone = Managers.DataLoader.NetworkData.zone;
+		cfg.Debug = Managers.DataLoader.NetworkData.debug;
 
-        // Initialize SmartFox client
-        // The singleton class GlobalManager holds a reference to the SmartFox class instance,
-        // so that it can be shared among all the scenes
 #if UNITY_WEBGL //&& !UNITY_EDITOR
         sfs = gm.CreateSfsClient(UseWebSocket.WS_BIN);
-        //sfs = gm.CreateSfsClient();
 #else
         sfs = gm.CreateSfsClient();
 #endif
-        //sfs = gm.CreateSfsClient();
-        // Configure SmartFox internal logger
-        sfs.Logger.EnableConsoleTrace = debug;
+        sfs.Logger.EnableConsoleTrace = Managers.DataLoader.NetworkData.debug;
 
-		// Add event listeners
 		AddSmartFoxListeners();
 		Managers.NetworkManager.SubscribeDelegates();
 
-		// Connect to SmartFoxServer
 		sfs.Connect(cfg);
 	}
 

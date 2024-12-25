@@ -11,6 +11,7 @@ public class RoomUserItem : MonoBehaviour
 {
     [SerializeField] private TMP_Text _nameTxt;
     [SerializeField] private TMP_Text _totalAmountTxt;
+    [SerializeField] private GameObject _totalValuePanel;
     [SerializeField] private TMP_Text _totalValueTxt;
     [SerializeField] private TMP_Text _betAmountTxt;
     [SerializeField] private GameObject _bankerStatus;
@@ -46,6 +47,7 @@ public class RoomUserItem : MonoBehaviour
     public int TotalCardValue { get; private set; } // user id to access the user item
     public bool IsBank { get; private set; }
     public bool IsDo { get; private set; }
+    public bool IsWaiting { get; set; }
     public int AmountChanged { get; set; }
 
     private bool _isMyTurn = false;
@@ -58,12 +60,16 @@ public class RoomUserItem : MonoBehaviour
     private void Awake()
     {
         _originalCardPos = _playerCardsPanel.anchoredPosition;
+        _playerCurrentCards = new List<CardDemo>();
     }
 
     private void Start()
     {
-        _playerCurrentCards = new List<CardDemo>();
-        
+
+        _playerCardsPanel.anchoredPosition = _originalCardPos;
+        _playerCardsPanel.localScale = new Vector3(1.6f, 1.6f, 1f);
+
+        _totalValuePanel.SetActive(false);
     }
 
     private void Update()
@@ -137,6 +143,11 @@ public class RoomUserItem : MonoBehaviour
 
     public void StartTurn()
     {
+        if (IsWaiting)
+        {
+            return;
+        }
+
         _duration = 15;
         _elapsedTime = 0;
         _isMyTurn = true;
@@ -147,6 +158,11 @@ public class RoomUserItem : MonoBehaviour
 
     public void EndTurn()
     {
+        if (IsWaiting)
+        {
+            return;
+        }
+
         _isMyTurn = false;
         _cooldownFillImage.fillAmount = 0;
         _cooldownFillImage.gameObject.SetActive(false);
@@ -154,6 +170,11 @@ public class RoomUserItem : MonoBehaviour
 
     public void StartBet()
     {
+        if (IsWaiting)
+        {
+            return;
+        }
+
         _duration = 7;
         _cooldownFillImage.fillAmount = 1;
         _elapsedTime = 0;
@@ -163,11 +184,21 @@ public class RoomUserItem : MonoBehaviour
 
     public void OnBet(int betAmount)
     {
+        if (IsWaiting)
+        {
+            return;
+        }
+
         _coinAnimCtrlr.GenerateCoins(betAmount, _playerCoinsRoot);
     }
 
     public void EndBet()
     {
+        if (IsWaiting)
+        {
+            return;
+        }
+
         _cooldownFillImage.fillAmount = 0;
         _cooldownFillImage.gameObject.SetActive(false);
     }
@@ -219,12 +250,18 @@ public class RoomUserItem : MonoBehaviour
 
     public void SetTotalValue(int value)
     {
+        _totalValuePanel.SetActive(true);
         _totalValueTxt.text = value.ToString();
         TotalCardValue = value;
     }
 
     public void ShowCards()
     {
+        if (IsWaiting)
+        {
+            return;
+        }
+
         _playerCardsPanel.transform.localPosition = Vector3.zero;
 
         if (IsBank)
@@ -233,7 +270,7 @@ public class RoomUserItem : MonoBehaviour
         }
         else
         {
-            _playerCardsPanel.transform.localScale = new Vector3(1.7f, 1.7f, 1f);
+            _playerCardsPanel.transform.localScale = new Vector3(2.2f, 2.2f, 1f);
         }
     }
 
@@ -241,11 +278,11 @@ public class RoomUserItem : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        _playerCardsPanel.transform.localScale = new Vector3(2.3f, 2.3f, 1f);
+        _playerCardsPanel.transform.localScale = new Vector3(2.9f, 2.9f, 1f);
 
         yield return new WaitForSeconds(3f);
 
-        _playerCardsPanel.transform.localScale = new Vector3(1.7f, 1.7f, 1f);
+        _playerCardsPanel.transform.localScale = new Vector3(2.6f, 2.6f, 1f);
     }
 
     public void SetBetAmount(int value)
@@ -263,13 +300,23 @@ public class RoomUserItem : MonoBehaviour
 
     public void IsBanker()
     {
+        if (IsWaiting)
+        {
+            return;
+        }
+        Debug.Log("Banker is " + Name);
         _bankerStatus.SetActive(true);
         IsBank = true;
     }
 
     public void IsPlayer()
     {
-        if(IsBank)
+        if (IsWaiting)
+        {
+            return;
+        }
+
+        if (IsBank)
         {
             StartCoroutine(BankAudio());
         }
@@ -290,10 +337,19 @@ public class RoomUserItem : MonoBehaviour
         }
     }
 
-    public void WinLose(bool isWin, int amountChanged)
+    public void WinLose(bool isWin, int amountChanged, bool keepPanel = false)
     {
         AmountChanged = amountChanged;
-        StartCoroutine(ShowWinOrLose(isWin, amountChanged));
+        /*if (keepPanel)
+        {
+            
+        }
+        else
+        {
+            StartCoroutine(ShowWinOrLose(isWin, amountChanged));
+        }*/
+
+        ShowWinLosePanels(isWin, amountChanged);
     }
 
     public void PlayerDo(int value) //8 or 9
@@ -314,6 +370,16 @@ public class RoomUserItem : MonoBehaviour
     [ContextMenu("Test")]
     public void AddBlankCards()
     {
+        if (IsWaiting)
+        {
+            return;
+        }
+
+        if (_playerCurrentCards.Count >= 3)
+        {
+            return;
+        }
+
         CardDemo card = Instantiate(_cardPrefab, _playerCardsRoot);
         card.ResetCard();
         _playerCurrentCards.Add(card);
@@ -410,11 +476,11 @@ public class RoomUserItem : MonoBehaviour
         IsDo = false;
 
         _playerCardsPanel.anchoredPosition = _originalCardPos;
-        _playerCardsPanel.localScale = new Vector3(1.4f, 1.4f, 1f);
+        _playerCardsPanel.localScale = new Vector3(1.6f, 1.6f, 1f);
 
         AmountChanged = 0;
 
-        SetTotalValue(0);
+        //SetTotalValue(0);
         SetBetAmount(0);
         _8doObj.SetActive(false);
         _9doObj.SetActive(false);
@@ -425,13 +491,42 @@ public class RoomUserItem : MonoBehaviour
         }
 
         _playerCurrentCards.Clear();
+        _totalValuePanel.SetActive(false);
+
+        _loseObj.SetActive(false);
+        foreach (CardDemo card in _playerCurrentCards)
+        {
+            card.SetColor(Color.white);
+        }
+        foreach (GameObject item in _winObj)
+        {
+            item.SetActive(false);
+        }
     }
      
     IEnumerator ShowWinOrLose(bool isWin, int amountChanged)
     {
-        if(isWin)
+        ShowWinLosePanels(isWin, amountChanged);
+
+        yield return new WaitForSeconds(3f);
+
+        _loseObj.SetActive(false);
+        foreach (CardDemo card in _playerCurrentCards)
         {
-            if(Name == GlobalManager.Instance.GetSfsClient().MySelf.Name)
+            card.SetColor(Color.white);
+        }
+        foreach (GameObject item in _winObj)
+        {
+            item.SetActive(false);
+        }
+
+    }
+
+    private void ShowWinLosePanels(bool isWin, int amountChanged)
+    {
+        if (isWin)
+        {
+            if (Name == GlobalManager.Instance.GetSfsClient().MySelf.Name)
             {
                 Managers.AudioManager.PlayWinClip();
             }
@@ -460,18 +555,5 @@ public class RoomUserItem : MonoBehaviour
         }
 
         _resultParentObj.gameObject.SetActive(true);
-
-        yield return new WaitForSeconds(3f);
-
-        _loseObj.SetActive(false);
-        foreach (CardDemo card in _playerCurrentCards)
-        {
-            card.SetColor(Color.white);
-        }
-        foreach (GameObject item in _winObj)
-        {
-            item.SetActive(false);
-        }
-        
     }
 }

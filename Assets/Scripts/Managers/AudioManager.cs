@@ -87,4 +87,23 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource.PlayOneShot(_audioData._9doClip);
     }
+
+    public void PlayFirstWarningClip()
+    {
+        _audioSource.PlayOneShot(_audioData.firstWarningClip);
+    }
+    public void PlaySecondWarningClip()
+    {
+        _audioSource.PlayOneShot(_audioData.secondWarningClip);
+    }
+    
+    public void PlayThirdWarningClip()
+    {
+        _audioSource.PlayOneShot(_audioData.thirdWarningClip);
+    }
+
+    public void PlayWinWarningClip()
+    {
+        _audioSource.PlayOneShot(_audioData.winWarningClip);
+    }
 }

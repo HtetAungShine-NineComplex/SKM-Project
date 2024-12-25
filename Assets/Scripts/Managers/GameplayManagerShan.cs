@@ -33,6 +33,9 @@ public class GameplayManagerShan : MonoBehaviour
     [SerializeField] private TMP_Text _currentPlayerTurnTxt;
     [SerializeField] private TMP_Text _bankAmountTxt;
     [SerializeField] private GameObject _warningObj;
+    [SerializeField] private GameObject _warning1Panel;
+    [SerializeField] private GameObject _warning2Panel;
+    [SerializeField] private GameObject _warning3Panel;
     [SerializeField] private TMP_Text _warningCount;
     [SerializeField] private BankCoinAnimationController _bankCoinController;
 
@@ -113,6 +116,7 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.PlayerBet += OnPlayerBet;
         Managers.NetworkManager.PleaseWait += OnPleaseWait;
         Managers.NetworkManager.MatchEnd += OnMatchEnd;
+        Managers.NetworkManager.GameState += OnGameState;
     }
 
     public void RemovenServerEvents()
@@ -136,6 +140,7 @@ public class GameplayManagerShan : MonoBehaviour
         Managers.NetworkManager.PlayerBet -= OnPlayerBet;
         Managers.NetworkManager.PleaseWait -= OnPleaseWait;
         Managers.NetworkManager.MatchEnd -= OnMatchEnd;
+        Managers.NetworkManager.GameState -= OnGameState;
 
         //ResetGame();
         _bankCoinController.ResetTable();
@@ -233,6 +238,7 @@ public class GameplayManagerShan : MonoBehaviour
             RoomUserItem roomUserItem = Instantiate(_roomUserItemPrefab);
             roomUserItem.SetName(obj.GetUtfString(GameConstants.USER_NAME));
             roomUserItem.SetAmount(obj.GetInt(GameConstants.TOTAL_AMOUNT));
+            roomUserItem.IsWaiting = obj.GetBool(GameConstants.IS_WAITING);
             roomUserItem.transform.SetParent(_roomUserRoot, false);
             //roomUserItem.transform.localPosition = userPositions[i].localPosition;
             roomUserItem.transform.localPosition = playerPositions[i].rectTransform.localPosition;
@@ -491,6 +497,8 @@ public class GameplayManagerShan : MonoBehaviour
         ExtensionRequest request = new ExtensionRequest(GameConstants.BANK_CATCH, data, _currentRoom);
         Managers.NetworkManager.SendRequest(request);
         //_catchBtn.interactable = false;
+
+        CardViewPanel.Instance.HidePanelForSecs(2.5f);
     }
 
     public void LeaveRoomToMainMenu() //send to server when this client stand
@@ -575,6 +583,22 @@ public class GameplayManagerShan : MonoBehaviour
         {
             _warningObj.SetActive(true);
             _warningCount.text = "" +sfsObj.GetInt(GameConstants.WARNING_COUNT);
+
+            if(sfsObj.GetInt(GameConstants.WARNING_COUNT) == 1)
+            {
+                Managers.AudioManager.PlayFirstWarningClip();
+                ShowObjectForSecs(_warning1Panel, 2);
+            }
+            else if (sfsObj.GetInt(GameConstants.WARNING_COUNT) == 2)
+            {
+                Managers.AudioManager.PlaySecondWarningClip();
+                ShowObjectForSecs(_warning2Panel, 2);
+            }
+            else if (sfsObj.GetInt(GameConstants.WARNING_COUNT) == 3)
+            {
+                Managers.AudioManager.PlayThirdWarningClip();
+                ShowObjectForSecs(_warning3Panel, 2);
+            }
         }
         else
         {
@@ -590,9 +614,13 @@ public class GameplayManagerShan : MonoBehaviour
             {
                 if (item.Name != _curBankName)
                 {
-                    if (!string.IsNullOrEmpty(_curBankName))
+                    if (!string.IsNullOrEmpty(_curBankName) && GetUserItemByName(_curBankName) != null)
                     {
                         _bankCoinController.SendAllCoinsToPlayer(GetUserItemByName(_curBankName).transform);
+                    }
+                    else
+                    {
+                        _bankCoinController.ResetTable();
                     }
                     
                     _bankCoinController.GenerateCoinsIntoTable(bankAmount, item.transform);
@@ -608,7 +636,6 @@ public class GameplayManagerShan : MonoBehaviour
             }
         }
     }
-
 
     private void OnCountdown(ISFSObject sfsObj) //countdown event before game start
     {
@@ -666,8 +693,26 @@ public class GameplayManagerShan : MonoBehaviour
         bet3 = sfsObj.GetInt("bet3");
         maxBet = bankAmount;
 
-        _betAmountCtrlr.SetBtnAmounts(bet1, bet2, bet3, bankAmount);
-        _betAmountCtrlr.gameObject.SetActive(true);
+        if(bet1 > bankAmount)
+        {
+            bet1 = bankAmount;
+        }
+
+        if(bet2 > bankAmount) 
+        { 
+            bet2 = bankAmount;
+        }
+
+        if(bet3 > bankAmount)
+        { 
+            bet3 = bankAmount; 
+        }
+
+        if (!GetUserItemByName(Managers.NetworkManager.SmartFox.MySelf.Name).IsWaiting)
+        {
+            _betAmountCtrlr.SetBtnAmounts(bet1, bet2, bet3, bankAmount);
+            _betAmountCtrlr.gameObject.SetActive(true);
+        }
 
         Debug.Log("Bank : " + bankAmount);
         _bankAmountTxt.text = bankAmount.ToString();
@@ -790,14 +835,19 @@ public class GameplayManagerShan : MonoBehaviour
         GetUserItemByName(playerName).SetModifier(modifier);
         GetUserItemByName(playerName).UpdateAllCards(handCards);
 
-        if (isDo)
-        {
-            //GetUserItemByName(playerName).PlayerDo(totalValue);
-        }
+        
 
         if (playerName == GlobalManager.Instance.GetSfsClient().MySelf.Name)
         {
-            CardViewPanel.Instance.SetTwoCardsAndShow(handCards[0], handCards[1], GetUserItemByName(playerName), isDo, totalValue);
+            CardViewPanel.Instance.SetTwoCardsAndShow(handCards[0], handCards[1], GetUserItemByName(playerName), isDo, totalValue, 
+                GetUserItemByName(playerName).IsBank ? 20 : 12);
+        }
+        else
+        {
+            if (isDo && GetUserItemByName(playerName).IsBank)
+            {
+                GetUserItemByName(playerName).PlayerDo(totalValue);
+            }
         }
     }
 
@@ -817,6 +867,9 @@ public class GameplayManagerShan : MonoBehaviour
         int modifier = sfsObj.GetInt(GameConstants.MODIFIER);
         int amountChanged = sfsObj.GetInt(GameConstants.AMOUNT_CHANGED);
         bool isDo = sfsObj.GetBool(GameConstants.IS_DO);
+        bool isCatch = sfsObj.GetBool("isCatch");
+
+        Debug.Log("is catch : " + isCatch);
 
         if (isDo)
         {
@@ -833,7 +886,7 @@ public class GameplayManagerShan : MonoBehaviour
         GetUserItemByName(playerName).SetTotalValue(totalValue);
         GetUserItemByName(playerName).SetAmount(totalAmount);
         GetUserItemByName(playerName).SetModifier(modifier);
-        GetUserItemByName(playerName).WinLose(true, amountChanged);
+        GetUserItemByName(playerName).WinLose(true, amountChanged, isCatch);
         _winPlayers.Add(GetUserItemByName(playerName));
         ToggleGameplayBtns(false);
     }
@@ -855,6 +908,9 @@ public class GameplayManagerShan : MonoBehaviour
         int modifier = sfsObj.GetInt(GameConstants.MODIFIER);
         int amountChanged = sfsObj.GetInt(GameConstants.AMOUNT_CHANGED);
         bool isDo = sfsObj.GetBool(GameConstants.IS_DO);
+        bool isCatch = sfsObj.GetBool("isCatch");
+
+        Debug.Log("is catch : " + isCatch);
 
         if (isDo)
         {
@@ -876,7 +932,7 @@ public class GameplayManagerShan : MonoBehaviour
         GetUserItemByName(playerName).SetTotalValue(totalValue);
         GetUserItemByName(playerName).SetAmount(totalAmount);
         GetUserItemByName(playerName).SetModifier(modifier);
-        GetUserItemByName(playerName).WinLose(false, amountChanged);
+        GetUserItemByName(playerName).WinLose(false, amountChanged, isCatch);
         _losePlayers.Add(GetUserItemByName(playerName));
         ToggleGameplayBtns(false);
     }
@@ -891,9 +947,115 @@ public class GameplayManagerShan : MonoBehaviour
 
     private void OnMatchEnd(ISFSObject sfsObj)
     {
+        bool bankChanging = sfsObj.GetBool(GameConstants.BANK_CHANGING);
+        bool isBankWin = sfsObj.GetBool(GameConstants.IS_BANK_WIN);
+
+        if (bankChanging)
+        {
+            if (isBankWin)
+            {
+                Managers.AudioManager.PlayWinWarningClip();
+            }
+            else
+            {
+                if (GetUserItemByName(Managers.NetworkManager.SmartFox.MySelf.Name).IsBank)
+                {
+                    Managers.AudioManager.PlayLoseClip();
+                }
+            }
+        }
+
         Debug.Log("match endddddddddd");
         CardViewPanel.Instance.ClosePanel();
         StartCoroutine(WinLoseCoinAnim());
+    }
+
+    private void OnGameState(ISFSObject sfsObj)
+    {
+        CardViewPanel.Instance.ClosePanel();
+
+        int bankAmount = sfsObj.GetInt(GameConstants.BANK_AMOUNT);
+        ISFSArray sfsArr = sfsObj.GetSFSArray("playerDataArray");
+
+        Debug.Log("Game State Received : " +  sfsArr.GetDump());
+
+        for (int i = 0; i < sfsArr.Size(); i++)
+        {
+            ISFSObject obj = sfsArr.GetSFSObject(i);
+
+            if(obj != null)
+            {
+                string playerName = obj.GetUtfString(GameConstants.USER_NAME);
+                bool hasBet = obj.GetBool("hasBet");
+                bool hasCard = obj.GetBool("hasCard");
+                bool isBanker = obj.GetBool("isBanker");
+
+                RoomUserItem item = GetUserItemByName(playerName);
+                if (item != null)
+                {
+                    if (isBanker)
+                    {
+                        foreach (RoomUserItem userItem in _userItems)
+                        {
+                            if (item.Name == playerName)
+                            {
+                                item.IsBanker();
+                                //item.SetAmount(totalAmount);
+                                _curBankName = item.Name;
+                            }
+                            else
+                            {
+                                item.IsPlayer();
+                            }
+                        }
+                    }
+
+                    if (hasBet)
+                    {
+                        int betAmount = obj.GetInt(GameConstants.BET_AMOUNT);
+
+                        item.SetBetAmount(betAmount);
+                        item.OnBet(betAmount);
+                        item.EndBet();
+
+                        if (name == GlobalManager.Instance.GetSfsClient().MySelf.Name)
+                        {
+                            _betAmountCtrlr.gameObject.SetActive(false);
+                        }
+                    }
+
+                    if(hasCard)
+                    {
+                        string[] handCards = obj.GetUtfStringArray(GameConstants.PLAYER_CARD_ARRAY);
+
+                        int totalValue = obj.GetInt(GameConstants.TOTAL_VALUE);
+                        int modifier = obj.GetInt(GameConstants.MODIFIER);
+                        bool isDo = obj.GetBool(GameConstants.IS_DO);
+
+                        if(item.Name == Managers.NetworkManager.SmartFox.MySelf.Name || isDo)
+                        {
+                            item.SetTotalValue(totalValue);
+                            item.SetModifier(modifier);
+                            item.UpdateAllCards(handCards);
+
+                            if (isDo)
+                            {
+                                item.PlayerDo(totalValue);
+                            }
+                        }
+                        else
+                        {
+                            foreach (string handCard in handCards)
+                            {
+                                item.AddBlankCards();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        _bankDisplay.DisplayNumber(bankAmount.ToString());
     }
 
     IEnumerator WinLoseCoinAnim()

@@ -15,8 +15,10 @@ public class CardViewPanel : MonoBehaviour
     [SerializeField] private DraggableCard _draggableCard;
     [SerializeField] private Slider _slider;
     [SerializeField] private Button _catchBtn;
+    [SerializeField] private Button _standBtn;
+    [SerializeField] private Button _drawBtn;
 
-    private float _duration = 30f; // Duration in seconds
+    private float _duration = 20f; // Duration in seconds
     private float _elapsedTime = 0f;
 
     private RoomUserItem _myItem;
@@ -41,6 +43,9 @@ public class CardViewPanel : MonoBehaviour
         {
             ClosePanel();
         }
+
+        _standBtn.interactable = _total > 3;
+        _catchBtn.interactable = _total > 3;
 
         // Calculate the positional difference between the two cards
         Vector3 difference = _cards[1].transform.position - _cards[0].transform.position;
@@ -73,9 +78,14 @@ public class CardViewPanel : MonoBehaviour
             // Lerp slider value from 1 to 0 over the specified duration
             _slider.value = Mathf.Lerp(1f, 0f, _elapsedTime / _duration);
         }
+
+        if((_elapsedTime > _duration / 2) && !_hasThirdCard && _total <= 3)
+        {
+            _drawBtn.onClick?.Invoke();
+        }
     }
 
-    public void SetTwoCardsAndShow(string firstCard, string secCard, RoomUserItem myItem, bool isDo = false, int total = 0)
+    public void SetTwoCardsAndShow(string firstCard, string secCard, RoomUserItem myItem, bool isDo = false, int total = 0, float duration = 12f)
     {
         if (_root.activeSelf)
         {
@@ -85,8 +95,11 @@ public class CardViewPanel : MonoBehaviour
         _isDo = isDo;
         _total = total;
 
+        _standBtn.interactable = total > 3;
+
         _cards[0].SetCard(firstCard);
         _cards[1].SetCard(secCard);
+        _duration = duration;
         _elapsedTime = 0;
         _slider.value = 1;
         _root.SetActive(true);
@@ -111,7 +124,7 @@ public class CardViewPanel : MonoBehaviour
 
     public void ToggleActionPanel(bool isOn)
     {
-        if (_myItem.IsBank && !_catchBtn.gameObject.activeSelf && !_actionBtnsRoot.activeSelf)
+        if (!_isDo && _myItem.IsBank && !_catchBtn.gameObject.activeSelf && !_actionBtnsRoot.activeSelf)
         {
             ToggleCatchBtn(true);
         }
@@ -140,6 +153,20 @@ public class CardViewPanel : MonoBehaviour
         yield return new WaitForSeconds(10f);
 
         _catchBtn.gameObject.SetActive(false);
+    }
+
+    public void HidePanelForSecs(float sec)
+    {
+        StartCoroutine(HideForSecs(sec));
+    }
+
+    IEnumerator HideForSecs(float sec)
+    {
+        _root.SetActive(false);
+
+        yield return new WaitForSeconds(sec);
+
+        _root.SetActive(true);
     }
 
     public void ClosePanel()

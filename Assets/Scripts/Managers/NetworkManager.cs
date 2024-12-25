@@ -44,6 +44,7 @@ public class NetworkManager : MonoBehaviour
     public event Action<ISFSObject> PlayerBet;
     public event Action<ISFSObject> PleaseWait;
     public event Action<ISFSObject> MatchEnd;
+    public event Action<ISFSObject> GameState;
 
     //server events
     public event Action<User> UserEnterRoom;
@@ -58,7 +59,7 @@ public class NetworkManager : MonoBehaviour
     {
 
 
-        SubscribeDelegates();
+        //SubscribeDelegates();
     }
 
     // Update is called once per frame
@@ -80,7 +81,7 @@ public class NetworkManager : MonoBehaviour
         //_smartfox.AddEventListener(SFSEvent.PING_PONG, OnPingPong);
     }
 
-    private void UnsubscribeDelegates()
+    public void UnsubscribeDelegates()
     {
         _smartfox.RemoveEventListener(SFSEvent.EXTENSION_RESPONSE, OnExtensionResponse);
         _smartfox.RemoveEventListener(SFSEvent.USER_EXIT_ROOM, OnUserLeaveRoom);
@@ -98,7 +99,7 @@ public class NetworkManager : MonoBehaviour
     {
         UnsubscribeDelegates();
         _smartfox.Send(new LeaveRoomRequest());
-        SceneManager.LoadScene("Login");
+        //SceneManager.LoadScene("Login");
     }
 
     private void OnUserJoinRoom(BaseEvent evt)
@@ -221,7 +222,11 @@ public class NetworkManager : MonoBehaviour
                 break;
             
             case GameConstants.MATCH_END:
-                MatchEnd(sfsobject);
+                OnMatchEnd(sfsobject);
+                break;
+            
+            case "gameState":
+                OnGameState(sfsobject);
                 break;
         }
     }
@@ -329,5 +334,10 @@ public class NetworkManager : MonoBehaviour
     public void OnMatchEnd(ISFSObject sfsObj)
     {
         MatchEnd?.Invoke(sfsObj);
+    }
+
+    public void OnGameState(ISFSObject sfsObj)
+    {
+        GameState?.Invoke(sfsObj);
     }
 }

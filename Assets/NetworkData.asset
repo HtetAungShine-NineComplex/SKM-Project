@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5f34ba5800de042ae638d74fce81ae, type: 3}
   m_Name: NetworkData
   m_EditorClassIdentifier: 
-  URI: https://api.shweboshan.com/api/
+  host: gameserver.shweboshan.com
+  tcpPort: 9933
+  UdpPort: 9933
+  webSocketPort: 8443
+  zone: SKMProject
+  debug: 1
+  URI: https://api.codenextechnology.com/api/
   login: auth/login
   register: auth/register
   userInfo: auth/user-info

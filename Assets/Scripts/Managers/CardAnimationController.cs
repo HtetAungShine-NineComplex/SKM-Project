@@ -74,7 +74,7 @@ public class CardAnimationController : MonoBehaviour
         {
             foreach (PlayerPos pos in playerPositions)
             {
-                if (pos.currentUser == null) continue;
+                if (pos.currentUser == null || pos.currentUser.IsWaiting) continue;
                 _girlAnimator.SetTrigger("Play");
                 CardAnim card = Instantiate(_cardAnim, _cardRoot);
                 card.SetPositions(_startPos.anchoredPosition, pos);
