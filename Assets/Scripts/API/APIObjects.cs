@@ -48,7 +48,7 @@ namespace Shan.API
         public int user_id;
         public string phone_number;
         public string name;
-        public string balance;
+        public float balance;
     }
 
     [Serializable]

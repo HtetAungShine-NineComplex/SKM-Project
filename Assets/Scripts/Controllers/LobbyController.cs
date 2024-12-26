@@ -22,6 +22,7 @@ public class LobbyController : BaseSceneController
     // UI elements
     //----------------------------------------------------------
 	public WarningPanel warningPanel;
+	public GameObject noMoneyPanel;
 
 	public Transform gameListContent;
 	public GameListItem gameListItemPrefab;
@@ -98,6 +99,11 @@ public class LobbyController : BaseSceneController
 	 */
 	public void JoinRoomByID(int roomId)
 	{
+		if(Managers.DataLoader.CurrentAmount <= 0)
+		{
+			noMoneyPanel.SetActive(true);
+			return;
+		}
 		// Join game Room as player
 		sfs.Send(new Sfs2X.Requests.JoinRoomRequest(roomId));
 	}

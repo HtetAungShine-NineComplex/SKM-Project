@@ -43,6 +43,7 @@ public class UIMainMenu : UiBase
     [SerializeField] private GameObject _UILifeTimeHistory;
 
     [SerializeField] private GameObject _noTokenPanel;
+    [SerializeField] private GameObject _noMoneyPanel;
 
     private SmartFox sfs;
 
@@ -101,8 +102,9 @@ public class UIMainMenu : UiBase
             {
                 _usernameTxt.text = r.data.name;
                 Managers.DataLoader.CurrentName = r.data.name;
+                Managers.DataLoader.CurrentAmount = r.data.balance;
                 Debug.Log("username: " + r.data.name);
-                _balanceTxt.text = r.data.balance;
+                _balanceTxt.text = r.data.balance.ToString();
 #if UNITY_WEBGL
 				Connect();
 #endif
@@ -326,6 +328,16 @@ public class UIMainMenu : UiBase
     private void ToLobby()
     {
         Managers.UIManager.ShowUI(UIs.UIRoom);
+    }
+
+    public void ReqJoinRoom()
+    {
+        if(Managers.DataLoader.CurrentAmount <= 0)
+        {
+            _noMoneyPanel.SetActive(true);
+            return;
+        }
+        _menuController.RequestJoinRoom();
     }
 
 }
