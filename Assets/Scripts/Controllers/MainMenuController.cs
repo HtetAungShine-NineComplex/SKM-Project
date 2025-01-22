@@ -18,6 +18,13 @@ public class MainMenuController : BaseSceneController
 
     public void RequestJoinRoom()
     {
+        Debug.Log("Sfs is connected : " + sfs.IsConnected);
+        if (!sfs.IsConnected)
+        {
+            
+            return;
+        }
+
         SFSObject data = new SFSObject();
         data.PutInt(GameConstants.REQUEST_ROOM_AMOUNT, 1000);
         GlobalManager.Instance.GetSfsClient().Send(new ExtensionRequest("joinRoom", data));

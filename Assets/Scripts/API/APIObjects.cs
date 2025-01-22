@@ -78,5 +78,66 @@ namespace Shan.API
         public string message;
     }
 
+    [Serializable]
+    public class BetInfo
+    {
+        public int bet_amount ;
+    }
+
+    [Serializable]
+    public class GameHistoryData
+    {
+        public int id ;
+        public string match_id ;
+        public int user_id ;
+        public GameInfo game_info ;
+        public DateTime created_at ;
+        public DateTime updated_at ;
+    }
+
+    [Serializable]
+    public class GameInfo
+    {
+        public string match_id ;
+        public DateTime timestamp ;
+        public MatchResult match_result ;
+        public List<Participant> participants ;
+        public int total_bet_pool ;
+    }
+
+    [Serializable]
+    public class MatchResult
+    {
+        public int total_amount_won ;
+        public List<int> winning_participant_ids ;
+    }
+
+    [Serializable]
+    public class Participant
+    {
+        public Result result ;
+        public int user_id ;
+        public BetInfo bet_info ;
+        public string username ;
+        public string user_type ;
+        public List<string> card_numbers ;
+    }
+
+    [Serializable]
+    public class Result
+    {
+        public string win_loss ;
+        public int amount_won_lost ;
+    }
+
+    [Serializable]
+    public class GameHistoryResponse
+    {
+        public string status ;
+        public List<GameHistoryData> data ;
+        public string message ;
+    }
+
+
 
 }

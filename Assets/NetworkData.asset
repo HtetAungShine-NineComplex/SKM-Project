@@ -18,8 +18,10 @@ MonoBehaviour:
   webSocketPort: 8443
   zone: SKMProject
   debug: 1
-  URI: https://api.codenextechnology.com/api/
+  URI: https://api.shweboshan.net/api/
   login: auth/login
   register: auth/register
   userInfo: auth/user-info
   roomconfig: room-configs
+  gameHistories: game-histories
+  testToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNiwicGhvbmVfbnVtYmVyIjoiMDkxMTExMTExMTEiLCJuYW1lIjoiVGh6IiwiYmFsYW5jZSI6IjgyMTcwNi4wMCIsImlhdCI6MTczNzIwNjkyNywiZXhwIjoxNzM3MjkzMzI3fQ.WNmgei4RHqVZUNR44Pd0DdAXicvzX_G6gkJoTUI_bOA

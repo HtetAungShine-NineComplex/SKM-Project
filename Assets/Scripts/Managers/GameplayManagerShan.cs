@@ -949,6 +949,7 @@ public class GameplayManagerShan : MonoBehaviour
     {
         bool bankChanging = sfsObj.GetBool(GameConstants.BANK_CHANGING);
         bool isBankWin = sfsObj.GetBool(GameConstants.IS_BANK_WIN);
+        int bankAmount = sfsObj.GetInt(GameConstants.BANK_AMOUNT);
 
         if (bankChanging)
         {
@@ -967,7 +968,8 @@ public class GameplayManagerShan : MonoBehaviour
 
         Debug.Log("match endddddddddd");
         CardViewPanel.Instance.ClosePanel();
-        StartCoroutine(WinLoseCoinAnim());
+        
+        StartCoroutine(WinLoseCoinAnim(bankAmount));
     }
 
     private void OnGameState(ISFSObject sfsObj)
@@ -1058,7 +1060,7 @@ public class GameplayManagerShan : MonoBehaviour
         _bankDisplay.DisplayNumber(bankAmount.ToString());
     }
 
-    IEnumerator WinLoseCoinAnim()
+    IEnumerator WinLoseCoinAnim(int bankAmt)
     {
         yield return new WaitForSeconds(0.5f);
 
@@ -1084,6 +1086,9 @@ public class GameplayManagerShan : MonoBehaviour
                 yield return new WaitForSeconds(1f);
             }
         }
+
+        _bankCoinController.ResetTable();
+        _bankCoinController.BankAmountInTable(bankAmt);
 
         if (_leavingToMenu)
         {

@@ -82,6 +82,7 @@ public class CardViewPanel : MonoBehaviour
         if((_elapsedTime > _duration / 2) && !_hasThirdCard && _total <= 3)
         {
             _drawBtn.onClick?.Invoke();
+            ToggleActionPanel(false);
         }
     }
 

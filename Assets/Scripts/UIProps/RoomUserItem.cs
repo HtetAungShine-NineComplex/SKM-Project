@@ -387,7 +387,12 @@ public class RoomUserItem : MonoBehaviour
 
     public void AddCard(string cardName)
     {
-        if(_playerCurrentCards.Count == 0)
+        if (_playerCurrentCards.Count >= 3)
+        {
+            return;
+        }
+
+        if (_playerCurrentCards.Count == 0)
         {
             CardDemo addedCard = Instantiate(_cardPrefab, _playerCardsRoot);
             addedCard.SetCard(cardName);

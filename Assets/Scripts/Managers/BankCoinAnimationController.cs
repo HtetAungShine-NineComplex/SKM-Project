@@ -68,18 +68,17 @@ public class BankCoinAnimationController : MonoBehaviour
 
     public void TakeCoinsFromTable(int coinAmount, Transform targetPlayerPos)
     {
-        StartCoroutine(TakeCoins(coinAmount, targetPlayerPos));
+        /*StartCoroutine(TakeCoins(coinAmount, targetPlayerPos));*/
+
+        GenerateCoinsIntoPlayer(coinAmount, targetPlayerPos);
     }
     
-    IEnumerator TakeCoins(int coinAmount, Transform targetPlayerPos)
+    /*IEnumerator TakeCoins(int coinAmount, Transform targetPlayerPos)
     {
-        if (AreAllCoinsEmpty())
+        if(coinAmount == 0)
         {
-            Debug.Log("all empty coins");
             yield break;
         }
-
-        
 
         Debug.Log("Taking coins");
 
@@ -108,204 +107,7 @@ public class BankCoinAnimationController : MonoBehaviour
 
         int num100Coins = coinAmount / 100;
 
-        if (coinAmount > 0)
-        {
-            num100Coins = 1;
-        }
-
-        // Adjust num50kCoins based on the existing number of smaller coins
-        if (num50kCoins > 0 && _coinLists[10000].Count > 0)
-        {
-            int available50kFrom10ks = _coinLists[10000].Count / 5; // Each 50k coin requires 5 x 10k coins
-            int coinsToConvert = Math.Min(num50kCoins, available50kFrom10ks);
-
-            num50kCoins -= coinsToConvert; // Reduce the number of 50k coins needed
-            num10kCoins += coinsToConvert * 5; // Increase the number of 10k coins needed
-        }
-
-        // Adjust num10kCoins based on the existing number of smaller coins
-        if (num10kCoins > 0 && _coinLists[5000].Count > 0)
-        {
-            int available10kFrom5ks = _coinLists[5000].Count / 2; // Each 10k coin requires 2 x 5k coins
-            int coinsToConvert = Math.Min(num10kCoins, available10kFrom5ks);
-
-            num10kCoins -= coinsToConvert; // Reduce the number of 10k coins needed
-            num5kCoins += coinsToConvert * 2; // Increase the number of 5k coins needed
-        }
-
-        // Adjust num5kCoins based on the existing number of smaller coins
-        if (num5kCoins > 0 && _coinLists[1000].Count > 0)
-        {
-            int available5kFrom1ks = _coinLists[1000].Count * 2; // Each 5k coin can be made from 2 x 1k coins
-            int coinsToConvert = Math.Min(num5kCoins / 2, _coinLists[1000].Count); // Max 1k coins we can use
-
-            num5kCoins -= coinsToConvert * 2; // Reduce the number of 5k coins needed
-            num1kCoins += coinsToConvert; // Increase the number of 1k coins needed
-        }
-
-        // Adjust num1kCoins based on the existing number of smaller coins
-        if (num1kCoins > 0 && _coinLists[500].Count > 0)
-        {
-            int available1kFrom500s = _coinLists[500].Count * 2; // Each 1k coin can be made from 2 x 500 coins
-            int coinsToConvert = Math.Min(num1kCoins / 2, _coinLists[500].Count); // Max 500 coins we can use
-
-            num1kCoins -= coinsToConvert * 2; // Reduce the number of 1k coins needed
-            num500Coins += coinsToConvert; // Increase the number of 500 coins needed
-        }
-
-        // Adjust num500Coins based on the existing number of smaller coins
-        if (num500Coins > 0 && _coinLists[100].Count > 0)
-        {
-            int available500From100s = _coinLists[100].Count / 5; // Each 500 coin requires 5 x 100 coins
-            int coinsToConvert = Math.Min(num500Coins, available500From100s); // Max 500 coins we can use
-
-            num500Coins -= coinsToConvert; // Reduce the number of 500 coins needed
-            num100Coins += coinsToConvert * 5; // Increase the number of 100 coins needed
-        }
-
-        // Now you can proceed with your existing logic for splitting coins based on the adjusted counts.
-        // (You can add your yield return logic or any other operations here)
-
-
-        // Handling for 50k coins
-        if (num50kCoins > 0 && _coinLists[50000].Count < num50kCoins)
-        {
-            while (_coinLists[50000].Count < num50kCoins)
-            {
-                CoinAnim old = GetAvailableBiggerCoin(50000);
-
-                if (old == null)
-                {
-                    // Increase the next smaller coin type (10k) if there aren't enough 50k coins
-                    num10kCoins += (num50kCoins - _coinLists[50000].Count) * 5;
-                    num50kCoins = _coinLists[50000].Count;
-                    break;
-                }
-                else
-                {
-                    yield return new WaitForSeconds(0.3f);
-                }
-
-                SplitCoin(old, 50000);
-            }
-            
-        }
-
-        // Handling for 10k coins
-        if (num10kCoins > 0 && _coinLists[10000].Count < num10kCoins)
-        {
-            while (_coinLists[10000].Count < num10kCoins)
-            {
-                CoinAnim old = GetAvailableBiggerCoin(10000);
-
-                if (old == null)
-                {
-                    num5kCoins += (num10kCoins - _coinLists[10000].Count) * 2;
-                    num10kCoins = _coinLists[10000].Count;
-                    break;
-                }
-                else
-                {
-                    yield return new WaitForSeconds(0.3f);
-                }
-
-                SplitCoin(old, 10000);
-            }
-        }
-
-        // Handling for 5k coins
-        if (num5kCoins > 0 && _coinLists[5000].Count < num5kCoins)
-        {
-            while (_coinLists[5000].Count < num5kCoins)
-            {
-                CoinAnim old = GetAvailableBiggerCoin(5000);
-
-                if (old == null)
-                {
-                    num1kCoins += (num5kCoins - _coinLists[5000].Count) * 5;
-                    num5kCoins = _coinLists[5000].Count;
-                    break;
-                }
-                else
-                {
-                    yield return new WaitForSeconds(0.3f);
-                }
-
-                SplitCoin(old, 5000);
-            }
-
-        }
-
-        // Handling for 1k coins
-        if (num1kCoins > 0 && _coinLists[1000].Count < num1kCoins)
-        {
-            while (_coinLists[1000].Count < num1kCoins)
-            {
-                CoinAnim old = GetAvailableBiggerCoin(1000);
-
-                if (old == null)
-                {
-                    num500Coins += (num1kCoins - _coinLists[1000].Count) * 2;
-                    num1kCoins = _coinLists[1000].Count;
-                    break;
-                }
-                else
-                {
-                    yield return new WaitForSeconds(0.3f);
-                }
-
-                SplitCoin(old, 1000);
-            }
-
-        }
-
-        // Handling for 500 coins
-        if (num500Coins > 0 && _coinLists[500].Count < num500Coins)
-        {
-            while (_coinLists[500].Count < num500Coins)
-            {
-                CoinAnim old = GetAvailableBiggerCoin(500);
-
-                if (old == null)
-                {
-                    num100Coins += (num500Coins - _coinLists[500].Count) * 5;
-                    num500Coins = _coinLists[500].Count;
-                    break;
-                }
-                else
-                {
-                    yield return new WaitForSeconds(0.3f);
-                }
-
-                SplitCoin(old, 500);
-            }
-
-        }
-
-        // Handling for 100 coins
-        if (num100Coins > 0 && _coinLists[100].Count < num100Coins)
-        {
-            Debug.Log("Needing 100 coins");
-
-            while (_coinLists[100].Count < num100Coins)
-            {
-                CoinAnim old = GetAvailableBiggerCoin(100);
-
-                if (old == null)
-                {
-                    Debug.LogWarning("Not enough coins of 100 or larger to satisfy the requirement.");
-                    break;
-                }
-                else
-                {
-                    yield return new WaitForSeconds(0.3f);
-                }
-
-                SplitCoin(old, 100);
-            }
-        }
-
-
+       
         yield return new WaitForSeconds(0.3f);
 
         
@@ -320,7 +122,7 @@ public class BankCoinAnimationController : MonoBehaviour
         SpawnCoinsFromTable(num500Coins, 500, targetPlayerPos);
         SpawnCoinsFromTable(num100Coins, 100, targetPlayerPos);
 
-    }
+    }*/
 
     private bool AreAllCoinsEmpty()
     {
@@ -429,7 +231,7 @@ public class BankCoinAnimationController : MonoBehaviour
         return null;
     }
 
-    private void SpawnCoinsFromTable(int count, int coinValue, Transform target)
+    /*private void SpawnCoinsFromTable(int count, int coinValue, Transform target)
     {
         if (count == 0 || _coinLists.Count == 0 || !_coinLists.ContainsKey(coinValue) || AreAllCoinsEmpty()) return;
 
@@ -442,13 +244,48 @@ public class BankCoinAnimationController : MonoBehaviour
         {
 
             // Instantiate the coin at the spawn position
-            //CoinAnim coin = Instantiate(_coinPrefab, spawnPosition, Quaternion.identity, this.transform);
-            CoinAnim coin = _coinLists[coinValue][0];
-            _coinLists[coinValue].RemoveAt(0);
+            CoinAnim coin = Instantiate(_coinPrefab, _coinTransform.position, Quaternion.identity, this.transform);
+            //CoinAnim coin = _coinLists[coinValue][0];
+            //_coinLists[coinValue].RemoveAt(0);
 
             coin.SetPositions(coin.transform.position, target.position, true);
 
         }
+    }*/
+
+    public void GenerateCoinsIntoPlayer(int coinAmount, Transform end)
+    {
+        int num50kCoins = coinAmount / 50000;
+        coinAmount %= 50000;
+
+        int num10kCoins = coinAmount / 10000;
+        coinAmount %= 10000;
+
+        int num5kCoins = coinAmount / 5000;
+        coinAmount %= 5000;
+
+        int num1kCoins = coinAmount / 1000;
+        coinAmount %= 1000;
+
+        int num500Coins = coinAmount / 500;
+        coinAmount %= 500;
+
+        int num100Coins = coinAmount / 100;
+
+        if (coinAmount > 0 && coinAmount < 100)
+        {
+            num100Coins = 1;
+        }
+
+        Debug.Log($"Coins: {coinAmount}, 50k: {num50kCoins}, 10k: {num10kCoins}, 5k: {num5kCoins}, 1k: {num1kCoins}, 500: {num500Coins}, 100: {num100Coins}");
+
+        // Spawn the coins in your game world or UI
+        SpawnCoinsToPlayer(num50kCoins, 50000, end);
+        SpawnCoinsToPlayer(num10kCoins, 10000, end);
+        SpawnCoinsToPlayer(num5kCoins, 5000, end);
+        SpawnCoinsToPlayer(num1kCoins, 1000, end);
+        SpawnCoinsToPlayer(num500Coins, 500, end);
+        SpawnCoinsToPlayer(num100Coins, 100, end);
     }
 
     public void GenerateCoinsIntoTable(int coinAmount, Transform start)
@@ -486,6 +323,41 @@ public class BankCoinAnimationController : MonoBehaviour
         SpawnCoins(num100Coins, 100, start);
     }
 
+    public void BankAmountInTable(int coinAmount)
+    {
+        int num50kCoins = coinAmount / 50000;
+        coinAmount %= 50000;
+
+        int num10kCoins = coinAmount / 10000;
+        coinAmount %= 10000;
+
+        int num5kCoins = coinAmount / 5000;
+        coinAmount %= 5000;
+
+        int num1kCoins = coinAmount / 1000;
+        coinAmount %= 1000;
+
+        int num500Coins = coinAmount / 500;
+        coinAmount %= 500;
+
+        int num100Coins = coinAmount / 100;
+
+        if (coinAmount > 0 && coinAmount < 100)
+        {
+            num100Coins = 1;
+        }
+
+        Debug.Log($"Coins: {coinAmount}, 50k: {num50kCoins}, 10k: {num10kCoins}, 5k: {num5kCoins}, 1k: {num1kCoins}, 500: {num500Coins}, 100: {num100Coins}");
+
+        // Spawn the coins in your game world or UI
+        SpawnCoins(num50kCoins, 50000, _coinTransform);
+        SpawnCoins(num10kCoins, 10000, _coinTransform);
+        SpawnCoins(num5kCoins, 5000, _coinTransform);
+        SpawnCoins(num1kCoins, 1000, _coinTransform);
+        SpawnCoins(num500Coins, 500, _coinTransform);
+        SpawnCoins(num100Coins, 100, _coinTransform);
+    }
+
     private void SpawnCoins(int count, int coinValue, Transform start)
     {
         if (count == 0) return;
@@ -512,6 +384,36 @@ public class BankCoinAnimationController : MonoBehaviour
             if (_coinLists.ContainsKey(coinValue))
             {
                 _coinLists[coinValue].Add(coin);
+            }
+        }
+    }
+
+    private void SpawnCoinsToPlayer(int count, int coinValue, Transform end)
+    {
+        if (count == 0) return;
+
+        for (int i = 0; i < count; i++)
+        {
+            // Random offset for position
+            float xOffset = UnityEngine.Random.Range(-100f, 100f);
+            float yOffset = UnityEngine.Random.Range(-80f, 80f);
+            Vector3 spawnPosition = new Vector3(i * 2.0f + xOffset, yOffset, 0);
+
+            // Instantiate the coin at the spawn position
+            CoinAnim coin = Instantiate(_coinPrefab, _coinTransform.position + new Vector3(xOffset, yOffset, 0), Quaternion.identity, _coinTransform);
+
+            // Set up the coin's properties
+            CoinData data = _data.GetCoinDataByAmount(coinValue);
+            Sprite sprite = data.sprite;
+            coin.SetSprite(sprite);
+            coin.SetPositions(_coinTransform.position + new Vector3(xOffset, yOffset, 0), end.position, true, 3);
+            coin.SetValueString(ConvertToK(data.amount));
+            coin.value = data.amount;
+
+            // Add the spawned coin to the respective list in the dictionary
+            if (_coinLists.ContainsKey(coinValue))
+            {
+                _coinLists[coinValue].Remove(coin);
             }
         }
     }

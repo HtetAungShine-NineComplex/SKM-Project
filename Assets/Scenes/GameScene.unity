@@ -918,6 +918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentName: 
+  CurrentAmount: 0
   _networkData: {fileID: 11400000, guid: c1bb785e0e72b2648a7c09f08c3c8503, type: 2}
 --- !u!114 &1449751465 stripped
 MonoBehaviour:

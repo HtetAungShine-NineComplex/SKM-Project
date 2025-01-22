@@ -61,7 +61,7 @@ public class UIMainMenu : UiBase
 
         //Connect();
         GetUserInfo();
-        
+        //Debug.Log("Sfs is connected : " + sfs.IsConnected);
         Managers.AudioManager.PlayBGMusic();
         _lobbyBtn.onClick.AddListener(ToLobby);
         _avatorSelectionBtn.onClick.AddListener(OpenAvatorSelection);//srat
@@ -77,13 +77,22 @@ public class UIMainMenu : UiBase
         _CloseHistoryBtn.onClick.AddListener(CloseLifeTimeHistory);
         UpdateAvator();
 
-        _lobbyBtn.interactable = false;
-        _playBtn.interactable = false;
+        _lobbyBtn.interactable = true;
+        _playBtn.interactable = true;
+
+        if(sfs != null && sfs.IsConnected)
+        {
+            _menuController.AddSmartFoxListeners();
+        }
     }
 
     public void GetUserInfo()
     {
         string uri = Managers.DataLoader.NetworkData.URI + Managers.DataLoader.NetworkData.userInfo;
+
+#if UNITY_WEBGL && UNITY_EDITOR
+        PlayerPrefs.SetString("token", Managers.DataLoader.NetworkData.testToken);
+#endif
 
         RequestHelper currentRequest = new RequestHelper
         {
@@ -115,6 +124,14 @@ public class UIMainMenu : UiBase
 
     public void Connect()
     {
+        if (GlobalManager.Instance.GetSfsClient() != null && GlobalManager.Instance.GetSfsClient().IsConnected)
+        {
+            _lobbyBtn.interactable = true;
+            _playBtn.interactable = true;
+            return;
+        }
+           
+
         // Set connection parameters
         ConfigData cfg = new ConfigData();
         cfg.Host = Managers.DataLoader.NetworkData.host;
@@ -142,9 +159,9 @@ public class UIMainMenu : UiBase
         sfs.Logger.EnableConsoleTrace = Managers.DataLoader.NetworkData.debug;
 
         AddSmartFoxListeners();
-        _menuController.AddSmartFoxListeners();
+        
         Managers.NetworkManager.SubscribeDelegates();
-
+        _menuController.AddSmartFoxListeners();
         sfs.Connect(cfg);
     }
 

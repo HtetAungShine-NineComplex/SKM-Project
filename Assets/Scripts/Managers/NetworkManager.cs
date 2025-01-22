@@ -92,7 +92,7 @@ public class NetworkManager : MonoBehaviour
     private void OnConnectionLost(BaseEvent evt)
     {
         UnsubscribeDelegates();
-        SceneManager.LoadScene("Login");
+        //SceneManager.LoadScene("Login");
     }
 
     public void OnExitGame()
