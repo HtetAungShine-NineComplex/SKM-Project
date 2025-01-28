@@ -72,20 +72,6 @@ public class LobbyController : BaseSceneController
 	/**
 	 * On Start game button click, create and join a new game Room.
 	 */
-	public void OnCreateRoomButtonClick()
-	{
-		// Configure Room
-		Debug.Log(sfs.MySelf.Name + " is creating room");
-		RoomSettings settings = new RoomSettings(sfs.MySelf.Name + "'s Room");
-		settings.GroupId = GameConstants.GAME_ROOMS_GROUP_NAME;
-		settings.IsGame = true;
-        settings.MaxUsers = GameConstants.GAME_ROOMS_MAX_USER;
-        settings.MaxSpectators = 0;
-        //settings.Extension = new RoomExtension(GameConstants.EXTENSION_ID, GameConstants.EXTENSION_CLASS);
-        settings.Extension = new RoomExtension(GameConstants.SHAN_EXTENSION_ID, GameConstants.SHAN_EXTENSION_CLASS);
-        // Request Room creation to server
-        sfs.Send(new CreateRoomRequest(settings, true, sfs.LastJoinedRoom));
-    }
 
 	public void RequestJoinRoom()
 	{

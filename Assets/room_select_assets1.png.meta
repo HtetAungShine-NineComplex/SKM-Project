@@ -1,0 +1,1804 @@
+fileFormatVersion: 2
+guid: c31dcb7824cdde54282941e7558acc33
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7397639638749413573
+    second: room_select_assets1_0
+  - first:
+      213: 2066396785359616631
+    second: room_select_assets1_1
+  - first:
+      213: -924938859792767345
+    second: room_select_assets1_2
+  - first:
+      213: 4977822320401819976
+    second: room_select_assets1_3
+  - first:
+      213: 6315786071702559577
+    second: room_select_assets1_4
+  - first:
+      213: -2248657115213088590
+    second: room_select_assets1_5
+  - first:
+      213: 672853932532355159
+    second: room_select_assets1_6
+  - first:
+      213: 6558863199221300658
+    second: room_select_assets1_7
+  - first:
+      213: -4099002574853664798
+    second: room_select_assets1_8
+  - first:
+      213: 4778398443601615732
+    second: room_select_assets1_9
+  - first:
+      213: 3824896166925249882
+    second: room_select_assets1_10
+  - first:
+      213: 8468167171256860934
+    second: room_select_assets1_11
+  - first:
+      213: 2450721739040358178
+    second: room_select_assets1_12
+  - first:
+      213: 5662512429823048722
+    second: room_select_assets1_13
+  - first:
+      213: 5589707518720896858
+    second: room_select_assets1_14
+  - first:
+      213: -7414424207675756431
+    second: room_select_assets1_15
+  - first:
+      213: 8894946398858843055
+    second: room_select_assets1_16
+  - first:
+      213: 4530266767984560693
+    second: room_select_assets1_17
+  - first:
+      213: -2686336892309345073
+    second: room_select_assets1_18
+  - first:
+      213: -624774403480557171
+    second: room_select_assets1_19
+  - first:
+      213: 4528442221661408988
+    second: room_select_assets1_20
+  - first:
+      213: -1958625584420773312
+    second: room_select_assets1_21
+  - first:
+      213: -4798207766513830180
+    second: room_select_assets1_22
+  - first:
+      213: -3250866318851889762
+    second: room_select_assets1_23
+  - first:
+      213: -5932604210762082805
+    second: room_select_assets1_24
+  - first:
+      213: -6645079544907641791
+    second: room_select_assets1_25
+  - first:
+      213: -8550973188346320484
+    second: room_select_assets1_26
+  - first:
+      213: 1572146014908187445
+    second: room_select_assets1_27
+  - first:
+      213: 2907560546826989115
+    second: room_select_assets1_28
+  - first:
+      213: -1662245931255508195
+    second: room_select_assets1_29
+  - first:
+      213: -3786087463348018153
+    second: room_select_assets1_30
+  - first:
+      213: 7381930901079211857
+    second: room_select_assets1_31
+  - first:
+      213: -883023030741756144
+    second: room_select_assets1_32
+  - first:
+      213: -4905245317995019115
+    second: room_select_assets1_33
+  - first:
+      213: 4330531593856256799
+    second: room_select_assets1_34
+  - first:
+      213: -4432093683425971349
+    second: room_select_assets1_35
+  - first:
+      213: 2341595619282877046
+    second: room_select_assets1_36
+  - first:
+      213: 1416671628170330584
+    second: room_select_assets1_37
+  - first:
+      213: -7309700745983693047
+    second: room_select_assets1_38
+  - first:
+      213: -4416596902864391657
+    second: room_select_assets1_39
+  - first:
+      213: -3873004263857888952
+    second: room_select_assets1_40
+  - first:
+      213: -2711481230711955746
+    second: room_select_assets1_41
+  - first:
+      213: 8857261237739245204
+    second: room_select_assets1_42
+  - first:
+      213: -6942405955059337529
+    second: room_select_assets1_43
+  - first:
+      213: 7850486675374774668
+    second: room_select_assets1_44
+  - first:
+      213: 6454185753323960877
+    second: room_select_assets1_45
+  - first:
+      213: -4291079872944047870
+    second: room_select_assets1_46
+  - first:
+      213: -999171966128264615
+    second: room_select_assets1_47
+  - first:
+      213: -5357208328932307939
+    second: room_select_assets1_48
+  - first:
+      213: -6637291286134112209
+    second: room_select_assets1_49
+  - first:
+      213: 7075925942717974698
+    second: room_select_assets1_50
+  - first:
+      213: 1676981640100843470
+    second: room_select_assets1_51
+  - first:
+      213: 8154427815681178299
+    second: room_select_assets1_52
+  - first:
+      213: -2738318514196050052
+    second: room_select_assets1_53
+  - first:
+      213: -8397041538454424066
+    second: room_select_assets1_54
+  - first:
+      213: 8032856880301782426
+    second: room_select_assets1_55
+  - first:
+      213: 2984055714141447039
+    second: room_select_assets1_56
+  - first:
+      213: -2388444711724940735
+    second: room_select_assets1_57
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: room_select_assets1_0
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 874
+        width: 123
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c0020c9e02b9a660800000000000000
+      internalID: 7397639638749413573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_1
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 833
+        width: 324
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77a7e549de05dac10800000000000000
+      internalID: 2066396785359616631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_2
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 158
+        width: 1396
+        height: 849
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f86e81fe105f923f0800000000000000
+      internalID: -924938859792767345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_3
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 622
+        width: 354
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 849af8ad607c41540800000000000000
+      internalID: 4977822320401819976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_4
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 664
+        width: 30
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95bd03148fd26a750800000000000000
+      internalID: 6315786071702559577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_5
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 656
+        width: 6
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b8b112844a2bc0e0800000000000000
+      internalID: -2248657115213088590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_6
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 658
+        width: 10
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 750d0523615765900800000000000000
+      internalID: 672853932532355159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_7
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 647
+        width: 21
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bdb7ff4453c50b50800000000000000
+      internalID: 6558863199221300658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_8
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 673
+        width: 55
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ef8f6820ea6d17c0800000000000000
+      internalID: -4099002574853664798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_9
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 555
+        width: 126
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47b57224118405240800000000000000
+      internalID: 4778398443601615732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_10
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 573
+        width: 23
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5d25547cc2c41530800000000000000
+      internalID: 3824896166925249882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_11
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 557
+        width: 21
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 601c36d0d29f48570800000000000000
+      internalID: 8468167171256860934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_12
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 573
+        width: 56
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22ff3daef66b20220800000000000000
+      internalID: 2450721739040358178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 555
+        width: 104
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21c36dbbd09459e40800000000000000
+      internalID: 5662512429823048722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_14
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 488
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5f60bb6f51a29d40800000000000000
+      internalID: 5589707518720896858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_15
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 488
+        width: 54
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 170fd67677caa1990800000000000000
+      internalID: -7414424207675756431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_16
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 488
+        width: 22
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa31f105f92317b70800000000000000
+      internalID: 8894946398858843055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_17
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 473
+        width: 104
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53a0a738f9dbede30800000000000000
+      internalID: 4530266767984560693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_18
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 488
+        width: 23
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fccefda44d638bad0800000000000000
+      internalID: -2686336892309345073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_19
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 488
+        width: 38
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d89e8cf7dfa5457f0800000000000000
+      internalID: -624774403480557171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_20
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 488
+        width: 38
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cde4208353248de30800000000000000
+      internalID: 4528442221661408988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_21
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 511
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 042ab90886091d4e0800000000000000
+      internalID: -1958625584420773312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_22
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 472
+        width: 37
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd63c665577596db0800000000000000
+      internalID: -4798207766513830180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_23
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 470
+        width: 143
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e952d8c8e4a92e2d0800000000000000
+      internalID: -3250866318851889762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_24
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 475
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b061a8017e72bada0800000000000000
+      internalID: -5932604210762082805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_25
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 399
+        width: 37
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14cc09d6c5fe7c3a0800000000000000
+      internalID: -6645079544907641791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_26
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 399
+        width: 39
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c996ab0b037d45980800000000000000
+      internalID: -8550973188346320484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_27
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 399
+        width: 38
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53306a1987261d510800000000000000
+      internalID: 1572146014908187445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_28
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 422
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3e209499eab95820800000000000000
+      internalID: 2907560546826989115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_29
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 383
+        width: 38
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d135d2ae1248ee8e0800000000000000
+      internalID: -1662245931255508195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_30
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 381
+        width: 158
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 714e49af28d157bc0800000000000000
+      internalID: -3786087463348018153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_31
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 383
+        width: 118
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15f3e4b1b03e17660800000000000000
+      internalID: 7381930901079211857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_32
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 295
+        width: 47
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01716246b3fdeb3f0800000000000000
+      internalID: -883023030741756144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_33
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 323
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59442c45f511debb0800000000000000
+      internalID: -4905245317995019115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_34
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 312
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1b886c5a83291c30800000000000000
+      internalID: 4330531593856256799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_35
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 295
+        width: 47
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b637424f64a0e72c0800000000000000
+      internalID: -4432093683425971349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_36
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 323
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67a77f63fc40f7020800000000000000
+      internalID: 2341595619282877046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_37
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 312
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d18778075709a310800000000000000
+      internalID: 1416671628170330584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_38
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 312
+        width: 38
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90feb3566e9be8a90800000000000000
+      internalID: -7309700745983693047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_39
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 312
+        width: 39
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7127da8548815b2c0800000000000000
+      internalID: -4416596902864391657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_40
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 323
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8416d2f5423504ac0800000000000000
+      internalID: -3873004263857888952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_41
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 312
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ede564ccf22ee5ad0800000000000000
+      internalID: -2711481230711955746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_42
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 295
+        width: 47
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49ec84efa205bea70800000000000000
+      internalID: 8857261237739245204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_43
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 323
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c6b12af09e97af90800000000000000
+      internalID: -6942405955059337529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_44
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 312
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8996af990882fc60800000000000000
+      internalID: 7850486675374774668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_45
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 295
+        width: 47
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2af2453fbfd19950800000000000000
+      internalID: 6454185753323960877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_46
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 323
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 209775637950374c0800000000000000
+      internalID: -4291079872944047870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_47
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 312
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95a6561046a3222f0800000000000000
+      internalID: -999171966128264615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_48
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 296
+        width: 21
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1cc936986f57a5b0800000000000000
+      internalID: -5357208328932307939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_49
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 312
+        width: 21
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f204e2bbdba93e3a0800000000000000
+      internalID: -6637291286134112209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_50
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 298
+        width: 98
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa80da0b72db23260800000000000000
+      internalID: 7075925942717974698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_51
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 153
+        width: 267
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecf0019aae5d54710800000000000000
+      internalID: 1676981640100843470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_52
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 161
+        width: 91
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbabd34f4e85a2170800000000000000
+      internalID: 8154427815681178299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_53
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 239
+        width: 99
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7f087fc1d98ff9d0800000000000000
+      internalID: -2738318514196050052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_54
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 226
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef57930d537b77b80800000000000000
+      internalID: -8397041538454424066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_55
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 21
+        width: 267
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a95b0f1d5c07a7f60800000000000000
+      internalID: 8032856880301782426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_56
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 21
+        width: 267
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f73206f9cde796920800000000000000
+      internalID: 2984055714141447039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_57
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 18
+        width: 1324
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14289ff603a8aded0800000000000000
+      internalID: -2388444711724940735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 01_Junior
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 554
+        width: 130
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 898864de19b7b8140aa82576774c10dd
+      internalID: 1771732806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 01_Boss
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 469
+        width: 130
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0308cb09d61c69458e61bf155b4d086
+      internalID: -2136400249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 01_Senior
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 551
+        width: 130
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 013ba4c5c7638b44987242bae24eeb51
+      internalID: 409763359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 01_Millionare
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 467
+        width: 143
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84d71620e42e9f24ab766e05c664d5e6
+      internalID: 931056232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_select_assets1_58
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 377
+        width: 166
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a57593e8e6eae64cbaabdf0b0620680
+      internalID: 9160722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_Boss
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 466
+        width: 116
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 449fba726529a1e4ea5cbc3692af21bc
+      internalID: 728447533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_Junior
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 551
+        width: 136
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea2f169a628a6754b8cd02ca8b28816f
+      internalID: 1832591943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_Senior
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 549
+        width: 111
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b4285c11670b7f4ba69775f2a6a29d6
+      internalID: -1269255081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_Millionare
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 465
+        width: 154
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c0afe668ee5e0244aca1e76334cea20
+      internalID: -816650104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 03_Junior
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 378
+        width: 131
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b71fe8dd7a013904bb94ca0b844727ef
+      internalID: 1391489135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 03_Senior
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 293
+        width: 115
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26d2a64b3bacb38488df865a57b5c162
+      internalID: 511795308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 03_Boss
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 223
+        width: 122
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af4d9e4c5bc4f224e8e605183dbc48db
+      internalID: -137181950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 52accf402ee774c40abc70009ec65d1f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      01_Boss: -2136400249
+      01_Junior: 1771732806
+      01_Millionare: 931056232
+      01_Senior: 409763359
+      02_Boss: 728447533
+      02_Junior: 1832591943
+      02_Millionare: -816650104
+      02_Senior: -1269255081
+      03_Boss: -137181950
+      03_Junior: 1391489135
+      03_Senior: 511795308
+      room_select_assets1_58: 9160722
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
