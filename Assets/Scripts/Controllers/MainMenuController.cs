@@ -16,12 +16,21 @@ public class MainMenuController : BaseSceneController
         
     }
 
+    private void Start()
+    {
+        AddSmartFoxListeners();
+    }
+
     public void RequestJoinRoom()
     {
+        if(sfs == null)
+        {
+            sfs = GlobalManager.Instance.GetSfsClient();
+        }
+        
         Debug.Log("Sfs is connected : " + sfs.IsConnected);
         if (!sfs.IsConnected)
         {
-            
             return;
         }
 
@@ -34,6 +43,7 @@ public class MainMenuController : BaseSceneController
     {
         // Load game scene
         //SceneManager.LoadScene(GameConstants.SHAN_ROOM_SCENE);
+        Debug.Log("Roo, joined");
         Managers.UIManager.ShowUI(UIs.UIGameRoom);
     }
 

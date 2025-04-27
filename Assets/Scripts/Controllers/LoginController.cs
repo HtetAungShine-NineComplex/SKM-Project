@@ -178,7 +178,7 @@ public class LoginController : BaseSceneController
         cfg.Port = Managers.DataLoader.NetworkData.webSocketPort;
         //cfg.Port = tcpPort;
 #else
-        cfg.Port = tcpPort;
+        //cfg.Port = tcpPort;
 #endif
         cfg.UdpHost = Managers.DataLoader.NetworkData.host;
         cfg.UdpPort = Managers.DataLoader.NetworkData.UdpPort;

@@ -142,7 +142,7 @@ public class UIMainMenu : UiBase
         cfg.Port = Managers.DataLoader.NetworkData.webSocketPort;
         //cfg.Port = tcpPort;
 #else
-        cfg.Port = tcpPort;
+        //cfg.Port = tcpPort;
 #endif
         cfg.UdpHost = Managers.DataLoader.NetworkData.host;
         cfg.UdpPort = Managers.DataLoader.NetworkData.UdpPort;
@@ -152,8 +152,9 @@ public class UIMainMenu : UiBase
 #if UNITY_WEBGL //&& !UNITY_EDITOR
         GlobalManager.Instance.CreateSfsClient(UseWebSocket.WSS_BIN);
 #else
-        sfs = gm.CreateSfsClient();
+        //sfs = gm.CreateSfsClient();
 #endif
+        GlobalManager.Instance.CreateSfsClient();
         sfs = GlobalManager.Instance.GetSfsClient();
 
         sfs.Logger.EnableConsoleTrace = Managers.DataLoader.NetworkData.debug;

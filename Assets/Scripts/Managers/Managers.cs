@@ -41,7 +41,7 @@ public class Managers : MonoBehaviour
         //PlayerPrefs.SetString("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNiwicGhvbmVfbnVtYmVyIjoiMDkyMjIyMjIyMjIiLCJuYW1lIjoiTmFtZSIsImJhbGFuY2UiOiItODAwNzIuMDAiLCJpYXQiOjE3MzQ0OTY5MDAsImV4cCI6MTczNDU4MzMwMH0.yVF05WY3cuznvGMSZLT2AusLDQrVBQXSZ_9nPX_daKA");
         UIManager.ShowUI(UIs.UIMainMenu);
 #else
-        UIManager.ShowUI(UIs.UIMainMenu);
+        UIManager.ShowUI(UIs.UILogin);
 #endif
 
     }
